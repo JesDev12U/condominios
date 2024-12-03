@@ -6,6 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <H1>contenido cambiante</H1>
+    <h1>Prueba</h1>
+    <table>
+        <?php foreach($this->datos as $reg): ?>
+        <tr>
+            <td><?php echo $reg["id_administrador"] ?></td>
+            <td><?php echo $reg["nombre"] ?></td>
+        </tr>
+        <?php endforeach ?>
+    </table>
 </body>
 </html>
