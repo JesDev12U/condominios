@@ -1,6 +1,6 @@
 <?php
 require_once "_model/Model.php";
-class CtrlPaginaPrincipal{
+class CtrlInvitados{
     private $vista = "_view/condomino/invitados.html";
 
     public function renderContent(){
