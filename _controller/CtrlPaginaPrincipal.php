@@ -1,10 +1,9 @@
-
 <?php
 require_once "_model/Model.php";
-class CtrlPaginaPrincipal{
+class CtrlPaginaPrincipal
+{
     private $vista = "_view/principal.html";
+    public $datos = [];
 
-    public function renderContent(){
-        include $this ->vista;
-    }
+    public function renderContent() {}
 }
