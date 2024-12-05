@@ -8,4 +8,4 @@ $ctrl = new CtrlPaginaPrincipal();
 // $ctrl = new CtrlReservarEventos();
 // require_once "_controller/admin/reporte_visitas/CtrlReporteVisitas.php";
 // $ctrl = new CtrlReporteVisitas();
-include "_view/master.html";
+include "_view/master.php";
