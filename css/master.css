@@ -1,0 +1,24 @@
+:root {
+  --color-principal: #96BD7D;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+
+.map {
+  width: 100%;
+  height: 300px;
+}
+
+.navbar {
+  padding: 20px;
+  background: var(--color-principal);
+}
+
+footer {
+  background: var(--color-principal);
+}
