@@ -1,0 +1,28 @@
+#img-condominio {
+  height: 500px;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+}
+
+.login-box {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+}
+
+.login-box img {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn-practical {
+  background-color: #8BC34A;
+  color: white;
+  border: none;
+}

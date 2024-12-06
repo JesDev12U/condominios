@@ -8,7 +8,7 @@ class CtrlPaginaPrincipal
     public $opciones = [
         ["nombre" => "Home", "href" => "#home", "id" => "home"],
         ["nombre" => "Eventos", "href" => "#eventos", "id" => "eventos"],
-        ["nombre" => "opcion", "href" => "#opcion", "id" => "opcion"]
+        ["nombre" => '<i class="fa-solid fa-user"></i> Iniciar sesión', "href" => "?page=login", "id" => "login"]
 
     ];
     public $title = "Principal";
