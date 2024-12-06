@@ -1,7 +1,3 @@
-:root {
-  --color-principal: #96BD7D;
-}
-
 *,
 *::after,
 *::before {
@@ -9,9 +5,21 @@
   padding: 0;
 }
 
-.map {
-  width: 100%;
-  height: 300px;
+:root {
+  --color-principal: #96BD7D;
+}
+
+.container-redes-sociales a i {
+  font-size: 2em;
+  color: #000;
+}
+
+.container-redes-sociales a i:hover {
+  color: #3b3b3b;
+}
+
+footer {
+  background: var(--color-principal);
 }
 
 .navbar {
@@ -19,6 +27,7 @@
   background: var(--color-principal);
 }
 
-footer {
-  background: var(--color-principal);
+.map {
+  width: 100%;
+  height: 300px;
 }

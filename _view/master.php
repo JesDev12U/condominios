@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
     <!-- CSS principal -->
     <link rel="stylesheet" href="css/master.css" />
 </head>
+
 <body>
     <!-- Navbar superior -->
     <nav class="navbar navbar-expand-lg border-bottom">
@@ -26,41 +28,41 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
-                <?php foreach($ctrl->opciones as $opcion): ?>
-                <li class="nav-item"><a class="nav-link" <?php echo 'href="' . $opcion['href'] . '"' ?>><?php echo $opcion['nombre'] ?></a></li>
+                <?php foreach ($ctrl->opciones as $opcion): ?>
+                    <li class="nav-item"><a class="nav-link" <?php echo 'href="' . $opcion['href'] . '"' ?>><?php echo $opcion['nombre'] ?></a></li>
                 <?php endforeach ?>
             </ul>
         </div>
     </nav>
     <div class="container-fluid">
-        <?php $ctrl -> renderContent(); ?>
+        <?php $ctrl->renderContent(); ?>
     </div>
     <footer class="py-5 border-top">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
-                <div class="col mb-3 text-center">
-                  <h5>Siguenos</h5>
-                  <a href="#" class="me-2"><i class="fa-brands fa-facebook"></i></a>
-                  <a href="#" class="me-2"><i class="fa-brands fa-x-twitter"></i></a>
-                  <a href="#" class="me-2"><i class="fa-brands fa-instagram"></i></a>
+                <div class="col mb-3 text-center container-redes-sociales">
+                    <h5>Siguenos</h5>
+                    <a href="#" class="me-2"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="me-2"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="me-2"><i class="fa-brands fa-instagram"></i></a>
                 </div>
-            
+
                 <div class="col mb-3 text-center">
-                  <h5>Políticas de uso</h5>
-                  <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Aviso de privacidad</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Términos y condiciones</a></li>
-                  </ul>
+                    <h5>Políticas de uso</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Aviso de privacidad</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Términos y condiciones</a></li>
+                    </ul>
                 </div>
-            
+
                 <div class="col mb-3 text-center">
-                  <h5>Contactanos</h5>
-                  <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><i class="fa-solid fa-phone"></i>&nbsp;5555555555</li>
-                    <li class="nav-item mb-2"><i class="fa-solid fa-phone"></i>&nbsp;5566666666</li>
-                  </ul>
+                    <h5>Contactanos</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><i class="fa-solid fa-phone"></i>&nbsp;5555555555</li>
+                        <li class="nav-item mb-2"><i class="fa-solid fa-phone"></i>&nbsp;5566666666</li>
+                    </ul>
                 </div>
-            
+
                 <div class="col-12 col-md-4 mb-6">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1881.2732895098143!2d-99.20992246160364!3d19.431987424886835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2021e50a4d4db%3A0xcfaa324d96159af7!2sAv.%20Paseo%20de%20las%20Palmas%20123%2C%20Polanco%2C%20Lomas%20de%20Chapultepec%20III%20Secc%2C%20Miguel%20Hidalgo%2C%2011510%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses-419!2smx!4v1733379914973!5m2!1ses-419!2smx" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
                 </div>
@@ -82,4 +84,5 @@
     <!-- SweetAlert JS -->
     <script src="utils/sweetalert2-v11.14.5/sweetalert2@11.js"></script>
 </body>
+
 </html>
