@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="utils/fontawesome-free-6.7.1-web/css/all.min.css" />
     <!-- CSS principal -->
     <link rel="stylesheet" href="css/master.css" />
+    <!-- CSS de cada controlador -->
+    <style>
+        <?php $ctrl->renderCSS() ?>
+    </style>
 </head>
 
 <body>
@@ -83,6 +87,10 @@
     <script src="utils/datatables-1.13.6/dataTables.bootstrap5.min.js"></script>
     <!-- SweetAlert JS -->
     <script src="utils/sweetalert2-v11.14.5/sweetalert2@11.js"></script>
+    <!-- JS del controlador -->
+    <script>
+        <?php $ctrl->renderJS() ?>
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,20 @@
+.carousel-control-prev, .carousel-control-next {
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 100px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-size: 100%;
+  filter: invert(1);
+  opacity: 1;
+}
+
+.carousel-inner img {
+  width: 100%; /* Hace que las imágenes ocupen todo el ancho del contenedor */
+  height: 400px; /* Mantén las proporciones */
+}
+
