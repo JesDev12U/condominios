@@ -32,7 +32,7 @@
     </div>
     <!-- Navbar superior -->
     <nav class="navbar navbar-expand-lg border-bottom">
-        <a href="/index.php" class="navbar-brand">
+        <a href="index.php" class="navbar-brand">
             <img src="img/placeholder_logo.png" alt="Logo" width="40" height="40">
             Condominios
         </a>
