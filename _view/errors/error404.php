@@ -5,6 +5,6 @@
     <p class="lead">
       El recurso que estás buscando no existe :(
     </p>
-    <a href="index.php" class="btn btn-primary">Ir a la página principal</a>
+    <a href="/condominios" class="btn btn-primary">Ir a la página principal</a>
   </div>
 </div>

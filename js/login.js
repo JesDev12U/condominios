@@ -22,7 +22,7 @@ $formLogin.addEventListener("submit", async (e) => {
 
     if (!response.ok) {
       desaparecerLoader();
-      throw new Error(`Error: ${response.statusText}`);
+      throw new Error(response.statusText);
     }
 
     let json = await response.json();
@@ -38,10 +38,11 @@ $formLogin.addEventListener("submit", async (e) => {
     }
   } catch (err) {
     desaparecerLoader();
+    console.error(err);
     Swal.fire({
       icon: "error",
       title: "Error",
-      text: `Error: ${err}`,
+      text: err,
     });
   }
 });

@@ -1,0 +1,19 @@
+RewriteEngine On
+RewriteBase /condominios/
+
+# Excluir carpetas necesarias
+RewriteCond %{REQUEST_URI} ^/condominios/(css|js|img|fonts|_model)/ [NC]
+RewriteRule ^ - [L]
+
+# Excluir archivos existentes para evitar redirección
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Capturar rutas con 3 segmentos dinámicos: /<pagina>/<accion>/<id>
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)$ index.php?page=$1&action=$2&id=$3 [QSA,L]
+
+# Capturar rutas con 2 segmentos dinámicos: /<pagina>/<accion>
+RewriteRule ^([^/]+)/([^/]+)$ index.php?page=$1&action=$2 [QSA,L]
+
+# Capturar rutas con solo 1 segmento dinámico: /<pagina>
+RewriteRule ^([^/]+)$ index.php?page=$1 [QSA,L]

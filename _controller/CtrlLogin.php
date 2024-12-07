@@ -7,7 +7,7 @@ class CtrlLogin
   private $css = "css/login.css";
   private $js = "js/login.js";
   public $opciones = [
-    ["nombre" => "Home", "href" => "?page=principal", "id" => "home"]
+    ["nombre" => "Home", "href" => "/condominios", "id" => "home"]
   ];
   public $title = "Inicio de sesión";
 

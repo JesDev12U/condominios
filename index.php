@@ -1,8 +1,14 @@
 <?php
 ini_set('display_errors', E_ALL); //Esta linea solo es para pruebas, no dejar en produccion
 
-//Obtenemos la pagina solicitada desde la URL
-$page = isset($_GET['page']) ? $_GET['page'] : 'principal';
+// Capturar los parámetros de la URL
+$page = null;
+if (isset($_GET['page'])) {
+  if ($_GET['page'] === "index.php") $page = 'principal';
+  else $page = $_GET['page'];
+} else $page = 'principal';
+$action = isset($_GET['action']) ? $_GET['action'] : null;
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
 //Router
 switch ($page) {
@@ -12,8 +18,14 @@ switch ($page) {
     break;
 
   case 'login':
-    require_once "_controller/CtrlLogin.php";
-    $ctrl = new CtrlLogin();
+    if ($action !== null || $id !== null) {
+      require_once "_controller/errors/CtrlError404.php";
+      http_response_code(404);
+      $ctrl = new CtrlError404();
+    } else {
+      require_once "_controller/CtrlLogin.php";
+      $ctrl = new CtrlLogin();
+    }
     break;
 
   default:
