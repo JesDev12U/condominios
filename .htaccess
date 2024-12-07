@@ -1,5 +1,4 @@
 RewriteEngine On
-RewriteBase /condominios/
 
 # Excluir carpetas necesarias
 RewriteCond %{REQUEST_URI} ^/condominios/(css|js|img|fonts|_model)/ [NC]
