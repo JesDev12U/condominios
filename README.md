@@ -30,7 +30,11 @@ DB_NAME=<NOMBRE DE LA BASE DE DATOS>
 
 ## Configuración para IIS
 
-Debido a la configuración de las rutas, es necesario añadir el directorio virtual del proyecto, para que así tengamos la siguiente URL: `http://localhost/condominios`, por lo que al alias del directorio es indispensable colocarlo como `condominios`. De igual forma, si se llega a cambiar el nombre al directorio, solo basta cambiar también el nombre en la variable `$baseURL` en Model.php
+Debido a la configuración de las rutas, es necesario añadir el directorio virtual del proyecto, para que así tengamos la siguiente URL: `http://localhost/condominios`, por lo que al alias del directorio es indispensable colocarlo como `condominios`. De igual forma, si se llega a cambiar el nombre al directorio, solo basta cambiar también el nombre en la variable `$baseURL` en `Model.php` y cambiar el directorio en la siguiente línea del `.htaccess`
+
+```.htaccess
+RewriteCond %{REQUEST_URI} ^/<DIRECTORIO>/(css|js|img|fonts|_model)/ [NC]
+```
 
 También habrá un problema al momento de navegar por la página, esto se debe por el archivo `.htaccess`, IIS no sabe cómo interpretar ese archivo ya que es exclusivo para servidores Apache, por lo que para poder hacer que IIS lo entienda tenemos que hacer lo siguiente:
 
