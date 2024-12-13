@@ -16,7 +16,6 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
 //Router
 switch ($page) {
   case 'principal':
-    var_dump($_SESSION);
     if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"] === true) {
       switch ($_SESSION["usuario"]) {
         case "condomino":

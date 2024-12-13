@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <base href="<?php echo SITE_URL ?>">
@@ -102,12 +102,12 @@
         src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring.js"></script>
     <!-- JS del master -->
     <script src="js/master.js"></script>
+    <script>
+        verificarIndex(`<?php echo SITE_URL ?>`);
+    </script>
     <!-- JS del controlador -->
     <script>
         <?php $ctrl->renderJS() ?>
-    </script>
-    <script>
-
     </script>
 </body>
 
