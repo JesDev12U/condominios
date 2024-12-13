@@ -15,7 +15,9 @@
     for ($i = 0; $i < count($this->imagenes); $i++) {
       if ($i === 0) echo '<div class="carousel-item active">';
       else echo '<div class="carousel-item">';
-      echo '<img src="' . $this->pathImagenes . '' . $this->imagenes[$i] . '" class="d-block w-100" alt="' . $this->imagenes[$i] . '">';
+      echo '<div class="mirror-container">';
+      echo '<img src="' . $this->pathImagenes . '' . $this->imagenes[$i] . '" class="d-block mx-auto w-50" alt="' . $this->imagenes[$i] . '">';
+      echo '</div>';
       echo '</div>';
     }
     ?>

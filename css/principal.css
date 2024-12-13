@@ -13,8 +13,57 @@
   opacity: 1;
 }
 
-.carousel-inner img {
-  width: 100%; /* Hace que las imágenes ocupen todo el ancho del contenedor */
-  height: 400px; /* Mantén las proporciones */
+/* Contenedor para manejar la imagen y su reflejo */
+.mirror-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Alinea la imagen y el reflejo en columna */
+  width: 50%;
 }
 
+/* Imagen principal */
+.mirror-container img {
+  display: block;
+  height: 500px;
+}
+
+.carousel-inner {
+  background: linear-gradient(to bottom, var(--color-principal), #333); /* Fondo degradado oscuro */
+}
+
+/* Reflejo de la imagen */
+.mirror-container::after {
+  background: linear-gradient(to bottom, var(--color-principal), #333); /* Fondo degradado oscuro */
+  content: '';
+  display: block;
+  width: 100%; /* Igual ancho que la imagen */
+  height: 100%; /* Reflejo será igual en altura */
+  background-image: inherit;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transform: scaleY(-1); /* Reflejo vertical */
+  opacity: 0.5; /* Transparencia para el reflejo */
+  filter: blur(2px); /* Difumina un poco para el efecto */
+  position: absolute;
+  bottom: -50%; /* Posiciona debajo de la imagen */
+  left: 0;
+  z-index: -1; /* Detrás de la imagen */
+}
+
+/* Fondo del carrusel */
+.carousel-item {
+  background: linear-gradient(to bottom, var(--color-principal), #333); /* Fondo degradado oscuro */
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-item.active{
+  transition: all 0.1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
