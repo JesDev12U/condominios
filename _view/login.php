@@ -11,15 +11,6 @@
       <h2 class="text-center mb-4">¡BIENVENID@ A CONDOMINIOS!</h2>
       <!-- Formulario -->
       <form id="form-login">
-        <!-- Tipo de Usuario -->
-        <div class="mb-3">
-          <label for="user"><i class="fa-solid fa-user"></i>&nbsp;Selecciona tu tipo de usuario</label>
-          <select name="user" required>
-            <option value="condomino">Condómino</option>
-            <option value="empleado">Empleado</option>
-            <option value="administrador">Administrador</option>
-          </select>
-        </div>
         <!-- Campo Usuario -->
         <div class="mb-3">
           <label for="email" class="form-label"><i class="fa-solid fa-envelope"></i>&nbsp;Correo electrónico</label>
@@ -47,3 +38,6 @@
     </div>
   </div>
 </div>
+<script>
+  const redireccionMenu = (usuario) => location.href = `<?php echo SITE_URL ?>${usuario}`;
+</script>

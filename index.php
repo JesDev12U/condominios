@@ -1,4 +1,5 @@
 <?php
+session_start();
 ini_set('display_errors', E_ALL); //Esta linea solo es para pruebas, no dejar en produccion
 
 require_once "config/Global.php";
@@ -15,8 +16,18 @@ $id = isset($_GET['id']) ? $_GET['id'] : null;
 //Router
 switch ($page) {
   case 'principal':
-    require_once "_controller/CtrlPaginaPrincipal.php";
-    $ctrl = new CtrlPaginaPrincipal();
+    var_dump($_SESSION);
+    if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"] === true) {
+      switch ($_SESSION["usuario"]) {
+        case "condomino":
+          require_once "_controller/condomino/CtrlPaginaPrincipal.php";
+          $ctrl = new CtrlPaginaPrincipal();
+          break;
+      }
+    } else {
+      require_once "_controller/CtrlPaginaPrincipal.php";
+      $ctrl = new CtrlPaginaPrincipal();
+    }
     break;
 
   case 'login':
@@ -25,8 +36,17 @@ switch ($page) {
       http_response_code(404);
       $ctrl = new CtrlError404();
     } else {
-      require_once "_controller/CtrlLogin.php";
-      $ctrl = new CtrlLogin();
+      if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"] === true) {
+        switch ($_SESSION["usuario"]) {
+          case "condomino":
+            require_once "_controller/condomino/CtrlPaginaPrincipal.php";
+            $ctrl = new CtrlPaginaPrincipal();
+            break;
+        }
+      } else {
+        require_once "_controller/CtrlLogin.php";
+        $ctrl = new CtrlLogin();
+      }
     }
     break;
 

@@ -35,6 +35,7 @@ $formLogin.addEventListener("submit", async (e) => {
       });
     } else {
       //TODO: Redireccionar al usuario a su correspondiente menu
+      redireccionMenu(json.usuario);
     }
   } catch (err) {
     desaparecerLoader();

@@ -5,7 +5,8 @@ class CtrlPaginaPrincipal
   const CSS = "css/condomino/principal.css";
   const JS = "js/condomino/principal.js";
   public $opciones = [
-    ["nombre" => "Home", "href" => SITE_URL . "condomino", "id" => "home"]
+    ["nombre" => "Home", "href" => SITE_URL . "condomino", "id" => "home"],
+    ["nombre" => "Cerrar sesión", "href" => SITE_URL . "_controller/cerrarSesion.php", "id" => "cerrar-sesion"]
   ];
   public $title = "Condómino";
 

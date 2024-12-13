@@ -106,6 +106,9 @@
     <script>
         <?php $ctrl->renderJS() ?>
     </script>
+    <script>
+
+    </script>
 </body>
 
 </html>
