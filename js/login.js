@@ -12,7 +12,7 @@ $formLogin.addEventListener("submit", async (e) => {
   }
 
   try {
-    let response = await fetch("_model/ajaxLogin.php", {
+    let response = await fetch("_controller/ajaxLogin.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

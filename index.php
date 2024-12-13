@@ -1,6 +1,8 @@
 <?php
 ini_set('display_errors', E_ALL); //Esta linea solo es para pruebas, no dejar en produccion
 
+require_once "config/Global.php";
+
 // Capturar los parámetros de la URL
 $page = null;
 if (isset($_GET['page'])) {

@@ -1,35 +1,27 @@
 <?php
-require_once "_model/Model.php";
-
 class CtrlLogin
 {
-  private $vista = "_view/login.php";
-  private $css = "css/login.css";
-  private $js = "js/login.js";
+  const VISTA = "_view/login.php";
+  const CSS = "css/login.css";
+  const JS = "js/login.js";
   public $model;
-  public $opciones;
+  public $opciones = [
+    ["nombre" => "Home", "href" => SITE_URL, "id" => "home"]
+  ];
   public $title = "Inicio de sesión";
-
-  public function __construct()
-  {
-    $this->model = new Model();
-    $this->opciones = [
-      ["nombre" => "Home", "href" => $this->model->baseURL, "id" => "home"]
-    ];
-  }
 
   public function renderContent()
   {
-    include $this->vista;
+    include self::VISTA;
   }
 
   public function renderCSS()
   {
-    include $this->css;
+    include self::CSS;
   }
 
   public function renderJS()
   {
-    include $this->js;
+    include self::JS;
   }
 }
