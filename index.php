@@ -30,6 +30,10 @@ switch ($page) {
     }
     break;
 
+  case 'condomino':
+    require_once "_controller/condomino/CtrlPaginaPrincipal.php";
+    $ctrl = new CtrlPaginaPrincipal();
+    break;
   default:
     //Pagina no encontrada
     require_once "_controller/errors/CtrlError404.php";
