@@ -1,9 +1,9 @@
 <?php
 class CtrlPaginaPrincipal
 {
-    private $vista = "_view/principal.php";
-    private $css = "css/principal.css";
-    private $js = "js/principal.js";
+    private $vista = __DIR__ . "/../_view/principal.php";
+    private $css = __DIR__ . "/../css/principal.css";
+    private $js = __DIR__ . "/../js/principal.js";
     public $model;
     public $opciones = [
         ["nombre" => "Home", "href" => "#home", "id" => "home"],

@@ -8,6 +8,6 @@ set_include_path(
 
 define("SITE_URL", "http://localhost/condominios/");
 define("DB_HOST", "127.0.0.1");
-define("DB_BASE", "tienda");
+define("DB_BASE", "condominios");
 define("DB_USR", "root");
 define("DB_PASS", "Str0ngPassword!");

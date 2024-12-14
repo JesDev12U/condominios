@@ -1,9 +1,9 @@
 <?php
-require_once "_model/Model.php";
+require_once __DIR__ . "/../../_model/Model.php";
 class CtrlError404
 {
   public $model;
-  private $vista = "_view/errors/error404.php";
+  private $vista = __DIR__ . "/../../_view/errors/error404.php";
   public $opciones = [
     ["nombre" => "Home", "href" => SITE_URL, "id" => "home"]
   ];

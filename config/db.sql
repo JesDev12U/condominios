@@ -6,7 +6,7 @@ CREATE TABLE empleados(
   id_empleado INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(50) NOT NULL,
   email VARCHAR(80) NOT NULL,
-  password VARCHAR(30) NOT NULL,
+  password VARCHAR(255) NOT NULL,
   telefono VARCHAR(10) NOT NULL,
   telefono_emergencia VARCHAR(10) NOT NULL,
   foto_path VARCHAR(255) NOT NULL
@@ -16,14 +16,14 @@ CREATE TABLE administrador(
   id_administrador INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(50) NOT NULL,
   email VARCHAR(80) NOT NULL,
-  password VARCHAR(30) NOT NULL
+  password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE condominos(
   id_condomino INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(50) NOT NULL,
   email VARCHAR(80) NOT NULL,
-  password VARCHAR(30) NOT NULL,
+  password VARCHAR(255) NOT NULL,
   telefono VARCHAR(10) NOT NULL,
   telefono_emergencia VARCHAR(10) NOT NULL,
   torre VARCHAR(5) NOT NULL,

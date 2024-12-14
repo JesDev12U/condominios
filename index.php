@@ -2,7 +2,7 @@
 session_start();
 ini_set('display_errors', E_ALL); //Esta linea solo es para pruebas, no dejar en produccion
 
-require_once "config/Global.php";
+require_once __DIR__ . "/config/Global.php";
 
 // Capturar los parámetros de la URL
 $page = null;
@@ -19,45 +19,45 @@ switch ($page) {
     if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"] === true) {
       switch ($_SESSION["usuario"]) {
         case "condomino":
-          require_once "_controller/condomino/CtrlPaginaPrincipal.php";
+          require_once __DIR__ . "/_controller/condomino/CtrlPaginaPrincipal.php";
           $ctrl = new CtrlPaginaPrincipal();
           break;
       }
     } else {
-      require_once "_controller/CtrlPaginaPrincipal.php";
+      require_once __DIR__ . "/_controller/CtrlPaginaPrincipal.php";
       $ctrl = new CtrlPaginaPrincipal();
     }
     break;
 
   case 'login':
     if ($action !== null || $id !== null) {
-      require_once "_controller/errors/CtrlError404.php";
+      require_once __DIR__ . "/_controller/errors/CtrlError404.php";
       http_response_code(404);
       $ctrl = new CtrlError404();
     } else {
       if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"] === true) {
         switch ($_SESSION["usuario"]) {
           case "condomino":
-            require_once "_controller/condomino/CtrlPaginaPrincipal.php";
+            require_once __DIR__ . "/_controller/condomino/CtrlPaginaPrincipal.php";
             $ctrl = new CtrlPaginaPrincipal();
             break;
         }
       } else {
-        require_once "_controller/CtrlLogin.php";
+        require_once __DIR__ . "/_controller/CtrlLogin.php";
         $ctrl = new CtrlLogin();
       }
     }
     break;
 
   case 'condomino':
-    require_once "_controller/condomino/CtrlPaginaPrincipal.php";
+    require_once __DIR__ . "/_controller/condomino/CtrlPaginaPrincipal.php";
     $ctrl = new CtrlPaginaPrincipal();
     break;
   default:
     //Pagina no encontrada
-    require_once "_controller/errors/CtrlError404.php";
+    require_once __DIR__ . "/_controller/errors/CtrlError404.php";
     http_response_code(404);
     $ctrl = new CtrlError404();
 }
 
-include "_view/master.php";
+include __DIR__ . "/_view/master.php";

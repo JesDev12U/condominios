@@ -1,9 +1,9 @@
 <?php
 class CtrlPaginaPrincipal
 {
-  const VISTA = "_view/condomino/principal.php";
-  const CSS = "css/condomino/principal.css";
-  const JS = "js/condomino/principal.js";
+  const VISTA = __DIR__ . "/../../_view/condomino/principal.php";
+  const CSS = __DIR__ . "/../../css/condomino/principal.css";
+  const JS = __DIR__ . "/../../js/condomino/principal.js";
   public $opciones = [
     ["nombre" => "Home", "href" => SITE_URL . "condomino", "id" => "home"],
     ["nombre" => "Cerrar sesión", "href" => SITE_URL . "_controller/cerrarSesion.php", "id" => "cerrar-sesion"]

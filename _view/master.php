@@ -22,6 +22,8 @@
 </head>
 
 <body>
+    <!-- PRUEBA, ELIMINAR DESPUES -->
+    <button class="btn btn-primary" id="btn-agregar-condomino">Agrega un condomino de chill</button>
     <div class="loader-container hidden" id="loader">
         <l-ring
             size="40"
@@ -104,6 +106,18 @@
     <script src="js/master.js"></script>
     <script>
         verificarIndex(`<?php echo SITE_URL ?>`);
+    </script>
+    <!-- SCRIPT DE PRUEBA, ELIMINAR DESPUES -->
+    <script>
+        document.getElementById("btn-agregar-condomino").addEventListener("click", async (e) => {
+            e.preventDefault();
+            try {
+                await fetch("./_controller/agregarCondominoDeChill.php");
+                alert("Ya we");
+            } catch (err) {
+                console.error(err);
+            }
+        });
     </script>
     <!-- JS del controlador -->
     <script>
