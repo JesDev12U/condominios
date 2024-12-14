@@ -1,6 +1,9 @@
 <?php
+ini_set('display_errors', E_ALL); //Esta linea solo es para pruebas, no dejar en produccion
+
 //ARCHIVO DE PRUEBAS, SE ELIMINARÁ LUEGO
-require_once "../classes/MySQLAux.php";
+require_once __DIR__ . "/../classes/MySQLAux.php";
+require_once __DIR__ . "/../config/Global.php";
 $nombre = "Patito";
 $email = "condomino@gmail.com";
 $password = "patito";
@@ -11,7 +14,7 @@ $departamento = "nose";
 $tipo = "nose";
 $foto_path = "nose";
 
-$bd = new MySQLAux("127.0.0.1", "condominios", "root", "Str0ngPassword!");
+$bd = new MySQLAux(DB_HOST, DB_BASE, DB_USR, DB_PASS);
 $bd->insertRow(
   "condominos",
   [
