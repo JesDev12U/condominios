@@ -14,27 +14,12 @@ $action = isset($_GET['action']) ? $_GET['action'] : null;
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
 //Router
+if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"] === true)
+  $page = $_SESSION["usuario"];
 switch ($page) {
   case 'principal':
-    if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"] === true) {
-      switch ($_SESSION["usuario"]) {
-        case "condomino":
-          require_once __DIR__ . "/_controller/condomino/CtrlPaginaPrincipal.php";
-          $ctrl = new CtrlPaginaPrincipal();
-          break;
-        case "administrador":
-          require_once __DIR__ . "/_controller/admin/CtrlPaginaPrincipal.php";
-          $ctrl = new CtrlPaginaPrincipal();
-          break;
-        case "empleado":
-          require_once __DIR__ . "/_controller/empleado/CtrlPaginaPrincipal.php";
-          $ctrl = new CtrlPaginaPrincipal();
-          break;
-      }
-    } else {
-      require_once __DIR__ . "/_controller/CtrlPaginaPrincipal.php";
-      $ctrl = new CtrlPaginaPrincipal();
-    }
+    require_once __DIR__ . "/_controller/CtrlPaginaPrincipal.php";
+    $ctrl = new CtrlPaginaPrincipal();
     break;
 
   case 'login':
@@ -53,8 +38,22 @@ switch ($page) {
     $ctrl = new CtrlPaginaPrincipal();
     break;
   case 'administrador':
-    require_once __DIR__ . "/_controller/admin/CtrlPaginaPrincipal.php";
-    $ctrl = new CtrlPaginaPrincipal();
+    //Router del administrador
+    switch ($action) {
+      case NULL:
+        require_once __DIR__ . "/_controller/admin/CtrlPaginaPrincipal.php";
+        $ctrl = new CtrlPaginaPrincipal();
+        break;
+      case "gestor-empleados":
+        require_once __DIR__ . "/_controller/admin/gestor_empleados/CtrlGestorEmpleados.php";
+        $ctrl = new CtrlGestorEmpleados();
+        break;
+      default:
+        //Pagina no encontrada
+        require_once __DIR__ . "/_controller/errors/CtrlError404.php";
+        http_response_code(404);
+        $ctrl = new CtrlError404();
+    }
     break;
   case 'empleado':
     require_once __DIR__ . "/_controller/empleado/CtrlPaginaPrincipal.php";

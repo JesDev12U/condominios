@@ -6,7 +6,7 @@ class CtrlPaginaPrincipal
   const JS = __DIR__ . "/../../js/condomino/principal.js";
   public $opciones = [
     ["nombre" => "Home", "href" => SITE_URL . "condomino", "id" => "home"],
-    ["nombre" => "Cerrar sesión", "href" => SITE_URL . "_controller/cerrarSesion.php", "id" => "cerrar-sesion"]
+    ["nombre" => "Cerrar sesión", "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
   ];
   public $title = "Condómino";
 

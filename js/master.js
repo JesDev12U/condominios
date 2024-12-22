@@ -20,7 +20,7 @@ const sesion = (json, site_url) => {
   if (jsonParsed.sesion.length !== 0) {
     if (
       jsonParsed.sesion.loggeado &&
-      location.href !== `${site_url}${jsonParsed.sesion.usuario}`
+      !location.href.includes(`${site_url}${jsonParsed.sesion.usuario}`)
     )
       location.href = `${site_url}${jsonParsed.sesion.usuario}`;
   }

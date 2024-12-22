@@ -6,8 +6,8 @@ class CtrlPaginaPrincipal
   const JS = __DIR__ . "/../../js/admin/principal.js";
 
   public $opciones = [
-    ["nombre" => "Home", "href" => SITE_URL . "administrador", "id" => "home"],
-    ["nombre" => "Cerrar sesión", "href" => SITE_URL . "_controller/cerrarSesion.php", "id" => "cerrar-sesion"]
+    ["nombre" => "Gestor de empleados", "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-empleados", "id" => "home"],
+    ["nombre" => "Cerrar sesión", "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
   ];
   public $title = "Administrador";
 

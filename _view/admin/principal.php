@@ -9,7 +9,7 @@ if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false || $_SESSIO
 <div class="container">
   <div class="row">
     <div class="col">
-      <a href="#">
+      <a href="<?php echo SITE_URL . RUTA_ADMINISTRADOR ?>gestor-empleados">
         <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_empleados.png" alt="Gestor de empleados">
         <p>Gestor de empleados</p>
       </a>

@@ -7,6 +7,10 @@ set_include_path(
 );
 
 define("SITE_URL", "http://localhost/condominios/");
+define("RUTA_ADMINISTRADOR", "administrador/");
+define("RUTA_EMPLEADO", "empleado/");
+define("RUTA_CONDOMINO", "condomino/");
+define("RUTA_CERRAR_SESION", "_controller/cerrarSesion.php");
 define("DB_HOST", "127.0.0.1");
 define("DB_BASE", "condominios");
 define("DB_USR", "root");
