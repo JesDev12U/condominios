@@ -26,6 +26,10 @@ switch ($page) {
           require_once __DIR__ . "/_controller/admin/CtrlPaginaPrincipal.php";
           $ctrl = new CtrlPaginaPrincipal();
           break;
+        case "empleado":
+          require_once __DIR__ . "/_controller/empleado/CtrlPaginaPrincipal.php";
+          $ctrl = new CtrlPaginaPrincipal();
+          break;
       }
     } else {
       require_once __DIR__ . "/_controller/CtrlPaginaPrincipal.php";
@@ -50,6 +54,10 @@ switch ($page) {
     break;
   case 'administrador':
     require_once __DIR__ . "/_controller/admin/CtrlPaginaPrincipal.php";
+    $ctrl = new CtrlPaginaPrincipal();
+    break;
+  case 'empleado':
+    require_once __DIR__ . "/_controller/empleado/CtrlPaginaPrincipal.php";
     $ctrl = new CtrlPaginaPrincipal();
     break;
   default:

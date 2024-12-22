@@ -23,27 +23,57 @@ require_once __DIR__ . "/../config/Global.php";
 //   ]
 // );
 
+// $nombre = "Patito";
+// $email = "condomino@gmail.com";
+// $password = "patito";
+// $telefono = "5555555555";
+// $telefono_emergencia = "4444444444";
+// $torre = "nose";
+// $departamento = "nose";
+// $tipo = "nose";
+// $foto_path = "nose";
+// $bd = new MySQLAux("127.0.0.1", "condominios", "root", "Str0ngPassword!");
+// $bd->insertRow(
+//   "condominos",
+//   [
+//     "nombre",
+//     "email",
+//     "password",
+//     "telefono",
+//     "telefono_emergencia",
+//     "torre",
+//     "departamento",
+//     "tipo",
+//     "foto_path"
+//   ],
+//   [
+//     $nombre,
+//     $email,
+//     password_hash($password, PASSWORD_DEFAULT),
+//     $telefono,
+//     $telefono_emergencia,
+//     $torre,
+//     $departamento,
+//     $tipo,
+//     $foto_path
+//   ]
+// );
+
 $nombre = "Patito";
-$email = "condomino@gmail.com";
+$email = "empleado@gmail.com";
 $password = "patito";
 $telefono = "5555555555";
 $telefono_emergencia = "4444444444";
-$torre = "nose";
-$departamento = "nose";
-$tipo = "nose";
 $foto_path = "nose";
 $bd = new MySQLAux("127.0.0.1", "condominios", "root", "Str0ngPassword!");
 $bd->insertRow(
-  "condominos",
+  "empleados",
   [
     "nombre",
     "email",
     "password",
     "telefono",
     "telefono_emergencia",
-    "torre",
-    "departamento",
-    "tipo",
     "foto_path"
   ],
   [
@@ -52,9 +82,6 @@ $bd->insertRow(
     password_hash($password, PASSWORD_DEFAULT),
     $telefono,
     $telefono_emergencia,
-    $torre,
-    $departamento,
-    $tipo,
     $foto_path
   ]
 );
