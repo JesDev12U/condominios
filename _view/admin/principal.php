@@ -1,5 +1,5 @@
 <?php
-if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false)
+if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false || $_SESSION["usuario"] !== "administrador")
   header("Location: " . SITE_URL);
 ?>
 <div class="container-name">
