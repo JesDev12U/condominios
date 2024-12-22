@@ -22,6 +22,10 @@ switch ($page) {
           require_once __DIR__ . "/_controller/condomino/CtrlPaginaPrincipal.php";
           $ctrl = new CtrlPaginaPrincipal();
           break;
+        case "administrador":
+          require_once __DIR__ . "/_controller/admin/CtrlPaginaPrincipal.php";
+          $ctrl = new CtrlPaginaPrincipal();
+          break;
       }
     } else {
       require_once __DIR__ . "/_controller/CtrlPaginaPrincipal.php";
@@ -34,23 +38,18 @@ switch ($page) {
       require_once __DIR__ . "/_controller/errors/CtrlError404.php";
       http_response_code(404);
       $ctrl = new CtrlError404();
-    } else {
-      if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"] === true) {
-        switch ($_SESSION["usuario"]) {
-          case "condomino":
-            require_once __DIR__ . "/_controller/condomino/CtrlPaginaPrincipal.php";
-            $ctrl = new CtrlPaginaPrincipal();
-            break;
-        }
-      } else {
-        require_once __DIR__ . "/_controller/CtrlLogin.php";
-        $ctrl = new CtrlLogin();
-      }
+    } else if (!(isset($_SESSION["loggeado"]) && $_SESSION["loggeado"] === true)) {
+      require_once __DIR__ . "/_controller/CtrlLogin.php";
+      $ctrl = new CtrlLogin();
     }
     break;
 
   case 'condomino':
     require_once __DIR__ . "/_controller/condomino/CtrlPaginaPrincipal.php";
+    $ctrl = new CtrlPaginaPrincipal();
+    break;
+  case 'administrador':
+    require_once __DIR__ . "/_controller/admin/CtrlPaginaPrincipal.php";
     $ctrl = new CtrlPaginaPrincipal();
     break;
   default:

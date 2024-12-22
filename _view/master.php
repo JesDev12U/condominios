@@ -105,7 +105,14 @@
     <!-- JS del master -->
     <script src="js/master.js"></script>
     <script>
-        verificarIndex(`<?php echo SITE_URL ?>`);
+        document.addEventListener("DOMContentLoaded", () => {
+            verificarIndex(`<?php echo SITE_URL ?>`);
+            sesion(
+                `<?php echo json_encode(["sesion" => $_SESSION]) ?>`,
+                `<?php echo SITE_URL ?>`
+            );
+            return;
+        });
     </script>
     <!-- SCRIPT DE PRUEBA, ELIMINAR DESPUES -->
     <script>
