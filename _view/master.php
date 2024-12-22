@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="utils/fontawesome-free-6.7.1-web/css/all.min.css" />
     <!-- CSS principal -->
     <link rel="stylesheet" href="css/master.css" />
+    <!-- CSS de cada menú -->
+    <link rel="stylesheet" href="css/menu.css">
     <!-- CSS de cada controlador -->
     <style>
         <?php $ctrl->renderCSS() ?>

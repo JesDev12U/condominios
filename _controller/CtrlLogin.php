@@ -63,4 +63,22 @@ class CtrlLogin
 
     return $usuario;
   }
+
+  /** 
+   * Función que nos ayudará a obtener los datos de un usuario para posteriormente guardar
+   * dichos datos en la variable de sesión
+   * @param string $usuario usuario al que se desea consultar -> condomino | empleado | administrador
+   * @param string $email Correo electrónico del usuario a consultar
+   * @return array $datos[0] contendrá todos los datos del usuario devueltos por Model
+   */
+  public function obtenerDatosUsuario($usuario, $email)
+  {
+    $model = new Model();
+    $tabla = "";
+    if ($usuario === "condomino") $tabla  = "condominos";
+    else if ($usuario === "empleado") $tabla = "empleados";
+    else $tabla = "administrador";
+    $datos = $model->seleccionaRegistros($tabla, ["*"], "email='$email'");
+    return $datos[0];
+  }
 }

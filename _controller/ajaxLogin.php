@@ -18,6 +18,7 @@ if (isset($data['email'], $data['password'])) {
   if ($peticion !== null) {
     $_SESSION["loggeado"] = true;
     $usuario = $_SESSION["usuario"] = $peticion;
+    $_SESSION["datos"] = $ctrlLogin->obtenerDatosUsuario($peticion, $data['email']);
     $resultado = true;
   } else $resultado = false;
 } else {

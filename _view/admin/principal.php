@@ -2,4 +2,41 @@
 if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false)
   header("Location: " . SITE_URL);
 ?>
-<h1>Hola admin</h1>
+<div class="container-name">
+  <h1>¡Bienvenido <i><?php echo $_SESSION["datos"]["nombre"] ?></i>!</h1>
+  <p>¿Qué desea realizar hoy?</p>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <a href="#">
+        <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_empleados.png" alt="Gestor de empleados">
+        <p>Gestor de empleados</p>
+      </a>
+    </div>
+    <div class="col">
+      <a href="#">
+        <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_condominos.png" alt="Gestor de condominos">
+        <p>Gestor de condominos</p>
+      </a>
+    </div>
+    <div class="col">
+      <a href="#">
+        <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_reservaciones.png" alt="Gestor de reservaciones">
+        <p>Gestor de reservaciones</p>
+      </a>
+    </div>
+    <div class="col">
+      <a href="#">
+        <img src="<?php echo SITE_URL ?>img/menu_icons/reportes.png" alt="Reporte de visitas">
+        <p>Reporte de visitas</p>
+      </a>
+    </div>
+    <div class="col">
+      <a href="#">
+        <img src="<?php echo SITE_URL ?>img/menu_icons/reportes.png" alt="Reporte de reservaciones">
+        <p>Reporte de reservaciones</p>
+      </a>
+    </div>
+  </div>
+</div>
