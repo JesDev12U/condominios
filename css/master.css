@@ -56,3 +56,43 @@ h3 {
   z-index: 3;
   backdrop-filter: blur(10px);
 }
+
+.drop-zone {
+  border: 2px dashed #0d6efd;
+  border-radius: 5px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap column;
+  color: #6c757d;
+  cursor: pointer;
+  height: 400px;
+  margin: 40px;
+}
+
+.drop-zone.drag-over {
+  background-color: #e9ecef;
+  border-color: #0d6efd;
+}
+
+.wrapper-foto {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.container-foto {
+  border: 1px solid #ddd; 
+  padding: 10px;
+  text-align: center;
+}
+
+.general-container-foto {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+}

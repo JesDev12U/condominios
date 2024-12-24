@@ -1,6 +1,4 @@
 const $formLogin = document.getElementById("form-login");
-const $password = document.getElementById("password");
-const $togglePassword = document.getElementById("toggle-password");
 
 $formLogin.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -45,18 +43,5 @@ $formLogin.addEventListener("submit", async (e) => {
       title: "Error",
       text: err,
     });
-  }
-});
-
-$togglePassword.addEventListener("click", function () {
-  const type = $password.type === "password" ? "text" : "password";
-  $password.type = type;
-
-  switch (type) {
-    case "password":
-      this.innerHTML = `<i class="fa-solid fa-eye"></i>`;
-      break;
-    case "text":
-      this.innerHTML = `<i class="fa-solid fa-eye-slash"></i>`;
   }
 });

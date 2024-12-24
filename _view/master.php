@@ -54,6 +54,7 @@
     </nav>
     <div class="container-fluid">
         <?php $ctrl->renderContent(); ?>
+        <div id="ventana-modal" style="background-color: black;"></div>
     </div>
     <footer class="py-5 border-top">
         <div class="container">
@@ -127,6 +128,10 @@
                 console.error(err);
             }
         });
+    </script>
+    <!-- JS para DataTable -->
+    <script>
+        var tblDatos = new DataTable("#tblDatos");
     </script>
     <!-- JS del controlador -->
     <script>

@@ -48,6 +48,10 @@ switch ($page) {
         require_once __DIR__ . "/_controller/admin/gestor_empleados/CtrlGestorEmpleados.php";
         $ctrl = new CtrlGestorEmpleados();
         break;
+      case "mto-empleados":
+        require_once __DIR__ . "/_controller/admin/gestor_empleados/CtrlMtoEmpleados.php";
+        $ctrl = new CtrlMtoEmpleados();
+        break;
       default:
         //Pagina no encontrada
         require_once __DIR__ . "/_controller/errors/CtrlError404.php";

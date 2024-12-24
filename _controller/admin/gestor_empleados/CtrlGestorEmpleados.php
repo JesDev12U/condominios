@@ -2,12 +2,29 @@
 require_once __DIR__ . "/../../../_model/Model.php";
 class CtrlGestorEmpleados
 {
-    const VISTA = __DIR__ . "/../../../_view/admin/gestor_condominos/gestor_condominos.php";
-    const CSS = __DIR__ . "/../../../css/admin/gestor_condominos.css";
-    const JS = __DIR__ . "/../../../js/admin/gestor_condominos.js";
+    const VISTA = __DIR__ . "/../../../_view/admin/gestor_empleados/gestor_empleados.php";
+    const CSS = __DIR__ . "/../../../css/admin/gestor_empleados.css";
+    const JS = __DIR__ . "/../../../js/admin/gestor_empleados.js";
+    public $datos = null;
+
+    function __construct()
+    {
+        $model = new Model();
+        $this->datos = $model->seleccionaRegistros(
+            "empleados",
+            [
+                "foto_path",
+                "id_empleado",
+                "nombre",
+                "email",
+                "telefono",
+                "telefono_emergencia"
+            ]
+        );
+    }
 
     public $opciones = [
-        ["nombre" => "Home", "href" => SITE_URL . "administrador", "id" => "home"],
+        ["nombre" => "Home", "href" => SITE_URL . RUTA_ADMINISTRADOR, "id" => "home"],
         ["nombre" => "Cerrar sesión", "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
     ];
     public $title = "Gestor de empleados";

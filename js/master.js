@@ -25,3 +25,21 @@ const sesion = (json, site_url) => {
       location.href = `${site_url}${jsonParsed.sesion.usuario}`;
   }
 };
+
+const $password = document.getElementById("password");
+const $togglePassword = document.getElementById("toggle-password");
+
+if ($togglePassword) {
+  $togglePassword.addEventListener("click", function () {
+    const type = $password.type === "password" ? "text" : "password";
+    $password.type = type;
+
+    switch (type) {
+      case "password":
+        this.innerHTML = `<i class="fa-solid fa-eye"></i>`;
+        break;
+      case "text":
+        this.innerHTML = `<i class="fa-solid fa-eye-slash"></i>`;
+    }
+  });
+}

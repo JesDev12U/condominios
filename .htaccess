@@ -1,7 +1,8 @@
 RewriteEngine On
 
 # Excluir carpetas necesarias
-RewriteCond %{REQUEST_URI} ^/condominios/(css|js|img|fonts|_controller)/ [NC]
+# TODO: Poner medidas de seguridad más estrictas
+RewriteCond %{REQUEST_URI} ^/condominios/(css|js|img|fonts|_controller|uploads)/ [NC]
 RewriteRule ^ - [L]
 
 # Excluir archivos existentes para evitar redirección
