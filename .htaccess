@@ -1,7 +1,12 @@
 RewriteEngine On
+RewriteBase /condominios/
+
+# Redirigir cualquier URL con un '/' final opcional al mismo sin el '/'
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/condominios/index\.php
+RewriteRule ^(.+)/$ /condominios/$1 [R=301,L]
 
 # Excluir carpetas necesarias
-# TODO: Poner medidas de seguridad más estrictas
 RewriteCond %{REQUEST_URI} ^/condominios/(css|js|img|fonts|_controller|uploads)/ [NC]
 RewriteRule ^ - [L]
 
