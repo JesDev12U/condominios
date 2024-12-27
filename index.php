@@ -49,9 +49,27 @@ switch ($page) {
         $ctrl = new CtrlGestorEmpleados();
         break;
       case "mto-empleados":
-        require_once __DIR__ . "/_controller/admin/gestor_empleados/CtrlMtoEmpleados.php";
-        $ctrl = new CtrlMtoEmpleados();
-        break;
+        if (is_null($id)) {
+          require_once __DIR__ . "/_controller/admin/gestor_empleados/CtrlMtoEmpleados.php";
+          $ctrl = new CtrlMtoEmpleados("INSERT");
+          break;
+        } else if ($id > 0) {
+          require_once __DIR__ . "/_controller/admin/gestor_empleados/CtrlMtoEmpleados.php";
+          $ctrl = new CtrlMtoEmpleados("UPDATE", $id);
+          $registro = $ctrl->seleccionaRegistro($id);
+          if (count($registro) == 0) {
+            //Pagina no encontrada
+            require_once __DIR__ . "/_controller/errors/CtrlError404.php";
+            http_response_code(404);
+            $ctrl = new CtrlError404();
+          }
+          break;
+        } else {
+          //Pagina no encontrada
+          require_once __DIR__ . "/_controller/errors/CtrlError404.php";
+          http_response_code(404);
+          $ctrl = new CtrlError404();
+        }
       default:
         //Pagina no encontrada
         require_once __DIR__ . "/_controller/errors/CtrlError404.php";

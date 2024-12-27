@@ -6,7 +6,7 @@ class CtrlMtoEmpleados
   const VISTA = __DIR__ . "/../../../_view/admin/gestor_empleados/mto_empleados.php";
   const CSS = __DIR__ . "/../../../css/admin/mto_empleados.css";
   const JS = __DIR__ . "/../../../js/admin/mto_empleados.js";
-  private $peticion;
+  public $peticion;
   public $id_empleado;
   public $nombre;
   public $email;
@@ -24,7 +24,7 @@ class CtrlMtoEmpleados
         $this->nombre = $res[0]["nombre"];
         $this->email = $res[0]["email"];
         $this->telefono = $res[0]["telefono"];
-        $this->telefono_emergencia[0]["telefono_emergencia"];
+        $this->telefono_emergencia = $res[0]["telefono_emergencia"];
         $this->foto_path = $res[0]["foto_path"];
       }
     }
@@ -84,6 +84,12 @@ class CtrlMtoEmpleados
     return $model->seleccionaRegistros("empleados", ["*"], "id_empleado=$id_empleado");
   }
 
+  public function seleccionaFoto($id_empleado)
+  {
+    $model = new Model();
+    return $model->seleccionaRegistros("empleados", ['foto_path'], "id_empleado=$id_empleado");
+  }
+
   public function insertaRegistro($nombre, $email, $password, $telefono, $telefono_emergencia, $foto_path)
   {
     $model = new Model();
@@ -101,6 +107,30 @@ class CtrlMtoEmpleados
         $nombre,
         $email,
         $password,
+        $telefono,
+        $telefono_emergencia,
+        $foto_path
+      ]
+    );
+  }
+  public function modificaRegistro($id_empleado, $nombre, $email, $telefono, $telefono_emergencia, $foto_path)
+  {
+    $model = new Model();
+    //Comprobación de que la foto no se debe subir vacía
+    $foto_path = $foto_path === "" ? $this->foto_path : $foto_path;
+    return $model->modificaRegistro(
+      "empleados",
+      [
+        "nombre",
+        "email",
+        "telefono",
+        "telefono_emergencia",
+        "foto_path"
+      ],
+      "id_empleado=$id_empleado",
+      [
+        $nombre,
+        $email,
         $telefono,
         $telefono_emergencia,
         $foto_path

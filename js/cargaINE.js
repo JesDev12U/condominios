@@ -74,7 +74,9 @@ async function mostrarFormulario(file) {
   }
 }
 
-btnReloadINE.addEventListener("click", () => {
-  uploadZone.classList.remove("hidden");
-  formSection.classList.add("hidden");
-});
+if (btnReloadINE) {
+  btnReloadINE.addEventListener("click", () => {
+    uploadZone.classList.remove("hidden");
+    formSection.classList.add("hidden");
+  });
+}

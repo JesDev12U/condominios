@@ -32,7 +32,7 @@
           <td><?php echo $reg["telefono"] ?></td>
           <td><?php echo $reg["telefono_emergencia"] ?></td>
           <td>
-            <a class="btn btn-warning" href="<?php echo "SI" ?>/editar/<?php echo $reg["id_empleado"] ?>">
+            <a class="btn btn-warning" href="<?php echo SITE_URL . RUTA_ADMINISTRADOR ?>mto-empleados/<?php echo $reg["id_empleado"] ?>">
               <i class="fas fa-pen"></i>
               Modificar
             </a>

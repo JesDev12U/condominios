@@ -1,8 +1,9 @@
 <?php
 ini_set('display_errors', E_ALL); //Esta linea solo es para pruebas, no dejar en produccion
 
-require_once __DIR__ . "../../../../config/Global.php";
+require_once __DIR__ . "/../../../config/Global.php";
 require_once __DIR__ . "/CtrlMtoEmpleados.php";
+require_once __DIR__ . "/../../CtrlEmail.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
   echo json_encode(["result" => 0, "msg" => "Método no permitido"]);
@@ -31,7 +32,7 @@ if (!$peticion && !$id_empleado && !$nombre && !$email && !$password && !$telefo
   $telefono_emergencia = $data['telefono_emergencia'] ?? null;
 }
 
-function guardarFoto()
+function guardarFoto($peticion = null, $id_empleado = null)
 {
   $foto_path = "";
   if (isset($_FILES['foto_path']) && $_FILES['foto_path']['error'] === UPLOAD_ERR_OK) {
@@ -55,6 +56,14 @@ function guardarFoto()
         //Mover el archivo de la carpeta temporal a la carpeta destino
         if (move_uploaded_file($fileTmpPath, $destPath)) {
           $foto_path = str_replace(__DIR__ . "/../../../", SITE_URL, $destPath);
+          //Eliminar la foto anterior si es que se trata de un UPDATE
+          if ($peticion === "UPDATE") {
+            $ctrl = new CtrlMtoEmpleados("UPDATE", $id_empleado);
+            $query = $ctrl->seleccionaFoto($id_empleado);
+            $foto_anterior = $query[0]['foto_path'];
+            $foto_anterior = str_replace(SITE_URL, __DIR__ . "/../../../", $foto_anterior);
+            if (file_exists($foto_anterior)) unlink($foto_anterior);
+          }
         } else {
           echo json_encode(["result" => 0, "msg" => "Hubo un problema para almacenar la foto"]);
           die();
@@ -67,9 +76,6 @@ function guardarFoto()
       echo json_encode(["result" => 0, "msg" => "Solo se permiten archivos JPEG, PNG o GIF."]);
       die();
     }
-  } else {
-    echo json_encode(["result" => 0, "msg" => "Ocurrió un error para leer la foto"]);
-    die();
   }
   return $foto_path;
 }
@@ -83,13 +89,34 @@ switch ($peticion) {
       echo json_encode(["result" => 0, "msg" => "ERROR: Datos inválidos"]);
     } else {
       $foto_path = guardarFoto();
-      if ($ctrl->insertaRegistro($nombre, $email, password_hash($password, PASSWORD_DEFAULT), $telefono, $telefono_emergencia, $foto_path)) {
+      $ctrlEmail = new CtrlEmail($email);
+      if ($foto_path === "") {
+        echo json_encode(["result" => 0, "msg" => "No se recibió ninguna foto, por favor sube una"]);
+      } else if ($ctrlEmail->existeEmail()) {
+        echo json_encode(["result" => 0, "msg" => "El correo electrónico enviado ya existe, elige otro"]);
+      } else if ($ctrl->insertaRegistro($nombre, $email, password_hash($password, PASSWORD_DEFAULT), $telefono, $telefono_emergencia, $foto_path)) {
         echo json_encode(["result" => 1, "msg" => "Registro insertado correctamente"]);
       } else {
         echo json_encode(["result" => 0, "msg" => "ERROR: Problema de inserción en BD"]);
       }
     }
-
+    break;
+  case "UPDATE":
+    $ctrl = new CtrlMtoEmpleados("UPDATE", $id_empleado);
+    if (!$ctrl->validaAtributos(null, $nombre, $email, null, $telefono, $telefono_emergencia)) {
+      echo json_encode(["result" => 0, "msg" => "ERROR: Datos inválidos"]);
+    } else {
+      $foto_path = guardarFoto("UPDATE", $id_empleado);
+      $ctrlEmail = new CtrlEmail($email);
+      $oldEmail = $ctrl->seleccionaRegistro($id_empleado)[0]["email"];
+      if ($ctrlEmail->existeEmail() && $email !== $oldEmail) {
+        echo json_encode(["result" => 0, "msg" => "El correo electrónico enviado ya existe, elige otro"]);
+      } else if ($ctrl->modificaRegistro($id_empleado, $nombre, $email, $telefono, $telefono_emergencia, $foto_path)) {
+        echo json_encode(["result" => 1, "msg" => "Registro modificado correctamente"]);
+      } else {
+        echo json_encode(["result" => 0, "msg" => "ERROR: Problema de modificación en BD"]);
+      }
+    }
     break;
   default:
     echo json_encode(["result" => 0, "msg" => "ERROR: Petición inválida"]);
