@@ -50,11 +50,11 @@ function guardarFoto()
         //Nombre único
         $uniqueName = uniqid('empleado_', true) . '.' . $fileExtension;
         //Ruta completa para guardar el archivo
-        $destPath = realpath($uploadDir) . '/' . $uniqueName;
+        $destPath = $uploadDir . $uniqueName;
 
         //Mover el archivo de la carpeta temporal a la carpeta destino
         if (move_uploaded_file($fileTmpPath, $destPath)) {
-          $foto_path = $destPath;
+          $foto_path = str_replace(__DIR__ . "/../../../", SITE_URL, $destPath);
         } else {
           echo json_encode(["result" => 0, "msg" => "Hubo un problema para almacenar la foto"]);
           die();

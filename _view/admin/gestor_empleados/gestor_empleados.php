@@ -12,8 +12,8 @@
   <table id="tblDatos" class="table table-striped">
     <thead>
       <tr>
-        <th>Foto</th>
         <th>ID</th>
+        <th>Foto</th>
         <th>Nombre</th>
         <th>Email</th>
         <th>Teléfono</th>
@@ -25,8 +25,8 @@
       <?php $ordinal = 0 ?>
       <?php foreach ($this->datos as $reg): ?>
         <tr>
-          <td><?php echo $reg["foto_path"] ?></td>
           <td><?php echo $reg["id_empleado"] ?></td>
+          <td><img src="<?php echo $reg["foto_path"] ?>" width="150" height="150" /></td>
           <td><?php echo $reg["nombre"] ?></td>
           <td><?php echo $reg["email"] ?></td>
           <td><?php echo $reg["telefono"] ?></td>
