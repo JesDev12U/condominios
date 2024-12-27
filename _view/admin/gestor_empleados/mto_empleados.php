@@ -147,7 +147,7 @@
     }
 
     if (formDataDatos.getAll("foto_path").length !== 0 || "<?php echo $this->peticion ?>" === "UPDATE") {
-      asyncConfirmProcessForm(
+      asyncConfirmProcess(
         formDataDatos,
         `<?php echo SITE_URL; ?>_controller/admin/gestor_empleados/AsyncMtoEmpleados.php`,
         "Confirmación",

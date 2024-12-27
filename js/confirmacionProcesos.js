@@ -1,9 +1,10 @@
-function asyncConfirmProcessForm(
-  formData,
+function asyncConfirmProcess(
+  formData = null,
   actionUrl,
   titleQuestion,
   textQuestion,
-  titleResult
+  titleResult,
+  cbSuccess = null
 ) {
   Swal.fire({
     title: titleQuestion,
@@ -15,10 +16,15 @@ function asyncConfirmProcessForm(
     showLoaderOnConfirm: true,
     preConfirm: async () => {
       try {
-        const response = await fetch(actionUrl, {
-          method: "POST",
-          body: formData, // Enviar el formulario directamente
-        });
+        let response = null;
+        if (formData) {
+          response = await fetch(actionUrl, {
+            method: "POST",
+            body: formData, // Enviar el formulario directamente
+          });
+        } else {
+          response = await fetch(actionUrl, { method: "POST" });
+        }
 
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
@@ -36,6 +42,7 @@ function asyncConfirmProcessForm(
     allowOutsideClick: () => !Swal.isLoading(),
   }).then((result) => {
     if (result.isConfirmed) {
+      if (cbSuccess) cbSuccess();
       Swal.fire({
         icon: "success",
         title: titleResult,

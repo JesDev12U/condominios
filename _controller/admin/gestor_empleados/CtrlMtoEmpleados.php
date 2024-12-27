@@ -13,6 +13,7 @@ class CtrlMtoEmpleados
   public $telefono;
   public $telefono_emergencia;
   public $foto_path;
+  public $habilitado;
 
   public function __construct($peticion = null, $id_empleado = null)
   {
@@ -26,6 +27,7 @@ class CtrlMtoEmpleados
         $this->telefono = $res[0]["telefono"];
         $this->telefono_emergencia = $res[0]["telefono_emergencia"];
         $this->foto_path = $res[0]["foto_path"];
+        $this->habilitado = $res[0]["habilitado"];
       }
     }
   }
@@ -101,7 +103,8 @@ class CtrlMtoEmpleados
         "password",
         "telefono",
         "telefono_emergencia",
-        "foto_path"
+        "foto_path",
+        "habilitado"
       ],
       [
         $nombre,
@@ -109,7 +112,8 @@ class CtrlMtoEmpleados
         $password,
         $telefono,
         $telefono_emergencia,
-        $foto_path
+        $foto_path,
+        true
       ]
     );
   }
@@ -136,5 +140,17 @@ class CtrlMtoEmpleados
         $foto_path
       ]
     );
+  }
+
+  public function deshabilitarRegistro($id_empleado)
+  {
+    $model = new Model();
+    return $model->modificaRegistro("empleados", ["habilitado"], "id_empleado=$id_empleado", [0]);
+  }
+
+  public function habilitarRegistro($id_empleado)
+  {
+    $model = new Model();
+    return $model->modificaRegistro("empleados", ["habilitado"], "id_empleado=$id_empleado", [1]);
   }
 }

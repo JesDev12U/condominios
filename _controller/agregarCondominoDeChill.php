@@ -15,11 +15,13 @@ $bd->insertRow(
     "nombre",
     "email",
     "password",
+    "habilitado"
   ],
   [
     $nombre,
     $email,
-    password_hash($password, PASSWORD_DEFAULT)
+    password_hash($password, PASSWORD_DEFAULT),
+    true
   ]
 );
 
@@ -44,7 +46,8 @@ $bd->insertRow(
 //     "torre",
 //     "departamento",
 //     "tipo",
-//     "foto_path"
+//     "foto_path",
+//     "habilitado"
 //   ],
 //   [
 //     $nombre,
@@ -55,7 +58,8 @@ $bd->insertRow(
 //     $torre,
 //     $departamento,
 //     $tipo,
-//     $foto_path
+//     $foto_path,
+//     true
 //   ]
 // );
 
@@ -74,7 +78,8 @@ $bd->insertRow(
 //     "password",
 //     "telefono",
 //     "telefono_emergencia",
-//     "foto_path"
+//     "foto_path",
+//     "habilitado"
 //   ],
 //   [
 //     $nombre,
@@ -82,6 +87,7 @@ $bd->insertRow(
 //     password_hash($password, PASSWORD_DEFAULT),
 //     $telefono,
 //     $telefono_emergencia,
-//     $foto_path
+//     $foto_path,
+//     true
 //   ]
 // );

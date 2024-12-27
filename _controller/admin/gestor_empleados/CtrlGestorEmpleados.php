@@ -13,12 +13,13 @@ class CtrlGestorEmpleados
         $this->datos = $model->seleccionaRegistros(
             "empleados",
             [
-                "foto_path",
                 "id_empleado",
+                "foto_path",
                 "nombre",
                 "email",
                 "telefono",
-                "telefono_emergencia"
+                "telefono_emergencia",
+                "habilitado"
             ]
         );
     }

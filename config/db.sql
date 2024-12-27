@@ -9,14 +9,16 @@ CREATE TABLE empleados(
   password VARCHAR(255) NOT NULL,
   telefono VARCHAR(10) NOT NULL,
   telefono_emergencia VARCHAR(10) NOT NULL,
-  foto_path VARCHAR(255) NOT NULL
+  foto_path VARCHAR(255) NOT NULL,
+  habilitado BOOLEAN NOT NULL
 );
 
 CREATE TABLE administrador(
   id_administrador INT PRIMARY KEY AUTO_INCREMENT,
   nombre VARCHAR(50) NOT NULL,
   email VARCHAR(80) NOT NULL,
-  password VARCHAR(255) NOT NULL
+  password VARCHAR(255) NOT NULL,
+  habilitado BOOLEAN NOT NULL
 );
 
 CREATE TABLE condominos(
@@ -29,7 +31,8 @@ CREATE TABLE condominos(
   torre VARCHAR(5) NOT NULL,
   departamento VARCHAR(30) NOT NULL,
   tipo VARCHAR(15) NOT NULL,
-  foto_path VARCHAR(255) NOT NULL
+  foto_path VARCHAR(255) NOT NULL,
+  habilitado BOOLEAN NOT NULL
 );
 
 CREATE TABLE invitados(

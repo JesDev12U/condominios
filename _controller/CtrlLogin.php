@@ -42,19 +42,20 @@ class CtrlLogin
     $usuario = null;
     // Buscamos tabla por tabla hasta encontrar al usuario correspondiente  
     $tabla = "condominos";
-    $resultado = $model->seleccionaRegistros($tabla, ["email", "password"], "email='$email'");
+    $resultado = $model->seleccionaRegistros($tabla, ["email", "password", "habilitado"], "email='$email'");
     if (count($resultado) === 0) {
       $tabla = "empleados";
-      $resultado = $model->seleccionaRegistros($tabla, ["email", "password"], "email='$email'");
+      $resultado = $model->seleccionaRegistros($tabla, ["email", "password", "habilitado"], "email='$email'");
     }
     if (count($resultado) === 0) {
       $tabla = "administrador";
-      $resultado = $model->seleccionaRegistros($tabla, ["email", "password"], "email='$email'");
+      $resultado = $model->seleccionaRegistros($tabla, ["email", "password", "habilitado"], "email='$email'");
     }
 
     if (count($resultado) !== 0) {
       //Si encontro un usuario, se verifica la contraseña
-      if (password_verify($password, $resultado[0]['password'])) {
+      //También se verifica si el usuario está habilitado
+      if (password_verify($password, $resultado[0]['password']) && $resultado[0]['habilitado']) {
         if ($tabla === "condominos") $usuario = "condomino";
         else if ($tabla === "empleados") $usuario = "empleado";
         else $usuario = "administrador";
