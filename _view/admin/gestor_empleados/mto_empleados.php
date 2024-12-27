@@ -26,12 +26,14 @@
       <div class="col">
         <h5 class="text-center mb-4">Información Personal</h5>
         <form id="form-datos">
+          <input type="hidden" name="peticion" value="INSERT">
           <div class="mb-3">
             <label for="nombre" class="form-label"><i class="fa-solid fa-user"></i>&nbsp;Nombre</label>
             <input
               type="text"
               class="form-control"
               id="nombre"
+              name="nombre"
               placeholder="Ingresa aquí el nombre del empleado"
               required />
           </div>
@@ -41,6 +43,7 @@
               type="email"
               class="form-control"
               id="email"
+              name="email"
               placeholder="Ingresa aquí el correo electrónico del empleado"
               required />
           </div>
@@ -59,6 +62,7 @@
               type="text"
               class="form-control"
               id="telefono"
+              name="telefono"
               placeholder="Ingresa aquí el teléfono del empleado"
               required />
           </div>
@@ -68,6 +72,7 @@
               type="text"
               class="form-control"
               id="telefono_emergencia"
+              name="telefono_emergencia"
               placeholder="Ingresa aquí el teléfono de emergencia del empleado"
               required />
           </div>
@@ -88,7 +93,7 @@
             ?>
           </div>
         </div>
-        <input type="file" id="foto-file">
+        <input type="file" id="foto-file" accept="image/*">
       </div>
       <div class="container" style="margin-bottom: 50px;">
         <button class="btn btn-warning" id="btn-reload-ine">
@@ -104,4 +109,45 @@
   </div>
 </div>
 <script src="<?php echo SITE_URL ?>js/cargaINE.js"></script>
-<script src="<?php echo SITE_URL ?>js/ajaxGestoresUsuarios.js"></script>
+<script>
+  const $fotoUser = document.getElementById("foto-user");
+  const formDataFoto = new FormData();
+  const $btnSend = document.getElementById("btn-send");
+  const $fotoFile = document.getElementById("foto-file");
+
+  $fotoFile.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const urlTemporal = URL.createObjectURL(file);
+      $fotoUser.src = urlTemporal;
+
+      // Limpieza de la URL temporal cuando ya no se necesite
+      $fotoFile.onload = () => URL.revokeObjectURL(urlTemporal);
+      formDataFoto.append("foto_path", file, file.name);
+    }
+  });
+
+  $btnSend.addEventListener("click", (e) => {
+    e.preventDefault();
+    const formDataDatos = new FormData(document.getElementById("form-datos"));
+    for (let [key, value] of formDataFoto.entries()) {
+      formDataDatos.append(key, value);
+    }
+
+    if (formDataDatos.getAll("foto_path").length !== 0) {
+      asyncConfirmProcessForm(
+        formDataDatos,
+        `<?php echo SITE_URL; ?>_controller/admin/gestor_empleados/AsyncMtoEmpleados.php`,
+        "Confirmación",
+        "¿Está seguro de que desea hacer el registro de este empleado?",
+        "¡Empleado registrado correctamente!"
+      );
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "¡Error!",
+        text: "Tienes que subir una foto para seguir con el registro",
+      });
+    }
+  });
+</script>

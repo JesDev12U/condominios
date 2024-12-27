@@ -53,6 +53,31 @@ class CtrlMtoEmpleados
     include self::JS;
   }
 
+  public function validaAtributos($id_empleado = null, $nombre = null, $email = null, $password = null, $telefono = null, $telefono_emergencia = null)
+  {
+    $res = true;
+    if (!is_null($id_empleado)) {
+      $id_empleado = (int)$id_empleado;
+      $res = $res && is_integer(($id_empleado)) && $id_empleado > 0;
+    }
+    if (!is_null($nombre)) {
+      $res = $res && $nombre !== "";
+    }
+    if (!is_null($email)) {
+      $res = preg_match('/^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/', $email, $matches);
+    }
+    if (!is_null($password)) {
+      $res = $res && $password !== "";
+    }
+    if (!is_null($telefono)) {
+      $res = preg_match('/[0-9]{10}/', $telefono, $matches);
+    }
+    if (!is_null($telefono_emergencia)) {
+      $res = preg_match('/[0-9]{10}/', $telefono_emergencia, $matches);
+    }
+    return $res;
+  }
+
   public function seleccionaRegistro($id_empleado)
   {
     $model = new Model();

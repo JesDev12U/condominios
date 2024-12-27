@@ -1,3 +1,8 @@
 .vscode
 *.env
 web.config
+uploads/fotos_users/*.jpg
+uploads/fotos_users/*.jpeg
+uploads/fotos_users/*.gif
+uploads/fotos_users/*.png
+

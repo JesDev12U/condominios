@@ -107,6 +107,8 @@
         src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring.js"></script>
     <!-- JS del master -->
     <script src="js/master.js"></script>
+    <!-- Confirmación de procesos -->
+    <script src="js/confirmacionProcesos.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             verificarIndex(`<?php echo SITE_URL ?>`);
