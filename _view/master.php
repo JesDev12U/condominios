@@ -24,6 +24,15 @@
 </head>
 
 <body>
+    <div class="loader-container hidden" id="loader">
+        <l-ring
+            size="40"
+            stroke="5"
+            bg-opacity="0"
+            speed="2"
+            color="green"></l-ring>
+        <h3>Cargando, espere un momento...</h3>
+    </div>
     <!-- Navbar superior -->
     <nav class="navbar navbar-expand-lg border-bottom">
         <a href="index.php" class="navbar-brand">
