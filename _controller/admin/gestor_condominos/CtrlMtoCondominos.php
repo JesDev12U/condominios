@@ -1,31 +1,37 @@
 <?php
 require_once __DIR__ . "/../../../_model/Model.php";
 
-class CtrlMtoEmpleados
+class CtrlMtoCondominos
 {
-  const VISTA = __DIR__ . "/../../../_view/admin/gestor_empleados/mto_empleados.php";
-  const CSS = __DIR__ . "/../../../css/admin/mto_empleados.css";
-  const JS = __DIR__ . "/../../../js/admin/mto_empleados.js";
+  const VISTA = __DIR__ . "/../../../_view/admin/gestor_condominos/mto_condominos.php";
+  const CSS = __DIR__ . "/../../../css/admin/mto_condominos.css";
+  const JS = __DIR__ . "/../../../js/admin/mto_condominos.js";
   public $peticion;
-  public $id_empleado;
+  public $id_condomino;
   public $nombre;
   public $email;
   public $telefono;
   public $telefono_emergencia;
+  public $torre;
+  public $departamento;
+  public $tipo;
   public $foto_path;
   public $habilitado;
 
-  public function __construct($peticion = null, $id_empleado = null)
+  public function __construct($peticion = null, $id_condomino = null)
   {
     $this->peticion = $peticion;
-    $this->id_empleado = $id_empleado;
-    if ($id_empleado !== null) {
-      $res = $this->seleccionaRegistro($id_empleado);
+    $this->id_condomino = $id_condomino;
+    if ($id_condomino !== null) {
+      $res = $this->seleccionaRegistro($id_condomino);
       if (count($res) !== 0) {
         $this->nombre = $res[0]["nombre"];
         $this->email = $res[0]["email"];
         $this->telefono = $res[0]["telefono"];
         $this->telefono_emergencia = $res[0]["telefono_emergencia"];
+        $this->torre = $res[0]["torre"];
+        $this->departamento = $res[0]["departamento"];
+        $this->tipo = $res[0]["tipo"];
         $this->foto_path = $res[0]["foto_path"];
         $this->habilitado = $res[0]["habilitado"];
       }
@@ -33,13 +39,13 @@ class CtrlMtoEmpleados
   }
 
   public $opciones = [
-    ["nombre" => "Home", "href" => SITE_URL . RUTA_ADMINISTRADOR, "id" => "home"],
+    ["nombre" => "Home", "href" => SITE_URL . RUTA_CONDOMINO, "id" => "home"],
     ["nombre" => "Gestor de empleados", "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-empleados", "id" => "gestor-empleados"],
     ["nombre" => "Gestor de condominos", "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-condominos", "id" => "gestor-condominos"],
     ["nombre" => "Cerrar sesión", "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
   ];
 
-  public $title = "Mantenimiento de empleados";
+  public $title = "Mantenimiento de condominos";
 
   public function renderContent()
   {
@@ -56,12 +62,12 @@ class CtrlMtoEmpleados
     include self::JS;
   }
 
-  public function validaAtributos($id_empleado = null, $nombre = null, $email = null, $password = null, $telefono = null, $telefono_emergencia = null)
+  public function validaAtributos($id_condomino = null, $nombre = null, $email = null, $password = null, $telefono = null, $telefono_emergencia = null, $torre = null, $departamento = null, $tipo = null)
   {
     $res = true;
-    if (!is_null($id_empleado)) {
-      $id_empleado = (int)$id_empleado;
-      $res = $res && is_integer(($id_empleado)) && $id_empleado > 0;
+    if (!is_null($id_condomino)) {
+      $id_condomino = (int)$id_condomino;
+      $res = $res && is_integer(($id_condomino)) && $id_condomino > 0;
     }
     if (!is_null($nombre)) {
       $res = $res && $nombre !== "";
@@ -78,32 +84,44 @@ class CtrlMtoEmpleados
     if (!is_null($telefono_emergencia)) {
       $res = preg_match('/[0-9]{10}/', $telefono_emergencia, $matches);
     }
+    if (!is_null($torre)) {
+      $res = $res && $torre !== "";
+    }
+    if (!is_null($departamento)) {
+      $res = $res && $departamento !== "";
+    }
+    if (!is_null($tipo)) {
+      $res = $res && $tipo !== "";
+    }
     return $res;
   }
 
-  public function seleccionaRegistro($id_empleado)
+  public function seleccionaRegistro($id_condomino)
   {
     $model = new Model();
-    return $model->seleccionaRegistros("empleados", ["*"], "id_empleado=$id_empleado");
+    return $model->seleccionaRegistros("condominos", ["*"], "id_condomino=$id_condomino");
   }
 
-  public function seleccionaFoto($id_empleado)
+  public function seleccionaFoto($id_condomino)
   {
     $model = new Model();
-    return $model->seleccionaRegistros("empleados", ['foto_path'], "id_empleado=$id_empleado");
+    return $model->seleccionaRegistros("condominos", ['foto_path'], "id_condomino=$id_condomino");
   }
 
-  public function insertaRegistro($nombre, $email, $password, $telefono, $telefono_emergencia, $foto_path)
+  public function insertaRegistro($nombre, $email, $password, $telefono, $telefono_emergencia, $torre, $departamento, $tipo, $foto_path)
   {
     $model = new Model();
     return $model->agregaRegistro(
-      "empleados",
+      "condominos",
       [
         "nombre",
         "email",
         "password",
         "telefono",
         "telefono_emergencia",
+        "torre",
+        "departamento",
+        "tipo",
         "foto_path",
         "habilitado"
       ],
@@ -113,45 +131,55 @@ class CtrlMtoEmpleados
         $password,
         $telefono,
         $telefono_emergencia,
+        $torre,
+        $departamento,
+        $tipo,
         $foto_path,
         true
       ]
     );
   }
-  public function modificaRegistro($id_empleado, $nombre, $email, $telefono, $telefono_emergencia, $foto_path)
+
+  public function modificaRegistro($id_condomino, $nombre, $email, $telefono, $telefono_emergencia, $torre, $departamento, $tipo, $foto_path)
   {
     $model = new Model();
     //Comprobación de que la foto no se debe subir vacía
-    $foto_path = $foto_path === "" ? $this->foto_path : $foto_path;
+    $foto_path = $foto_path  === "" ? $this->foto_path : $foto_path;
     return $model->modificaRegistro(
-      "empleados",
+      "condominos",
       [
         "nombre",
         "email",
         "telefono",
         "telefono_emergencia",
+        "torre",
+        "departamento",
+        "tipo",
         "foto_path"
       ],
-      "id_empleado=$id_empleado",
+      "id_condomino=$id_condomino",
       [
         $nombre,
         $email,
         $telefono,
         $telefono_emergencia,
+        $torre,
+        $departamento,
+        $tipo,
         $foto_path
       ]
     );
   }
 
-  public function deshabilitarRegistro($id_empleado)
+  public function deshabilitarRegistro($id_condomino)
   {
     $model = new Model();
-    return $model->modificaRegistro("empleados", ["habilitado"], "id_empleado=$id_empleado", [0]);
+    return $model->modificaRegistro("condominos", ["habilitado"], "id_condomino=$id_condomino", [0]);
   }
 
-  public function habilitarRegistro($id_empleado)
+  public function habilitarRegistro($id_condomino)
   {
     $model = new Model();
-    return $model->modificaRegistro("empleados", ["habilitado"], "id_empleado=$id_empleado", [1]);
+    return $model->modificaRegistro("condominos", ["habilitado"], "id_condomino=$id_condomino", [1]);
   }
 }

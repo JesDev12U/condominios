@@ -15,7 +15,7 @@
         <th>ID</th>
         <th>Foto</th>
         <th>Nombre</th>
-        <th>Email</th>
+        <th>Correo electrónico</th>
         <th>Teléfono</th>
         <th>Teléfono de emergencia</th>
         <th>Acciones</th>
@@ -25,7 +25,7 @@
       <?php foreach ($this->datos as $reg): ?>
         <tr>
           <td><?php echo $reg["id_empleado"] ?></td>
-          <td><img src="<?php echo $reg["foto_path"] ?>" width="150" height="150" /></td>
+          <td><img src="<?php echo $reg["foto_path"] ?>" class="img-users" /></td>
           <td><?php echo $reg["nombre"] ?></td>
           <td><?php echo $reg["email"] ?></td>
           <td><?php echo $reg["telefono"] ?></td>
@@ -37,21 +37,21 @@
             </a>
             <?php
             if ($reg["habilitado"]) {
-              echo '<button class="btn btn-danger" id="btn-deshabilitar-empleado" data-id_empleado="' . $reg["id_empleado"] . '">' .
+              echo '<button class="btn btn-danger" id="btn-deshabilitar" data-url="' . SITE_URL .  '" data-usuario="empleado" data-id="' . $reg["id_empleado"] . '">' .
                 '<i class="fa-solid fa-ban"></i>
                 Deshabilitar
               </button>';
             } else {
-              echo '<button class="btn btn-success" id="btn-habilitar-empleado" data-id_empleado="' . $reg["id_empleado"] . '">' .
+              echo '<button class="btn btn-success" id="btn-habilitar" data-url="' . SITE_URL .  '" data-usuario="empleado" data-id="' . $reg["id_empleado"] . '">' .
                 '<i class="fa-solid fa-check"></i>
                 Habilitar
               </button>';
             }
             ?>
-
           </td>
         </tr>
       <?php endforeach ?>
     </tbody>
   </table>
 </div>
+<script src="<?php echo SITE_URL . "js/admin/des_hab_usuarios.js" ?>"></script>

@@ -10,18 +10,7 @@ class CtrlGestorEmpleados
     function __construct()
     {
         $model = new Model();
-        $this->datos = $model->seleccionaRegistros(
-            "empleados",
-            [
-                "id_empleado",
-                "foto_path",
-                "nombre",
-                "email",
-                "telefono",
-                "telefono_emergencia",
-                "habilitado"
-            ]
-        );
+        $this->datos = $model->seleccionaRegistros("empleados", ["*"]);
     }
 
     public $opciones = [
