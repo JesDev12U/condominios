@@ -1,5 +1,6 @@
 <?php
 ini_set('display_errors', E_ALL); //Esta linea solo es para pruebas, no dejar en produccion
+session_start();
 
 require_once __DIR__ . "/../../../config/Global.php";
 require_once __DIR__ . "/CtrlMtoCondominos.php";
@@ -61,7 +62,8 @@ switch ($peticion) {
     break;
   case "UPDATE":
     $ctrl = new CtrlMtoCondominos("UPDATE", $id_condomino);
-    if (!$ctrl->validaAtributos(null, $nombre, $email, null, $telefono, $telefono_emergencia, $torre, $departamento, $tipo)) {
+    if ($password === "") $password = null;
+    if (!$ctrl->validaAtributos(null, $nombre, $email, $password, $telefono, $telefono_emergencia, $torre, $departamento, $tipo)) {
       echo json_encode(["result" => 0, "msg" => "ERROR: Datos inválidos"]);
     } else {
       $foto_path = guardarFoto("UPDATE", $id_condomino, "condomino");
@@ -69,8 +71,9 @@ switch ($peticion) {
       $oldEmail = $ctrl->seleccionaRegistro($id_condomino)[0]["email"];
       if ($ctrlEmail->existeEmail() && $email !== $oldEmail) {
         echo json_encode(["result" => 0, "msg" => "El correo electrónico enviado ya existe, elige otro"]);
-      } else if ($ctrl->modificaRegistro($id_condomino, $nombre, $email, $telefono, $telefono_emergencia, $torre, $departamento, $tipo, $foto_path)) {
-        echo json_encode(["result" => 1, "msg" => "Registro modificado correctamente"]);
+      } else if ($ctrl->modificaRegistro($id_condomino, $nombre, $email, $password === null ? null : password_hash($password, PASSWORD_DEFAULT), $telefono, $telefono_emergencia, $torre, $departamento, $tipo, $foto_path)) {
+        if ($_SESSION["usuario"] === "condomino" && $foto_path !== "") $_SESSION["datos"]["foto_path"] = $foto_path;
+        echo json_encode(["result" => 1, "msg" => "Registro modificado correctamente", "foto_path" => $foto_path]);
       } else {
         echo json_encode(["result" => 0, "msg" => "ERROR: Problema de modificación en BD"]);
       }

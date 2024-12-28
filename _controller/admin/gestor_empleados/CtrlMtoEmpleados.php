@@ -14,9 +14,11 @@ class CtrlMtoEmpleados
   public $telefono_emergencia;
   public $foto_path;
   public $habilitado;
+  public $title;
 
   public function __construct($peticion = null, $id_empleado = null)
   {
+    $this->title = $_SESSION["usuario"] === "empleado" ? "Configuración de la cuenta" : "Mantenimiento de empleados";
     $this->peticion = $peticion;
     $this->id_empleado = $id_empleado;
     if ($id_empleado !== null) {
@@ -34,12 +36,10 @@ class CtrlMtoEmpleados
 
   public $opciones = [
     ["nombre" => "Home", "href" => SITE_URL . RUTA_ADMINISTRADOR, "id" => "home"],
-    ["nombre" => "Gestor de empleados", "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-empleados", "id" => "gestor-empleados"],
-    ["nombre" => "Gestor de condominos", "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-condominos", "id" => "gestor-condominos"],
     ["nombre" => "Cerrar sesión", "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
   ];
 
-  public $title = "Mantenimiento de empleados";
+
 
   public function renderContent()
   {
@@ -118,29 +118,47 @@ class CtrlMtoEmpleados
       ]
     );
   }
-  public function modificaRegistro($id_empleado, $nombre, $email, $telefono, $telefono_emergencia, $foto_path)
+  public function modificaRegistro($id_empleado, $nombre, $email, $password, $telefono, $telefono_emergencia, $foto_path)
   {
     $model = new Model();
     //Comprobación de que la foto no se debe subir vacía
     $foto_path = $foto_path === "" ? $this->foto_path : $foto_path;
-    return $model->modificaRegistro(
-      "empleados",
-      [
+    $campos = [];
+    $variables = [];
+    if ($password === null) {
+      $campos = [
         "nombre",
         "email",
         "telefono",
         "telefono_emergencia",
         "foto_path"
-      ],
-      "id_empleado=$id_empleado",
-      [
+      ];
+      $variables = [
         $nombre,
         $email,
         $telefono,
         $telefono_emergencia,
         $foto_path
-      ]
-    );
+      ];
+    } else {
+      $campos = [
+        "nombre",
+        "email",
+        "password",
+        "telefono",
+        "telefono_emergencia",
+        "foto_path"
+      ];
+      $variables = [
+        $nombre,
+        $email,
+        $password,
+        $telefono,
+        $telefono_emergencia,
+        $foto_path
+      ];
+    }
+    return $model->modificaRegistro("empleados", $campos, "id_empleado=$id_empleado", $variables);
   }
 
   public function deshabilitarRegistro($id_empleado)

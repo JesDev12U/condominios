@@ -13,9 +13,19 @@ if (isset($_GET['page'])) {
 $action = isset($_GET['action']) ? $_GET['action'] : null;
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
+if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"]) {
+  if ($page !== $_SESSION["usuario"]) {
+    $page = $_SESSION["usuario"];
+    $action = NULL;
+    $id = NULL;
+  }
+} else {
+  if ($page === "condomino" || $page === "administrador" || $page === "empleado") {
+    $page = "principal";
+  }
+}
+
 //Router
-if (isset($_SESSION["loggeado"]) && $_SESSION["loggeado"] === true)
-  $page = $_SESSION["usuario"];
 switch ($page) {
   case 'principal':
     require_once __DIR__ . "/_controller/CtrlPaginaPrincipal.php";
@@ -34,8 +44,22 @@ switch ($page) {
     break;
 
   case 'condomino':
-    require_once __DIR__ . "/_controller/condomino/CtrlPaginaPrincipal.php";
-    $ctrl = new CtrlPaginaPrincipal();
+    //Router del condomino
+    switch ($action) {
+      case NULL:
+        require_once __DIR__ . "/_controller/condomino/CtrlPaginaPrincipal.php";
+        $ctrl = new CtrlPaginaPrincipal();
+        break;
+      case "configuracion":
+        require_once __DIR__ . "/_controller/admin/gestor_condominos/CtrlMtoCondominos.php";
+        $ctrl = new CtrlMtoCondominos("UPDATE", $_SESSION["datos"]["id_condomino"]);
+        break;
+      default:
+        //Pagina no encontrada
+        require_once __DIR__ . "/_controller/errors/CtrlError404.php";
+        http_response_code(404);
+        $ctrl = new CtrlError404();
+    }
     break;
   case 'administrador':
     //Router del administrador
@@ -104,8 +128,22 @@ switch ($page) {
     }
     break;
   case 'empleado':
-    require_once __DIR__ . "/_controller/empleado/CtrlPaginaPrincipal.php";
-    $ctrl = new CtrlPaginaPrincipal();
+    //Router del empleado
+    switch ($action) {
+      case NULL:
+        require_once __DIR__ . "/_controller/empleado/CtrlPaginaPrincipal.php";
+        $ctrl = new CtrlPaginaPrincipal();
+        break;
+      case "configuracion":
+        require_once __DIR__ . "/_controller/admin/gestor_empleados/CtrlMtoEmpleados.php";
+        $ctrl = new CtrlMtoEmpleados("UPDATE", $_SESSION["datos"]["id_empleado"]);
+        break;
+      default:
+        //Pagina no encontrada
+        require_once __DIR__ . "/_controller/errors/CtrlError404.php";
+        http_response_code(404);
+        $ctrl = new CtrlError404();
+    }
     break;
   default:
     //Pagina no encontrada

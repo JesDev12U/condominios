@@ -20,5 +20,11 @@ if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false || $_SESSIO
         <p>Registro de visitas</p>
       </a>
     </div>
+    <div class="col">
+      <a href="<?php echo SITE_URL ?>empleado/configuracion">
+        <img src="<?php echo SITE_URL ?>img/menu_icons/configuracion.png" alt="Modificar datos de la cuenta">
+        <p>Modificar datos de la cuenta</p>
+      </a>
+    </div>
   </div>
 </div>

@@ -17,9 +17,11 @@ class CtrlMtoCondominos
   public $tipo;
   public $foto_path;
   public $habilitado;
+  public $title;
 
   public function __construct($peticion = null, $id_condomino = null)
   {
+    $this->title = $_SESSION["usuario"] === "condomino" ? "Configuración de la cuenta" : "Mantenimiento de condominos";
     $this->peticion = $peticion;
     $this->id_condomino = $id_condomino;
     if ($id_condomino !== null) {
@@ -40,12 +42,9 @@ class CtrlMtoCondominos
 
   public $opciones = [
     ["nombre" => "Home", "href" => SITE_URL . RUTA_CONDOMINO, "id" => "home"],
-    ["nombre" => "Gestor de empleados", "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-empleados", "id" => "gestor-empleados"],
-    ["nombre" => "Gestor de condominos", "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-condominos", "id" => "gestor-condominos"],
     ["nombre" => "Cerrar sesión", "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
   ];
 
-  public $title = "Mantenimiento de condominos";
 
   public function renderContent()
   {
@@ -140,14 +139,15 @@ class CtrlMtoCondominos
     );
   }
 
-  public function modificaRegistro($id_condomino, $nombre, $email, $telefono, $telefono_emergencia, $torre, $departamento, $tipo, $foto_path)
+  public function modificaRegistro($id_condomino, $nombre, $email, $password, $telefono, $telefono_emergencia, $torre, $departamento, $tipo, $foto_path)
   {
     $model = new Model();
     //Comprobación de que la foto no se debe subir vacía
     $foto_path = $foto_path  === "" ? $this->foto_path : $foto_path;
-    return $model->modificaRegistro(
-      "condominos",
-      [
+    $campos = [];
+    $variables = [];
+    if ($password === null) {
+      $campos = [
         "nombre",
         "email",
         "telefono",
@@ -156,9 +156,8 @@ class CtrlMtoCondominos
         "departamento",
         "tipo",
         "foto_path"
-      ],
-      "id_condomino=$id_condomino",
-      [
+      ];
+      $variables = [
         $nombre,
         $email,
         $telefono,
@@ -167,8 +166,32 @@ class CtrlMtoCondominos
         $departamento,
         $tipo,
         $foto_path
-      ]
-    );
+      ];
+    } else {
+      $campos = [
+        "nombre",
+        "email",
+        "password",
+        "telefono",
+        "telefono_emergencia",
+        "torre",
+        "departamento",
+        "tipo",
+        "foto_path"
+      ];
+      $variables = [
+        $nombre,
+        $email,
+        $password,
+        $telefono,
+        $telefono_emergencia,
+        $torre,
+        $departamento,
+        $tipo,
+        $foto_path
+      ];
+    }
+    return $model->modificaRegistro("condominos", $campos, "id_condomino=$id_condomino", $variables);
   }
 
   public function deshabilitarRegistro($id_condomino)

@@ -1,9 +1,7 @@
 <div class="container">
   <a href="<?php echo SITE_URL . RUTA_ADMINISTRADOR ?>gestor-condominos" class="btn btn-primary">
     <i class="fa-solid fa-arrow-left"></i>
-    Regresar al gestor de condominos
   </a>
-  <h1>Registro</h1>
   <div id="formSection" class="mt-5">
     <div class="row">
       <!-- Formulario -->
@@ -37,7 +35,7 @@
           <div class="mb-3">
             <label for="password" class="form-label"><i class="fa-solid fa-lock"></i>&nbsp;Contraseña</label>
             <div class="input-group">
-              <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa aquí una contraseña para el condomino" <?php echo is_null($this->id_condomino) ? "" : "disabled" ?> />
+              <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa aquí una contraseña para el condomino" <?php echo is_null($this->id_condomino) || $_SESSION["usuario"] === "condomino" ? "" : "disabled" ?> />
               <button class="btn btn-outline-secondary" id="toggle-password" type="button">
                 <i class="fa-solid fa-eye"></i>
               </button>
@@ -159,8 +157,12 @@
         formDataDatos,
         `<?php echo SITE_URL; ?>_controller/admin/gestor_condominos/AsyncMtoCondominos.php`,
         "Confirmación",
-        "¿Está seguro de que desea hacer el registro de este empleado?",
-        "¡Empleado registrado correctamente!"
+        "<?php echo $_SESSION["usuario"] === "condomino" ? "¿Está seguro de modificar sus datos?" : "¿Está seguro de que desea hacer el registro de este condomino?" ?>",
+        "<?php echo $_SESSION["usuario"] === "condomino" ? "¡Datos modificados correctamente!" : "¡Condomino registrado correctamente!" ?>",
+        (json) => {
+          const $fotoUserHeader = document.getElementById("foto-user-header");
+          if ($fotoUserHeader && json.foto_path !== "") $fotoUserHeader.src = json.foto_path;
+        }
       );
     } else {
       Swal.fire({

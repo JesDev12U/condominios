@@ -42,7 +42,7 @@ function asyncConfirmProcess(
     allowOutsideClick: () => !Swal.isLoading(),
   }).then((result) => {
     if (result.isConfirmed) {
-      if (cbSuccess) cbSuccess();
+      if (cbSuccess) cbSuccess(result.value);
       Swal.fire({
         icon: "success",
         title: titleResult,

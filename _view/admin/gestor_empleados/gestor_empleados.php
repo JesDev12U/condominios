@@ -2,7 +2,6 @@
 <div class="container-fluid p-4">
   <a href="<?php echo SITE_URL ?>" class="btn btn-primary">
     <i class="fa-solid fa-arrow-left"></i>
-    Regresar al menú principal
   </a>
   <br><br>
   <a href="<?php echo SITE_URL . RUTA_ADMINISTRADOR ?>mto-empleados" class="btn btn-success">
