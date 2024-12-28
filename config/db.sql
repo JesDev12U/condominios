@@ -78,3 +78,7 @@ CREATE TABLE visitas(
   FOREIGN KEY (id_invitado) REFERENCES invitados(id_invitado),
   FOREIGN KEY (id_empleado) REFERENCES empleados(id_empleado)
 );
+
+-- Creación del administrador
+-- password = admin
+INSERT INTO administrador VALUES (DEFAULT, "Administrador", "admin@admin.com", "$2y$10$0x8N0REE0XEklLiJoJx8euRbLKJ7DJzb6/CW5gn.1ELNTqlt.mKI6", true);

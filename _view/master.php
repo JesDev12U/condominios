@@ -24,17 +24,6 @@
 </head>
 
 <body>
-    <!-- PRUEBA, ELIMINAR DESPUES -->
-    <button class="btn btn-primary" id="btn-agregar-condomino">Agrega un condomino de chill</button>
-    <div class="loader-container hidden" id="loader">
-        <l-ring
-            size="40"
-            stroke="5"
-            bg-opacity="0"
-            speed="2"
-            color="green"></l-ring>
-        <h3>Cargando, espere un momento...</h3>
-    </div>
     <!-- Navbar superior -->
     <nav class="navbar navbar-expand-lg border-bottom">
         <a href="index.php" class="navbar-brand">
@@ -53,9 +42,10 @@
         </div>
     </nav>
     <div class="container-fluid">
+        <!-- Contenido de cada controlador -->
         <?php $ctrl->renderContent(); ?>
-        <div id="ventana-modal" style="background-color: black;"></div>
     </div>
+    <!-- Footer -->
     <footer class="py-5 border-top">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
@@ -117,18 +107,6 @@
                 `<?php echo SITE_URL ?>`
             );
             return;
-        });
-    </script>
-    <!-- SCRIPT DE PRUEBA, ELIMINAR DESPUES -->
-    <script>
-        document.getElementById("btn-agregar-condomino").addEventListener("click", async (e) => {
-            e.preventDefault();
-            try {
-                await fetch("./_controller/agregarCondominoDeChill.php");
-                alert("Ya we");
-            } catch (err) {
-                console.error(err);
-            }
         });
     </script>
     <!-- JS para DataTable -->
