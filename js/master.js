@@ -23,6 +23,13 @@ const sesion = (json, site_url) => {
       !location.href.includes(`${site_url}${jsonParsed.sesion.usuario}`)
     )
       location.href = `${site_url}${jsonParsed.sesion.usuario}`;
+  } else {
+    if (
+      location.href.includes("empleado") ||
+      location.href.includes("administrador") ||
+      location.href.includes("condomino")
+    )
+      location.href = site_url;
   }
 };
 
