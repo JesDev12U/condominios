@@ -68,6 +68,10 @@ switch ($page) {
         require_once __DIR__ . "/_controller/admin/CtrlPaginaPrincipal.php";
         $ctrl = new CtrlPaginaPrincipal();
         break;
+      case "configuracion":
+        require_once __DIR__ . "/_controller/admin/CtrlMtoAdministrador.php";
+        $ctrl = new CtrlMtoAdministrador($_SESSION["datos"]["id_administrador"]);
+        break;
       case "gestor-empleados":
         require_once __DIR__ . "/_controller/admin/gestor_empleados/CtrlGestorEmpleados.php";
         $ctrl = new CtrlGestorEmpleados();

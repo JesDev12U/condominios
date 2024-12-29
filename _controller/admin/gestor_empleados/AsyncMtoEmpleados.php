@@ -66,8 +66,27 @@ switch ($peticion) {
       if ($ctrlEmail->existeEmail() && $email !== $oldEmail) {
         echo json_encode(["result" => 0, "msg" => "El correo electrónico enviado ya existe, elige otro"]);
       } else if ($ctrl->modificaRegistro($id_empleado, $nombre, $email, $password === null ? null : password_hash($password, PASSWORD_DEFAULT), $telefono, $telefono_emergencia, $foto_path)) {
-        if ($_SESSION["usuario"] === "empleado" && $foto_path !== "") $_SESSION["datos"]["foto_path"] = $foto_path;
-        echo json_encode(["result" => 1, "msg" => "Registro modificado correctamente", "foto_path" => $foto_path]);
+        if ($_SESSION["usuario"] === "empleado") {
+          $_SESSION["datos"]["nombre"] = $nombre;
+          $_SESSION["datos"]["email"] = $email;
+          $_SESSION["datos"]["telefono"] = $telefono;
+          $_SESSION["datos"]["telefono_emergencia"] = $telefono_emergencia;
+          if ($foto_path !== "") $_SESSION["datos"]["foto_path"] = $foto_path;
+        }
+        echo json_encode(
+          [
+            "result" => 1,
+            "msg" => "Registro modificado correctamente",
+            "nuevos_datos" => [
+              "nombre" => $nombre,
+              "email" => $email,
+              "telefono" => $telefono,
+              "telefono_emergencia" => $telefono_emergencia,
+              "foto_path" => $foto_path
+            ],
+            "usuario" => $_SESSION["usuario"]
+          ]
+        );
       } else {
         echo json_encode(["result" => 0, "msg" => "ERROR: Problema de modificación en BD"]);
       }

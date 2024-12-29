@@ -123,8 +123,10 @@
         "<?php echo $_SESSION["usuario"] === "empleado" ? "¿Está seguro de modificar sus datos?" : "¿Está seguro de que desea hacer el registro de este empleado?" ?>",
         "<?php echo $_SESSION["usuario"] === "empleado" ? "¡Datos modificados correctamente!" : "¡Empleado registrado correctamente!" ?>",
         (json) => {
-          const $fotoUserHeader = document.getElementById("foto-user-header");
-          if ($fotoUserHeader && json.foto_path !== "") $fotoUserHeader.src = json.foto_path;
+          if (json.usuario === "empleado") {
+            const $fotoUserHeader = document.getElementById("foto-user-header");
+            if ($fotoUserHeader && json.nuevos_datos.foto_path !== "") $fotoUserHeader.src = json.nuevos_datos.foto_path;
+          }
         }
       );
     } else {

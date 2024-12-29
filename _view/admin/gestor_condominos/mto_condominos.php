@@ -160,8 +160,10 @@
         "<?php echo $_SESSION["usuario"] === "condomino" ? "¿Está seguro de modificar sus datos?" : "¿Está seguro de que desea hacer el registro de este condomino?" ?>",
         "<?php echo $_SESSION["usuario"] === "condomino" ? "¡Datos modificados correctamente!" : "¡Condomino registrado correctamente!" ?>",
         (json) => {
-          const $fotoUserHeader = document.getElementById("foto-user-header");
-          if ($fotoUserHeader && json.foto_path !== "") $fotoUserHeader.src = json.foto_path;
+          if (json.usuario === "condomino") {
+            const $fotoUserHeader = document.getElementById("foto-user-header");
+            if ($fotoUserHeader && json.nuevos_datos.foto_path !== "") $fotoUserHeader.src = json.nuevos_datos.foto_path;
+          }
         }
       );
     } else {
