@@ -4,6 +4,7 @@
  * Rutinas comunes para CRUD elemental de una BD. Versión MySQL
  *
  * @author Erick Huerta Valdepeña
+ * @modificado_por Jesus Antonio Lopez Bandala
  * @fecha 2022-06-23
  */
 
@@ -40,20 +41,23 @@ class MySQLAux
 	}
 
 	/**
-	 * Devuelve una simple matriz de datos, la condición omite la palabra clave WHERE y es parametrizada. 
+	 * Devuelve una simple matriz de datos, con soporte para INNER JOIN. La condición omite la palabra clave WHERE y es parametrizada. 
 	 * La conexión se abre, usa y cierra.
 	 * @param string $tabla
 	 * @param array $campos
 	 * @param string|null $condicion
 	 * @param array|null $params
+	 * @param string|null $joins
 	 * @return array|null
 	 */
-	public function selectRows($tabla, $campos, $condicion = null, $params = null)
+	public function selectRows($tabla, $campos, $condicion = null, $params = null, $joins = null)
 	{
 		$res = [];
 
 		$strCampos = implode(',', $campos); // Une los campos con comas
-		$query = "SELECT $strCampos FROM $tabla" . ($condicion ? " WHERE $condicion" : "");
+		$query = "SELECT $strCampos FROM $tabla"
+			. ($joins ? " $joins" : "")
+			. ($condicion ? " WHERE $condicion" : "");
 
 		try {
 			$cnx = $this->getConnection();

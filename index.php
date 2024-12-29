@@ -50,6 +50,32 @@ switch ($page) {
         require_once __DIR__ . "/_controller/condomino/CtrlPaginaPrincipal.php";
         $ctrl = new CtrlPaginaPrincipal();
         break;
+      case "invitados":
+        require_once __DIR__ . "/_controller/condomino/invitados/CtrlInvitados.php";
+        $ctrl = new CtrlInvitados();
+        break;
+      case "mto-invitados":
+        if (is_null($id)) {
+          require_once __DIR__ . "/_controller/condomino/invitados/CtrlMtoInvitados.php";
+          $ctrl = new CtrlMtoInvitados("INSERT");
+          break;
+        } else if ($id > 0) {
+          require_once __DIR__ . "/_controller/condomino/invitados/CtrlMtoInvitados.php";
+          $ctrl = new CtrlMtoInvitados("UPDATE", $id);
+          $registro = $ctrl->seleccionaRegistro($id);
+          if (count($registro) == 0) {
+            //Pagina no encontrada
+            require_once __DIR__ . "/_controller/errors/CtrlError404.php";
+            http_response_code(404);
+            $ctrl = new CtrlError404();
+          }
+          break;
+        } else {
+          //Pagina no encontrada
+          require_once __DIR__ . "/_controller/errors/CtrlError404.php";
+          http_response_code(404);
+          $ctrl = new CtrlError404();
+        }
       case "configuracion":
         require_once __DIR__ . "/_controller/admin/gestor_condominos/CtrlMtoCondominos.php";
         $ctrl = new CtrlMtoCondominos("UPDATE", $_SESSION["datos"]["id_condomino"]);

@@ -2,6 +2,30 @@
 
 NOTA: Las credenciales de la base de datos están en el archivo `Global.php` dentro del directorio `config`
 
+## Inicialización del proyecto
+
+1. Descargar Composer
+
+- ArchLinux
+
+```bash
+sudo pacman -S composer
+```
+
+- Fedora
+
+```bash
+sudo dnf install composer -y
+```
+
+[Para otros sistemas operativos, click aquí](https://getcomposer.org/download/)
+
+2. Instalar las dependencias
+
+```bash
+composer install
+```
+
 ## Configuración para IIS
 
 Debido a la configuración de las rutas, es necesario añadir el directorio virtual del proyecto, para que así tengamos la siguiente URL: `http://localhost/condominios`, por lo que al alias del directorio es indispensable colocarlo como `condominios`. De igual forma, si se llega a cambiar el nombre al directorio, solo basta cambiar también el nombre en la variable `$baseURL` en `Model.php` y cambiar el directorio en la siguiente línea del `.htaccess`
