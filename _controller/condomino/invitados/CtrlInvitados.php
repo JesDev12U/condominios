@@ -8,13 +8,13 @@ class CtrlInvitados
   const JS = __DIR__ . "/../../../js/condomino/invitados.js";
   public $datos = null;
 
-  function __construct()
+  function __construct($id_condomino)
   {
     $model = new Model();
     $this->datos = $model->seleccionaRegistros(
       "invitados",
       ["*"],
-      null,
+      "id_condomino=$id_condomino",
       null,
       "INNER JOIN detalle_invitados ON invitados.id_invitado = detalle_invitados.id_invitado"
     );

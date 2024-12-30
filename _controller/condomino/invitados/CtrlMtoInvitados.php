@@ -31,6 +31,7 @@ class CtrlMtoInvitados
         $this->curp = $res[0]["curp"];
         $this->id_condomino = $res[0]["id_condomino"];
         $this->horario_inicio = $res[0]["horario_inicio"];
+        $this->horario_final = $res[0]["horario_final"];
         $this->json_qr = $res[0]["json_qr"];
         $this->asunto = $res[0]["asunto"];
         $this->integrantes = $res[0]["integrantes"];
@@ -127,7 +128,6 @@ class CtrlMtoInvitados
     $id_condomino,
     $horario_inicio,
     $horario_final,
-    $json_qr,
     $asunto,
     $integrantes
   ) {
@@ -143,7 +143,22 @@ class CtrlMtoInvitados
         $curp
       ]
     );
-    $registroDetalleInvitados = $model->agregaRegistro(
+
+    $data = [
+      "id_invitado" => $registroInvitado,
+      "id_condomino" => $id_condomino,
+      "curp" => $curp
+    ];
+
+    // Convertir el array a JSON
+    $jsonString = json_encode($data);
+
+    // Codificar el JSON para usarlo en la URL
+    $encodedJson = urlencode($jsonString);
+
+    // Construir la URL completa
+    $json_qr = SITE_URL . "_controller/empleado/procesarQR.php?data=" . $encodedJson;
+    $registroDetalleInvitados = $model->agregaRegistroID(
       "detalle_invitados",
       [
         "id_condomino",
@@ -163,23 +178,37 @@ class CtrlMtoInvitados
         $json_qr,
         $asunto,
         $integrantes,
-        false
+        0
       ]
     );
-    return $registroInvitado > 0 && $registroDetalleInvitados;
+    return $registroInvitado > 0 && $registroDetalleInvitados == 0;
   }
 
   public function modificaRegistro(
     $id_invitado,
     $nombre,
     $curp,
+    $id_condomino,
     $horario_inicio,
     $horario_final,
-    $json_qr,
     $asunto,
     $integrantes
   ) {
     $model = new Model();
+    $data = [
+      "id_invitado" => $id_invitado,
+      "id_condomino" => $id_condomino,
+      "curp" => $curp
+    ];
+
+    // Convertir el array a JSON
+    $jsonString = json_encode($data);
+
+    // Codificar el JSON para usarlo en la URL
+    $encodedJson = urlencode($jsonString);
+
+    // Construir la URL completa
+    $json_qr = SITE_URL . "_controller/empleado/procesarQR.php?data=" . $encodedJson;
     $modificacionInvitado = $model->modificaRegistro(
       "invitados",
       [
@@ -223,5 +252,17 @@ class CtrlMtoInvitados
   {
     $model = new Model();
     return $model->modificaRegistro("detalle_invitados", ["ocultar"], "id_invitado=$id_invitado", [0]);
+  }
+
+  public function existeCURP($curp, $id_condomino)
+  {
+    $model = new Model();
+    return count($model->seleccionaRegistros(
+      "invitados",
+      ["curp"],
+      "curp='$curp' AND id_condomino=$id_condomino",
+      null,
+      "INNER JOIN detalle_invitados ON invitados.id_invitado = detalle_invitados.id_invitado"
+    )) !== 0;
   }
 }

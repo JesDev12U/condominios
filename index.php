@@ -1,7 +1,7 @@
 <?php
 session_start();
 ini_set('display_errors', E_ALL); //Esta linea solo es para pruebas, no dejar en produccion
-
+require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . "/config/Global.php";
 
 // Capturar los parámetros de la URL
@@ -52,7 +52,7 @@ switch ($page) {
         break;
       case "invitados":
         require_once __DIR__ . "/_controller/condomino/invitados/CtrlInvitados.php";
-        $ctrl = new CtrlInvitados();
+        $ctrl = new CtrlInvitados($_SESSION["datos"]["id_condomino"]);
         break;
       case "mto-invitados":
         if (is_null($id)) {

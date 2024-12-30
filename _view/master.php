@@ -13,6 +13,8 @@
     <link href="utils/datatables-1.13.6/dataTables.bootstrap5.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="utils/fontawesome-free-6.7.1-web/css/all.min.css" />
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="utils/flatpickr/flatpickr.min.css" />
     <!-- CSS principal -->
     <link rel="stylesheet" href="css/master.css" />
     <!-- CSS de cada menú -->
@@ -110,6 +112,8 @@
     <script
         type="module"
         src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring.js"></script>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <!-- JS del master -->
     <script src="js/master.js"></script>
     <!-- Confirmación de procesos -->
