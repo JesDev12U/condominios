@@ -7,9 +7,8 @@ const horarioInicioPicker = flatpickr($horarioInicio, {
   noCalendar: true,
   dateFormat: "H:i",
   time_24hr: true,
-  maxTime: $horarioFinal.value || null, // Establece maxTime inicial si $horarioFinal tiene valor
+  maxTime: $horarioFinal.value || null,
   onChange: (selectedDates, dateStr) => {
-    // Actualiza el límite mínimo de horario final
     horarioFinalPicker.set("minTime", dateStr);
   },
 });

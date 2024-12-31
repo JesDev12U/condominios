@@ -26,12 +26,12 @@ use chillerlan\QRCode\{QRCode, QROptions};
     </thead>
     <tbody>
       <?php foreach ($this->datos as $reg): ?>
-        <tr>
+        <tr id="registro<?php echo $reg["id_invitado"] ?>" class="<?php echo $reg["ocultar"] ? "ocultar" : "" ?>">
           <td><?php echo $reg["nombre"] ?></td>
           <td><?php echo $reg["horario_inicio"] ?></td>
           <td><?php echo $reg["horario_final"] ?></td>
           <td>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $reg["id_invitado"] ?>">
+            <button id="btn-qr<?php echo $reg["id_invitado"] ?>" <?php echo $reg["ocultar"] ? "disabled" : "" ?> type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $reg["id_invitado"] ?>">
               <i class="fa-solid fa-qrcode"></i> Ver QR
             </button>
             <div class="modal fade" id="exampleModal<?php echo $reg["id_invitado"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,10 +62,19 @@ use chillerlan\QRCode\{QRCode, QROptions};
               <i class="fas fa-pen"></i>
               Modificar
             </a>
-            <a href="" class="btn btn-danger">
-              <i class="fa-solid fa-eye-slash"></i>
-              Ocultar
-            </a>
+            <?php
+            if ($reg["ocultar"]) {
+              echo "<button class='btn btn-success' id='btn-desocultar' data-url=" . SITE_URL . " data-id=" . $reg["id_invitado"] . ">
+                <i class='fa-solid fa-eye'></i>
+                Desocultar
+              </button>";
+            } else {
+              echo "<button class='btn btn-danger' id='btn-ocultar' data-url=" . SITE_URL . " data-id=" . $reg["id_invitado"] . ">
+                <i class='fa-solid fa-eye-slash'></i>
+                Ocultar
+              </button>";
+            }
+            ?>
           </td>
         </tr>
       <?php endforeach ?>
