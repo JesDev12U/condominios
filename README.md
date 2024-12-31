@@ -26,6 +26,11 @@ sudo dnf install composer -y
 composer install
 ```
 
+3. Instalar NodeJS junto con NPM con ayuda de NVM (Node Version Manager):
+
+- [Linux](https://github.com/nvm-sh/nvm)
+- [Windows](https://github.com/coreybutler/nvm-windows)
+
 ## Configuración para IIS
 
 Debido a la configuración de las rutas, es necesario añadir el directorio virtual del proyecto, para que así tengamos la siguiente URL: `http://localhost/condominios`, por lo que al alias del directorio es indispensable colocarlo como `condominios`. De igual forma, si se llega a cambiar el nombre al directorio, solo basta cambiar también el nombre en la variable `$baseURL` en `Model.php` y cambiar el directorio en la siguiente línea del `.htaccess`
