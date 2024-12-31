@@ -49,7 +49,11 @@ use chillerlan\QRCode\{QRCode, QROptions};
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Generar PDF</button>
+                    <form method="POST" action="<?php echo SITE_URL ?>_controller/condomino/invitados/AsyncPDFQR.php">
+                      <input type="hidden" name="id_invitado" value="<?php echo $reg["id_invitado"] ?>">
+                      <input type="hidden" name="json_qr" value="<?php echo $reg["json_qr"] ?>">
+                      <button type="submit" class="btn btn-primary"><i class="fa-solid fa-file-pdf"></i> Generar PDF </button>
+                    </form>
                   </div>
                 </div>
               </div>

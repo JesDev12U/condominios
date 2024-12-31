@@ -6,16 +6,8 @@ NOTA: Las credenciales de la base de datos están en el archivo `Global.php` den
 
 1. Descargar Composer
 
-- ArchLinux
-
 ```bash
 sudo pacman -S composer
-```
-
-- Fedora
-
-```bash
-sudo dnf install composer -y
 ```
 
 [Para otros sistemas operativos, click aquí](https://getcomposer.org/download/)
@@ -36,6 +28,23 @@ composer install
 ```bash
 npm install
 ```
+
+5. Dar permisos de escritura al directorio `uploads/`
+
+```bash
+chmod 777 uploads
+```
+
+6. Tener instalado MySQL o MariaDB y activar la extensión en el `php.ini` y también habilitar PDO. Además, se debe cargar el SQL del proyecto en MySQL, el SQL está ubicado en `config/db.sql`.
+
+7. Instalar la extensión `Imagick` e `ImagickPixel`
+
+```bash
+sudo pacman -S imagemagick php-imagick
+```
+
+- Habilitar la extensión en php.ini `extension=imagick`
+- Si `Inteliphense` no detecta `Imagick`, se necesita activar en la configuración de este. Para `VSCode`: Archivo > Preferencias > Configuración > Busca `stubs` y aparecerá una lista en la que se muestran todas las extensiones de PHP, habilita `imagick`
 
 ## Configuración para IIS
 
