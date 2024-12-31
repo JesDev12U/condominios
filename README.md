@@ -31,6 +31,12 @@ composer install
 - [Linux](https://github.com/nvm-sh/nvm)
 - [Windows](https://github.com/coreybutler/nvm-windows)
 
+4. Instalar las librerías necesarias
+
+```bash
+npm install
+```
+
 ## Configuración para IIS
 
 Debido a la configuración de las rutas, es necesario añadir el directorio virtual del proyecto, para que así tengamos la siguiente URL: `http://localhost/condominios`, por lo que al alias del directorio es indispensable colocarlo como `condominios`. De igual forma, si se llega a cambiar el nombre al directorio, solo basta cambiar también el nombre en la variable `$baseURL` en `Model.php` y cambiar el directorio en la siguiente línea del `.htaccess`
