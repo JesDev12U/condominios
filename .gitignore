@@ -8,3 +8,4 @@ uploads/fotos_users/*.png
 
 
 /vendor/
+/node_modules/

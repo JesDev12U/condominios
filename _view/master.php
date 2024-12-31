@@ -8,13 +8,15 @@
     <title><?php echo "Condominios | " . $ctrl->title ?></title>
     <link rel="icon" href="img/placeholder_logo.png">
     <!-- Bootstrap CSS -->
-    <link href="utils/bootstrap-v5.3.2/bootstrap.min.css" rel="stylesheet">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- DataTables CSS -->
-    <link href="utils/datatables-1.13.6/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="node_modules/datatables.net-dt/css/dataTables.dataTables.min.css" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css" />
     <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="utils/fontawesome-free-6.7.1-web/css/all.min.css" />
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
     <!-- Flatpickr CSS -->
-    <link rel="stylesheet" href="utils/flatpickr/flatpickr.min.css" />
+    <link rel="stylesheet" href="node_modules/flatpickr/dist/flatpickr.min.css" />
     <!-- CSS principal -->
     <link rel="stylesheet" href="css/master.css" />
     <!-- CSS de cada menú -->
@@ -101,19 +103,20 @@
         </div>
     </footer>
     <!-- jQuery -->
-    <script src="utils/jquery-v3.7.1/jquery-3.7.1.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap JS -->
-    <script src="utils/bootstrap-v5.3.2/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables JS -->
-    <script src="utils/datatables-1.13.6/jquery.dataTables.min.js"></script>
-    <script src="utils/datatables-1.13.6/dataTables.bootstrap5.min.js"></script>
+    <script src="node_modules/datatables.net/js/dataTables.min.js"></script>
+    <script src="node_modules/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
     <!-- SweetAlert JS -->
-    <script src="utils/sweetalert2-v11.14.5/sweetalert2@11.js"></script>
-    <script
-        type="module"
-        src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring.js"></script>
+    <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <!-- Fontawesome JS -->
+    <script src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+    <!-- LDRS UiBall JS -->
+    <script type="module" src="node_modules/ldrs/dist/auto/ring.js"></script>
     <!-- Flatpickr JS -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="node_modules/flatpickr/dist/flatpickr.min.js"></script>
     <!-- JS del master -->
     <script src="js/master.js"></script>
     <!-- Confirmación de procesos -->

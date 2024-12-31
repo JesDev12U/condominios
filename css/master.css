@@ -9,12 +9,12 @@
   --color-principal: #96BD7D;
 }
 
-.container-redes-sociales a i {
+.container-redes-sociales a {
   font-size: 2em;
   color: #000;
 }
 
-.container-redes-sociales a i:hover {
+.container-redes-sociales a:hover {
   color: #3b3b3b;
 }
 

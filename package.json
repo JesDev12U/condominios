@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "name": "condominios",
+  "version": "1.0.0",
+  "description": "Proyecto web de condominios",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jesus Antonio Lopez Bandala",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "bootstrap": "^5.3.3",
+    "datatables.net-dt": "^2.1.8",
+    "flatpickr": "^4.6.13",
+    "ldrs": "^1.0.2",
+    "sweetalert2": "^11.15.3"
+  }
+}
