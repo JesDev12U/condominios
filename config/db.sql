@@ -71,7 +71,7 @@ CREATE TABLE visitas(
   id_invitado INT NOT NULL,
   id_empleado INT NOT NULL,
   horario_entrada TIME NOT NULL,
-  horario_salida TIME NOT NULL,
+  horario_salida TIME,
   asunto VARCHAR(6) NOT NULL,
   integrantes INT NOT NULL,
   FOREIGN KEY (id_condomino) REFERENCES condominos(id_condomino),

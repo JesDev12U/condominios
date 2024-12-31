@@ -164,6 +164,10 @@ switch ($page) {
         require_once __DIR__ . "/_controller/empleado/CtrlPaginaPrincipal.php";
         $ctrl = new CtrlPaginaPrincipal();
         break;
+      case "visitas":
+        require_once __DIR__ . "/_controller/empleado/visitas/CtrlVisitas.php";
+        $ctrl = new CtrlVisitas();
+        break;
       case "configuracion":
         require_once __DIR__ . "/_controller/admin/gestor_empleados/CtrlMtoEmpleados.php";
         $ctrl = new CtrlMtoEmpleados("UPDATE", $_SESSION["datos"]["id_empleado"]);

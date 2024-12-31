@@ -15,9 +15,9 @@ if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false || $_SESSIO
       </a>
     </div>
     <div class="col">
-      <a href="#">
+      <a href="<?php echo SITE_URL ?>empleado/visitas">
         <img src="<?php echo SITE_URL ?>img/menu_icons/reservar_eventos.png" alt="Registro de visitas">
-        <p>Registro de visitas</p>
+        <p>Visitas</p>
       </a>
     </div>
     <div class="col">
