@@ -18,7 +18,7 @@ class CtrlMtoEmpleados
 
   public function __construct($peticion = null, $id_empleado = null)
   {
-    $this->title = $_SESSION["usuario"] === "empleado" ? "Configuración de la cuenta" : "Mantenimiento de empleados";
+    $this->title = "Mantenimiento de empleados";
     $this->peticion = $peticion;
     $this->id_empleado = $id_empleado;
     if ($id_empleado !== null) {

@@ -21,7 +21,7 @@ class CtrlMtoCondominos
 
   public function __construct($peticion = null, $id_condomino = null)
   {
-    $this->title = $_SESSION["usuario"] === "condomino" ? "Configuración de la cuenta" : "Mantenimiento de condominos";
+    $this->title = "Mantenimiento de condominos";
     $this->peticion = $peticion;
     $this->id_condomino = $id_condomino;
     if ($id_condomino !== null) {
