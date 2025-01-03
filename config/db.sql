@@ -70,6 +70,7 @@ CREATE TABLE visitas(
   id_condomino INT NOT NULL,
   id_invitado INT NOT NULL,
   id_empleado INT NOT NULL,
+  fecha DATE NOT NULL,
   horario_entrada TIME NOT NULL,
   horario_salida TIME,
   asunto VARCHAR(6) NOT NULL,

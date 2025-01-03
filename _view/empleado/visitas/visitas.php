@@ -8,6 +8,7 @@
     <thead>
       <th>Nombre del condomino</th>
       <th>Nombre del invitado</th>
+      <th>Fecha</th>
       <th>Horario de entrada</th>
       <th>Horario de salida</th>
       <th>Asunto</th>
@@ -18,8 +19,9 @@
         <tr>
           <td><?php echo $reg["nombre_condomino"] ?></td>
           <td><?php echo $reg["nombre_invitado"] ?></td>
+          <td><?php echo $reg["fecha"] ?></td>
           <td><?php echo $reg["horario_entrada"] ?></td>
-          <td><?php echo $reg["horario_salida"] ?></td>
+          <td><?php echo $reg["horario_salida"] ?? "No ha salido" ?></td>
           <td><?php echo $reg["asunto"] ?></td>
           <td><?php echo $reg["integrantes"] ?></td>
         </tr>

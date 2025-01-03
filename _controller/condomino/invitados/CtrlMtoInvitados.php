@@ -63,10 +63,9 @@ class CtrlMtoInvitados
 
   private function cifrarJSONQR($json_qr)
   {
-    $method = "AES-256-CBC";
-    $iv_length = openssl_cipher_iv_length($method);
+    $iv_length = openssl_cipher_iv_length(METODO_ENCRIPTACION);
     $iv = openssl_random_pseudo_bytes($iv_length);
-    $cifrado = openssl_encrypt($json_qr, $method, KEY_ENCRIPTACION, 0, $iv);
+    $cifrado = openssl_encrypt($json_qr, METODO_ENCRIPTACION, KEY_ENCRIPTACION, 0, $iv);
     return base64_encode($iv . $cifrado);
   }
 

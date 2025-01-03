@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', E_ALL); // Solo para pruebas
+
+date_default_timezone_set("America/Mexico_City");
 require_once __DIR__ . "/../../../_model/Model.php";
 
 class CtrlVisitas
@@ -17,6 +20,7 @@ class CtrlVisitas
       [
         "condominos.nombre as nombre_condomino",
         "invitados.nombre as nombre_invitado",
+        "visitas.fecha",
         "visitas.horario_entrada",
         "visitas.horario_salida",
         "visitas.asunto",
@@ -48,5 +52,56 @@ class CtrlVisitas
   public function renderJS()
   {
     include self::JS;
+  }
+
+  public function registrarVisita($id_invitado, $id_condomino, $id_empleado)
+  {
+    //Verificamos si se trata de una salida
+    $model = new Model();
+    $query = $model->seleccionaRegistros(
+      "visitas",
+      ["horario_entrada"],
+      "id_invitado = $id_invitado AND horario_salida IS NULL"
+    );
+    if (count($query) === 0) {
+      //Se trata de una entrada
+      $datos = $model->seleccionaRegistros(
+        "detalle_invitados",
+        [
+          "asunto",
+          "integrantes"
+        ],
+        "id_invitado=$id_invitado"
+      );
+      return $model->agregaRegistroID(
+        "visitas",
+        [
+          "id_condomino",
+          "id_invitado",
+          "id_empleado",
+          "fecha",
+          "horario_entrada",
+          "asunto",
+          "integrantes"
+        ],
+        [
+          (int)$id_condomino,
+          (int)$id_invitado,
+          (int)$id_empleado,
+          date("Y-m-d"),
+          date("H:i:s"),
+          $datos[0]['asunto'],
+          $datos[0]['integrantes']
+        ]
+      ) == 0;
+    }
+    $horario_entrada = $query[0]["horario_entrada"];
+    //Se trata de una salida
+    return $model->modificaRegistro(
+      "visitas",
+      ["horario_salida"],
+      "id_invitado=$id_invitado AND horario_entrada = '$horario_entrada'",
+      [date("H:i:s")]
+    );
   }
 }
