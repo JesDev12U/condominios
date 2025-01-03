@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../../../_model/Model.php";
+require_once __DIR__ . "/../../../config/Global.php";
 
 class CtrlMtoInvitados
 {
@@ -58,6 +59,15 @@ class CtrlMtoInvitados
   public function renderJS()
   {
     include self::JS;
+  }
+
+  private function cifrarJSONQR($json_qr)
+  {
+    $method = "AES-256-CBC";
+    $iv_length = openssl_cipher_iv_length($method);
+    $iv = openssl_random_pseudo_bytes($iv_length);
+    $cifrado = openssl_encrypt($json_qr, $method, KEY_ENCRIPTACION, 0, $iv);
+    return base64_encode($iv . $cifrado);
   }
 
   private function validarHora($hora)
@@ -150,14 +160,10 @@ class CtrlMtoInvitados
       "curp" => $curp
     ];
 
-    // Convertir el array a JSON
-    $jsonString = json_encode($data);
+    $json_qr = json_encode($data);
 
-    // Codificar el JSON para usarlo en la URL
-    $encodedJson = urlencode($jsonString);
+    $json_qr_cifrado = $this->cifrarJSONQR($json_qr);
 
-    // Construir la URL completa
-    $json_qr = SITE_URL . "_controller/empleado/procesarQR.php?data=" . $encodedJson;
     $registroDetalleInvitados = $model->agregaRegistroID(
       "detalle_invitados",
       [
@@ -175,7 +181,7 @@ class CtrlMtoInvitados
         $registroInvitado,
         $horario_inicio,
         $horario_final,
-        $json_qr,
+        $json_qr_cifrado,
         $asunto,
         $integrantes,
         0
@@ -202,13 +208,9 @@ class CtrlMtoInvitados
     ];
 
     // Convertir el array a JSON
-    $jsonString = json_encode($data);
+    $json_qr = json_encode($data);
+    $json_qr_cifrado = $this->cifrarJSONQR($json_qr);
 
-    // Codificar el JSON para usarlo en la URL
-    $encodedJson = urlencode($jsonString);
-
-    // Construir la URL completa
-    $json_qr = SITE_URL . "_controller/empleado/procesarQR.php?data=" . $encodedJson;
     $modificacionInvitado = $model->modificaRegistro(
       "invitados",
       [
@@ -234,7 +236,7 @@ class CtrlMtoInvitados
       [
         $horario_inicio,
         $horario_final,
-        $json_qr,
+        $json_qr_cifrado,
         $asunto,
         $integrantes
       ]

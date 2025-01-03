@@ -15,3 +15,4 @@ define("DB_HOST", "127.0.0.1");
 define("DB_BASE", "condominios");
 define("DB_USR", "root");
 define("DB_PASS", "Str0ngPassword!");
+define("KEY_ENCRIPTACION", "u7<fijrf0AKI./");

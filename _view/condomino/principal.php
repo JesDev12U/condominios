@@ -15,13 +15,13 @@ if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false || $_SESSIO
       </a>
     </div>
     <div class="col">
-      <a href="<?php echo SITE_URL ?>condomino/invitados">
+      <a href="<?php echo SITE_URL . RUTA_CONDOMINO ?>invitados">
         <img src="<?php echo SITE_URL ?>img/menu_icons/invitados.png" alt="Invitados">
         <p>Invitados</p>
       </a>
     </div>
     <div class="col">
-      <a href="<?php echo SITE_URL ?>condomino/configuracion">
+      <a href="<?php echo SITE_URL . RUTA_CONDOMINO ?>configuracion">
         <img src="<?php echo SITE_URL ?>img/menu_icons/configuracion.png" alt="Modificar datos de la cuenta">
         <p>Modificar datos de la cuenta</p>
       </a>

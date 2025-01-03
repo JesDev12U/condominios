@@ -39,7 +39,7 @@ if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false || $_SESSIO
       </a>
     </div>
     <div class="col">
-      <a href="<?php echo SITE_URL ?>administrador/configuracion">
+      <a href="<?php echo SITE_URL . RUTA_ADMINISTRADOR ?>configuracion">
         <img src="<?php echo SITE_URL ?>img/menu_icons/configuracion.png" alt="Modificar datos de la cuenta">
         <p>Modificar datos de la cuenta</p>
       </a>

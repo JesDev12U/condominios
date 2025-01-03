@@ -1,0 +1,1 @@
+<div class="container" id="lector-qr"></div>

@@ -164,6 +164,10 @@ switch ($page) {
         require_once __DIR__ . "/_controller/empleado/CtrlPaginaPrincipal.php";
         $ctrl = new CtrlPaginaPrincipal();
         break;
+      case "escaneo-acceso":
+        require_once __DIR__ . "/_controller/empleado/escaneoqr/CtrlEscaneoQR.php";
+        $ctrl = new CtrlEscaneoQR();
+        break;
       case "visitas":
         require_once __DIR__ . "/_controller/empleado/visitas/CtrlVisitas.php";
         $ctrl = new CtrlVisitas();
