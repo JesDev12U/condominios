@@ -8,9 +8,11 @@
     <title><?php echo "Condominios | " . $ctrl->title ?></title>
     <link rel="icon" href="img/placeholder_logo.png">
     <!-- Bootstrap CSS -->
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- DataTables CSS -->
-    <link href="node_modules/datatables.net-dt/css/dataTables.dataTables.min.css" rel="stylesheet">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- DataTables Core CSS -->
+    <link href="node_modules/datatables.net-dt/css/dataTables.dataTables.min.css" rel="stylesheet" type="text/css">
+    <!-- DataTables Bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css" type="text/css">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css" />
     <!-- Font Awesome CSS -->
@@ -105,10 +107,22 @@
     <!-- jQuery -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap JS -->
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- DataTables JS -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- DataTables Core JS -->
     <script src="node_modules/datatables.net/js/dataTables.min.js"></script>
-    <script src="node_modules/datatables.net-dt/js/dataTables.dataTables.min.js"></script>
+    <!-- DataTables Buttons JS -->
+    <script src="node_modules/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <!-- JSZIP JS -->
+    <script src="node_modules/jszip/dist/jszip.min.js"></script>
+    <!-- PDFMake JS -->
+    <script src="node_modules/pdfmake/build/pdfmake.min.js"></script>
+    <script src="node_modules/pdfmake/build/vfs_fonts.js"></script>
+    <!-- DataTables Buttons HTML5 JS -->
+    <script src="node_modules/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <!-- DataTables Buttons Print JS -->
+    <script src="node_modules/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <!-- DataTables Bootstrap JS -->
+    <script src="node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
     <!-- SweetAlert JS -->
     <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <!-- Fontawesome JS -->
@@ -135,7 +149,29 @@
     </script>
     <!-- JS para DataTable -->
     <script>
-        var tblDatos = new DataTable("#tblDatos");
+        var tblDatos = new DataTable("#tblDatos", {
+            language: {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Entradas",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+            responsive: true,
+        });
     </script>
     <!-- JS del controlador -->
     <script>

@@ -150,6 +150,10 @@ switch ($page) {
           http_response_code(404);
           $ctrl = new CtrlError404();
         }
+      case "reporte-visitas":
+        require_once __DIR__ . "/_controller/admin/reporte_visitas/CtrlReporteVisitas.php";
+        $ctrl = new CtrlReporteVisitas();
+        break;
       default:
         //Pagina no encontrada
         require_once __DIR__ . "/_controller/errors/CtrlError404.php";

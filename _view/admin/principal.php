@@ -27,7 +27,7 @@ if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false || $_SESSIO
       </a>
     </div>
     <div class="col">
-      <a href="#">
+      <a href="<?php echo SITE_URL . RUTA_ADMINISTRADOR ?>reporte-visitas">
         <img src="<?php echo SITE_URL ?>img/menu_icons/reportes.png" alt="Reporte de visitas">
         <p>Reporte de visitas</p>
       </a>
