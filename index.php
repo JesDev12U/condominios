@@ -171,6 +171,10 @@ switch ($page) {
           http_response_code(404);
           $ctrl = new CtrlError404();
         }
+      case "gestor-reservaciones":
+        require_once __DIR__ . "/_controller/admin/reservaciones/CtrlGestorReservaciones.php";
+        $ctrl = new CtrlGestorReservaciones();
+        break;
       case "reporte-visitas":
         require_once __DIR__ . "/_controller/admin/reporte_visitas/CtrlReporteVisitas.php";
         $ctrl = new CtrlReporteVisitas();

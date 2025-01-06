@@ -1,39 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-            <!-- Tabla de reporte -->
-            <div class="table-responsive">
-                <table class="table table-bordered text-center align-middle">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Horario de entrada</th>
-                            <th>Asunto</th>
-                            <th>Número de Condómino</th>
-                            <th>Nombre del condómino</th>
-                            <th>Número de integrantes</th>
-                            <th>Horario de salida</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Juan Pérez</td>
-                            <td>09:00 am</td>
-                            <td>Visita</td>
-                            <td>101</td>
-                            <td>Pedro López</td>
-                            <td>3</td>
-                            <td>10:00 pm</td>
-                        </tr>
-                        <!-- Más filas según sea necesario -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-</body>
-</html>
+<!-- Area de contenido -->
+<div class="container-fluid p-4">
+  <a href="<?php echo SITE_URL ?>" class="btn btn-primary">
+    <i class="fa-solid fa-arrow-left"></i>
+  </a>
+  <br><br>
+  <p>Exporta la tabla</p>
+  <table id="tblReservaciones" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Foto</th>
+        <th>ID del evento</th>
+        <th>ID del condomino</th>
+        <th>Nombre del condomino</th>
+        <th>Cantidad de personas</th>
+        <th>Fecha</th>
+        <th>Turno</th>
+        <th>Detalles</th>
+        <th>Tipo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($this->datos as $reg): ?>
+        <tr>
+          <td><img src="<?php echo $reg["foto_path"] ?>" class="img-users" /></td>
+          <td><?php echo $reg["id_evento"] ?></td>
+          <td><?php echo $reg["id_condomino"] ?></td>
+          <td><?php echo $reg["nombre"] ?></td>
+          <td><?php echo $reg["cantidad_personas"] ?></td>
+          <td><?php echo $reg["fecha"] ?></td>
+          <td><?php echo $reg["turno"] ?></td>
+          <td><?php echo $reg["detalles_evento"] ?></td>
+          <td><?php echo $reg["tipo_evento"] ?></td>
+          <td>
+            <?php
+            if ($reg["cancelado"]) {
+              echo '<button class="btn btn-success" id="btn-reagendar" data-url="' . SITE_URL .  '" data-id_evento="' . $reg["id_evento"] . '" data-id_condomino="' . $reg["id_condomino"] . '">' .
+                '<i class="fa-solid fa-calendar"></i>
+                Reagendar
+              </button>';
+            } else {
+              echo '<button class="btn btn-danger" id="btn-cancelar" data-url="' . SITE_URL .  '" data-id_evento="' . $reg["id_evento"] . '" data-id_condomino="' . $reg["id_condomino"] . '">' .
+                '<i class="fa-solid fa-ban"></i>
+                Cancelar
+              </button>';
+            }
+            ?>
+          </td>
+        </tr>
+      <?php endforeach ?>
+    </tbody>
+  </table>
+</div>
+<script src="<?php echo SITE_URL . "js/condomino/reservar_eventos.js" ?>"></script>

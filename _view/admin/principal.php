@@ -21,7 +21,7 @@ if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false || $_SESSIO
       </a>
     </div>
     <div class="col">
-      <a href="#">
+      <a href="<?php echo SITE_URL . RUTA_ADMINISTRADOR ?>gestor-reservaciones">
         <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_reservaciones.png" alt="Gestor de reservaciones">
         <p>Gestor de reservaciones</p>
       </a>
@@ -30,12 +30,6 @@ if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false || $_SESSIO
       <a href="<?php echo SITE_URL . RUTA_ADMINISTRADOR ?>reporte-visitas">
         <img src="<?php echo SITE_URL ?>img/menu_icons/reportes.png" alt="Reporte de visitas">
         <p>Reporte de visitas</p>
-      </a>
-    </div>
-    <div class="col">
-      <a href="#">
-        <img src="<?php echo SITE_URL ?>img/menu_icons/reportes.png" alt="Reporte de reservaciones">
-        <p>Reporte de reservaciones</p>
       </a>
     </div>
     <div class="col">
