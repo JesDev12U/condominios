@@ -32,7 +32,7 @@ npm install
 5. Dar permisos de escritura al directorio `uploads/`
 
 ```bash
-chmod 777 uploads
+chmod 777 -R uploads
 ```
 
 6. Tener instalado MySQL o MariaDB y activar la extensión en el `php.ini` y también habilitar PDO. Además, se debe cargar el SQL del proyecto en MySQL, el SQL está ubicado en `config/db.sql`.
