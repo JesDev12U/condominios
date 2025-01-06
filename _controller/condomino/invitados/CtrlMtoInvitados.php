@@ -266,4 +266,21 @@ class CtrlMtoInvitados
       "INNER JOIN detalle_invitados ON invitados.id_invitado = detalle_invitados.id_invitado"
     )) !== 0;
   }
+
+  public function horaValida($id_invitado)
+  {
+    $model = new Model();
+    $query = $model->seleccionaRegistros(
+      "detalle_invitados",
+      [
+        "horario_inicio",
+        "horario_final"
+      ],
+      "id_invitado=$id_invitado"
+    );
+    $horario_inicio = new DateTime($query[0]["horario_inicio"]);
+    $horario_final = new DateTime($query[0]["horario_final"]);
+    $horaActual = new DateTime();
+    return $horaActual >= $horario_inicio && $horaActual <= $horario_final;
+  }
 }

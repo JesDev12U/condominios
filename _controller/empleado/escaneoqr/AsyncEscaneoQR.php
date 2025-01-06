@@ -37,6 +37,12 @@ if (!$mtoInvitados->existeCURP($curp, $id_condomino)) {
   die();
 }
 
+//Verificamos la hora
+if (!$mtoInvitados->horaValida($id_invitado)) {
+  echo json_encode(["result" => 0, "msg" => "Horario inválido"]);
+  die();
+}
+
 //Con todo correcto, registramos la visita
 $visitas = new CtrlVisitas();
 $id_empleado = $_SESSION["datos"]["id_empleado"];
