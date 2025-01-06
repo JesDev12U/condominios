@@ -38,12 +38,12 @@
             </a>
             <?php
             if ($reg["cancelado"]) {
-              echo '<button class="btn btn-success" id="btn-habilitar" data-url="' . SITE_URL .  '">' .
+              echo '<button class="btn btn-success" id="btn-reagendar" data-url="' . SITE_URL .  '" data-id_evento="' . $reg["id_evento"] . '" data-id_condomino="' . $reg["id_condomino"] . '">' .
                 '<i class="fa-solid fa-calendar"></i>
                 Reagendar
               </button>';
             } else {
-              echo '<button class="btn btn-danger" id="btn-deshabilitar" data-url="' . SITE_URL .  '">' .
+              echo '<button class="btn btn-danger" id="btn-cancelar" data-url="' . SITE_URL .  '" data-id_evento="' . $reg["id_evento"] . '" data-id_condomino="' . $reg["id_condomino"] . '">' .
                 '<i class="fa-solid fa-ban"></i>
                 Cancelar
               </button>';

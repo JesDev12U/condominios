@@ -40,7 +40,7 @@ switch ($peticion) {
     $ctrl = new CtrlMtoReservarEventos("INSERT");
     if (!$ctrl->validaAtributos(null, $id_condomino, $cantidad_personas, $fecha, $turno, $detalles_evento, $tipo_evento)) {
       echo json_encode(["result" => 0, "msg" => "ERROR: Datos inválidos"]);
-    } else if ($ctrl->hayTraslape($fecha, $turno)) {
+    } else if ($ctrl->hayTraslape($fecha, $turno, 0)) {
       echo json_encode(["result" => 0, "msg" => "Ya hay un evento asignado con esa fecha y turno"]);
     } else {
       $foto_path = guardarFoto(null, null, "eventos", "fotos_eventos");
@@ -55,11 +55,9 @@ switch ($peticion) {
     break;
   case "UPDATE":
     $ctrl = new CtrlMtoReservarEventos("UPDATE", $id_evento, $id_condomino);
-    $oldFecha = $ctrl->seleccionaRegistro($id_evento, $id_condomino)[0]["fecha"];
-    $oldTurno = $ctrl->seleccionaRegistro($id_evento, $id_condomino)[0]["turno"];
     if (!$ctrl->validaAtributos($id_evento, $id_condomino, $cantidad_personas, $fecha, $turno, $detalles_evento, $tipo_evento)) {
       echo json_encode(["result" => 0, "msg" => "ERROR: Datos inválidos"]);
-    } else if ($ctrl->hayTraslape($fecha, $turno) && ($fecha !== $oldFecha || $turno !== $oldTurno)) {
+    } else if ($ctrl->hayTraslape($fecha, $turno, $id_evento)) {
       echo json_encode(["result" => 0, "msg" => "Ya hay un evento asignado con esa fecha y turno"]);
     } else {
       $foto_path = guardarFoto("UPDATE", $id_evento, "eventos", "fotos_eventos");

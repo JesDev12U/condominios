@@ -112,13 +112,13 @@ class CtrlMtoReservarEventos
     return $res;
   }
 
-  public function hayTraslape($fecha, $turno)
+  public function hayTraslape($fecha, $turno, $id_evento)
   {
     $model = new Model();
     return count($model->seleccionaRegistros(
       "eventos",
       ["*"],
-      "fecha='$fecha' AND turno='$turno' AND cancelado=false"
+      "fecha='$fecha' AND turno='$turno' AND cancelado=false AND id_evento<>$id_evento"
     )) !== 0;
   }
 
@@ -176,6 +176,28 @@ class CtrlMtoReservarEventos
         $tipo_evento,
         $foto_path
       ],
+    );
+  }
+
+  public function cancelarEvento($id_evento)
+  {
+    $model = new Model();
+    return $model->modificaRegistro(
+      "eventos",
+      ["cancelado"],
+      "id_evento=$id_evento",
+      [1]
+    );
+  }
+
+  public function reagendarEvento($id_evento)
+  {
+    $model = new Model();
+    return $model->modificaRegistro(
+      "eventos",
+      ["cancelado"],
+      "id_evento=$id_evento",
+      [0]
     );
   }
 }
