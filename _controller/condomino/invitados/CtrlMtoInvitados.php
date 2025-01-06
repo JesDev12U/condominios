@@ -21,16 +21,16 @@ class CtrlMtoInvitados
 
   public $title = "Mantenimiento de invitados";
 
-  public function __construct($peticion = null, $id_invitado = null)
+  public function __construct($peticion = null, $id_invitado = null, $id_condomino = null)
   {
     $this->peticion = $peticion;
     $this->id_invitado = $id_invitado;
+    $this->id_condomino = $id_condomino;
     if ($id_invitado !== null) {
-      $res = $this->seleccionaRegistro($id_invitado);
+      $res = $this->seleccionaRegistro($id_invitado, $id_condomino);
       if (count($res) !== 0) {
         $this->nombre = $res[0]["nombre"];
         $this->curp = $res[0]["curp"];
-        $this->id_condomino = $res[0]["id_condomino"];
         $this->horario_inicio = $res[0]["horario_inicio"];
         $this->horario_final = $res[0]["horario_final"];
         $this->json_qr = $res[0]["json_qr"];
@@ -119,16 +119,16 @@ class CtrlMtoInvitados
     return $res;
   }
 
-  public function seleccionaRegistro($id_invitado)
+  public function seleccionaRegistro($id_invitado, $id_condomino)
   {
     $model = new Model();
     return $model->seleccionaRegistros(
       "invitados",
       ["*"],
-      "invitados.id_invitado=$id_invitado",
+      "invitados.id_invitado=$id_invitado AND detalle_invitados.id_condomino=$id_condomino",
       null,
       "INNER JOIN detalle_invitados ON invitados.id_invitado = detalle_invitados.id_invitado"
-    );
+    ) ?? [];
   }
 
   public function insertaRegistro(

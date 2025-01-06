@@ -61,8 +61,8 @@ switch ($page) {
           break;
         } else if ($id > 0) {
           require_once __DIR__ . "/_controller/condomino/invitados/CtrlMtoInvitados.php";
-          $ctrl = new CtrlMtoInvitados("UPDATE", $id);
-          $registro = $ctrl->seleccionaRegistro($id);
+          $ctrl = new CtrlMtoInvitados("UPDATE", $id, $_SESSION["datos"]["id_condomino"]);
+          $registro = $ctrl->seleccionaRegistro($id, $_SESSION["datos"]["id_condomino"]);
           if (count($registro) == 0) {
             //Pagina no encontrada
             require_once __DIR__ . "/_controller/errors/CtrlError404.php";
@@ -76,6 +76,27 @@ switch ($page) {
           http_response_code(404);
           $ctrl = new CtrlError404();
         }
+      case "reservar-eventos":
+        require_once __DIR__ . "/_controller/condomino/eventos/CtrlReservarEventos.php";
+        $ctrl = new CtrlReservarEventos($_SESSION["datos"]["id_condomino"]);
+        break;
+      case "mto-reservar-eventos":
+        if (is_null($id)) {
+          require_once __DIR__ . "/_controller/condomino/eventos/CtrlMtoReservarEventos.php";
+          $ctrl = new CtrlMtoReservarEventos("INSERT");
+          break;
+        } else if ($id > 0) {
+          require_once __DIR__ . "/_controller/condomino/eventos/CtrlMtoReservarEventos.php";
+          $ctrl = new CtrlMtoReservarEventos("UPDATE", $id, $_SESSION["datos"]["id_condomino"]);
+          $registro = $ctrl->seleccionaRegistro($id, $_SESSION["datos"]["id_condomino"]);
+          if (count($registro) == 0) {
+            //Pagina no encontrada
+            require_once __DIR__ . "/_controller/errors/CtrlError404.php";
+            http_response_code(404);
+            $ctrl = new CtrlError404();
+          }
+        }
+        break;
       case "configuracion":
         require_once __DIR__ . "/_controller/admin/gestor_condominos/CtrlMtoCondominos.php";
         $ctrl = new CtrlMtoCondominos("UPDATE", $_SESSION["datos"]["id_condomino"]);

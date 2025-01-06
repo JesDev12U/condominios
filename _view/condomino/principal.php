@@ -9,7 +9,7 @@ if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false || $_SESSIO
 <div class="container" id="menu">
   <div class="row">
     <div class="col">
-      <a href="#">
+      <a href="<?php echo SITE_URL . RUTA_CONDOMINO ?>reservar-eventos">
         <img src="<?php echo SITE_URL ?>img/menu_icons/reservar_eventos.png" alt="Reservar eventos">
         <p>Reservar eventos</p>
       </a>

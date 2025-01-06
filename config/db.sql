@@ -63,6 +63,7 @@ CREATE TABLE eventos(
   detalles_evento TEXT NOT NULL,
   tipo_evento VARCHAR(20) NOT NULL,
   foto_path VARCHAR(255) NOT NULL,
+  cancelado BOOLEAN NOT NULL,
   FOREIGN KEY (id_condomino) REFERENCES condominos(id_condomino)
 );
 
