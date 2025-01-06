@@ -5,7 +5,10 @@ uploads/fotos_users/*.jpg
 uploads/fotos_users/*.jpeg
 uploads/fotos_users/*.gif
 uploads/fotos_users/*.png
-
+uploads/fotos_eventos/*.jpg
+uploads/fotos_eventos/*.jpeg
+uploads/fotos_eventos/*.gif
+uploads/fotos_eventos/*.png
 
 /vendor/
 /node_modules/

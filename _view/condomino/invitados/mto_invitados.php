@@ -10,6 +10,7 @@ use chillerlan\QRCode\{QRCode, QROptions};
     <!-- Formulario -->
     <form id="form-datos">
       <input type="hidden" name="peticion" value="<?php echo $this->peticion ?>">
+      <input type="hidden" name="id_condomino" value="<?php echo $this->id_condomino ?>">
       <?php
       if (!is_null($this->id_invitado)) {
         echo '<input type="hidden" name="id_invitado" value="' . $this->id_invitado . '" />';

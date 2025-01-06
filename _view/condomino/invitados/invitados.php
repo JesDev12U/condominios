@@ -68,12 +68,12 @@ use chillerlan\QRCode\{QRCode, QROptions};
             </a>
             <?php
             if ($reg["ocultar"]) {
-              echo "<button class='btn btn-success' id='btn-desocultar' data-url=" . SITE_URL . " data-id=" . $reg["id_invitado"] . ">
+              echo "<button class='btn btn-success' id='btn-desocultar' data-url=" . SITE_URL . " data-id_invitado=" . $reg["id_invitado"] . " data-id_condomino=" . $reg["id_condomino"] . ">
                 <i class='fa-solid fa-eye'></i>
                 Desocultar
               </button>";
             } else {
-              echo "<button class='btn btn-danger' id='btn-ocultar' data-url=" . SITE_URL . " data-id=" . $reg["id_invitado"] . ">
+              echo "<button class='btn btn-danger' id='btn-ocultar' data-url=" . SITE_URL . " data-id_invitado=" . $reg["id_invitado"] . " data-id_condomino=" . $reg["id_condomino"] . ">
                 <i class='fa-solid fa-eye-slash'></i>
                 Ocultar
               </button>";

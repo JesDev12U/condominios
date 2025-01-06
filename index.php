@@ -83,7 +83,7 @@ switch ($page) {
       case "mto-reservar-eventos":
         if (is_null($id)) {
           require_once __DIR__ . "/_controller/condomino/eventos/CtrlMtoReservarEventos.php";
-          $ctrl = new CtrlMtoReservarEventos("INSERT");
+          $ctrl = new CtrlMtoReservarEventos("INSERT", null, $_SESSION["datos"]["id_condomino"]);
           break;
         } else if ($id > 0) {
           require_once __DIR__ . "/_controller/condomino/eventos/CtrlMtoReservarEventos.php";

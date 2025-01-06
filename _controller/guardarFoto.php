@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../config/Global.php";
 
-function guardarFoto($peticion = null, $id = null, $user)
+function guardarFoto($peticion = null, $id = null, $user, $pathUploads = "fotos_users")
 {
   $foto_path = "";
   if (isset($_FILES['foto_path']) && $_FILES['foto_path']['error'] === UPLOAD_ERR_OK) {
@@ -9,7 +9,7 @@ function guardarFoto($peticion = null, $id = null, $user)
     $fileName = $_FILES['foto_path']['name'];
     $fileSize = $_FILES['foto_path']['size'];
     $fileType = $_FILES['foto_path']['type'];
-    $uploadDir = __DIR__ . "/../uploads/fotos_users/";
+    $uploadDir = __DIR__ . "/../uploads/$pathUploads/";
     //Extensión del archivo
     $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
     //Verificación de que el archivo es una imágen
@@ -35,6 +35,10 @@ function guardarFoto($peticion = null, $id = null, $user)
               case "condomino":
                 require_once __DIR__ . "/admin/gestor_condominos/CtrlMtoCondominos.php";
                 $ctrl = new CtrlMtoCondominos("UPDATE", $id);
+                break;
+              case "eventos":
+                require_once __DIR__ . "/condomino/eventos/CtrlMtoReservarEventos.php";
+                $ctrl = new CtrlMtoReservarEventos("UPDATE", $id);
                 break;
               default:
                 echo json_encode(["result" => 0, "msg" => "Usuario inválido"]);

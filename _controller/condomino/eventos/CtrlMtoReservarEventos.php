@@ -67,4 +67,115 @@ class CtrlMtoReservarEventos
       "id_evento=$id_evento AND id_condomino=$id_condomino"
     ) ?? [];
   }
+
+  public function seleccionaFoto($id_evento)
+  {
+    $model = new Model();
+    return $model->seleccionaRegistros("eventos", ['foto_path'], "id_evento=$id_evento");
+  }
+
+  public function validaAtributos(
+    $id_evento = null,
+    $id_condomino = null,
+    $cantidad_personas = null,
+    $fecha = null,
+    $turno = null,
+    $detalles_evento = null,
+    $tipo_evento = null,
+  ) {
+    $res = true;
+    if (!is_null($id_evento)) {
+      $id_evento = (int)$id_evento;
+      $res = $res && is_integer($id_evento) && $id_evento > 0;
+    }
+    if (!is_null($id_condomino)) {
+      $id_condomino = (int)$id_condomino;
+      $res = $res && is_integer($id_condomino) && $id_condomino > 0;
+    }
+    if (!is_null($cantidad_personas)) {
+      $cantidad_personas = (int)($cantidad_personas);
+      $res = $res && is_integer($cantidad_personas) && $cantidad_personas > 0;
+    }
+    if (!is_null($fecha)) {
+      $fecha = new DateTime($fecha);
+      $res = $res && $fecha > new DateTime();
+    }
+    if (!is_null($turno)) {
+      $res = $res && ($turno === "Matutino" || $turno === "Vespertino");
+    }
+    if (!is_null($detalles_evento)) {
+      $res = $res && $detalles_evento !== "";
+    }
+    if (!is_null($tipo_evento)) {
+      $res = $res && $tipo_evento !== "";
+    }
+    return $res;
+  }
+
+  public function hayTraslape($fecha, $turno)
+  {
+    $model = new Model();
+    return count($model->seleccionaRegistros(
+      "eventos",
+      ["*"],
+      "fecha='$fecha' AND turno='$turno' AND cancelado=false"
+    )) !== 0;
+  }
+
+  public function insertaRegistro($id_condomino, $cantidad_personas, $fecha, $turno, $detalles_evento, $tipo_evento, $foto_path)
+  {
+    $model = new Model();
+    return $model->agregaRegistro(
+      "eventos",
+      [
+        "id_condomino",
+        "cantidad_personas",
+        "fecha",
+        "turno",
+        "detalles_evento",
+        "tipo_evento",
+        "foto_path",
+        "cancelado"
+      ],
+      [
+        $id_condomino,
+        $cantidad_personas,
+        $fecha,
+        $turno,
+        $detalles_evento,
+        $tipo_evento,
+        $foto_path,
+        0
+      ]
+    );
+  }
+
+  public function modificaRegistro($id_evento, $id_condomino, $cantidad_personas, $fecha, $turno, $detalles_evento, $tipo_evento, $foto_path)
+  {
+    $model = new Model();
+    //Comprobación de que la foto no se debe subir vacía
+    $foto_path = $foto_path === "" ? $this->foto_path : $foto_path;
+    return $model->modificaRegistro(
+      "eventos",
+      [
+        "id_condomino",
+        "cantidad_personas",
+        "fecha",
+        "turno",
+        "detalles_evento",
+        "tipo_evento",
+        "foto_path"
+      ],
+      "id_evento=$id_evento",
+      [
+        $id_condomino,
+        $cantidad_personas,
+        $fecha,
+        $turno,
+        $detalles_evento,
+        $tipo_evento,
+        $foto_path
+      ],
+    );
+  }
 }
