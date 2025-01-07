@@ -8,14 +8,14 @@ $data = json_decode($input, true);
 $resultado = false;
 $usuario = "";
 
-//sleep(5);
-
 //Validamos los datos
 if (isset($data['email'], $data['password'])) {
-  //TODO:Busqueda en la base de datos
   $ctrlLogin = new CtrlLogin();
   $peticion = $ctrlLogin->credencialesCorrectas($data['email'], $data['password']);
   if ($peticion !== null) {
+    if (isset($_SESSION['codigo']) || isset($_SESSION['email'])) {
+      session_unset();
+    }
     $_SESSION["loggeado"] = true;
     $usuario = $_SESSION["usuario"] = $peticion;
     $_SESSION["datos"] = $ctrlLogin->obtenerDatosUsuario($peticion, $data['email']);
