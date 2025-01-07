@@ -43,6 +43,11 @@ switch ($page) {
     }
     break;
 
+  case 'recuperar-password':
+    require_once __DIR__ . "/_controller/CtrlRecuperarPassword.php";
+    $ctrl = new CtrlRecuperarPassword();
+    break;
+
   case 'condomino':
     //Router del condomino
     switch ($action) {

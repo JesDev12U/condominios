@@ -29,7 +29,7 @@
         </div>
 
         <div class="mb-3 text-end">
-          <a href="#" class="text-decoration-none">¿Haz olvidado la contraseña?</a>
+          <a href="<?php echo SITE_URL ?>recuperar-password" class="text-decoration-none">¿Haz olvidado la contraseña?</a>
         </div>
         <div class="d-grid gap-3">
           <button class="btn btn-practical">Iniciar sesión</button>

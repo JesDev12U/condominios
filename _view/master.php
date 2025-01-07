@@ -56,7 +56,7 @@
             </ul>
         </div>
         <?php
-        if (isset($_SESSION) && count($_SESSION) !== 0 && $_SESSION["usuario"] !== "administrador") {
+        if (isset($_SESSION) && (!isset($_SESSION['codigo']) && !isset($_SESSION['email']))  && count($_SESSION) !== 0 && $_SESSION["usuario"] !== "administrador") {
             $foto_path = isset($_SESSION["datos"]["foto_path"]) ? $_SESSION["datos"]["foto_path"] : "./uploads/placeholderuser.png";
             echo '<img id="foto-user-header" src="' . $foto_path . '" alt="Foto del usuario">';
         }

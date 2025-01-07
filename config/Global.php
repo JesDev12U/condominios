@@ -17,3 +17,5 @@ define("DB_USR", "root");
 define("DB_PASS", "Str0ngPassword!");
 define("METODO_ENCRIPTACION", "AES-256-CBC");
 define("KEY_ENCRIPTACION", "u7<fijrf0AKI./");
+define("EMAIL", "lopezbandalajesusantonio@gmail.com");
+define("PASSWORD_EMAIL", "dvrurjvdfumraxuz"); //Password generado por Google
