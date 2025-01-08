@@ -36,7 +36,7 @@
       <!-- Formulario -->
       <div class="col">
         <h5 class="text-center mb-4">Registro</h5>
-        <form id="form-datos">
+        <form id="form-datos" data-url="<?php echo SITE_URL ?>">
           <div class="general-container-foto" style="margin-bottom: 50px;">
             <label for="foto_path" class="form-label"><i class="fa-solid fa-image"></i>&nbsp;Foto</label>
             <div class="wrapper-foto">
@@ -66,10 +66,13 @@
               type="number"
               class="form-control"
               id="cantidad_personas"
+              min="1"
+              max="50"
               name="cantidad_personas"
               value="<?php echo is_null($this->id_evento) ? "" : $this->cantidad_personas ?>"
               placeholder="Ingresa aquí la cantidad de personas"
               required />
+            <span id="error-cantidad-personas" class="span-errors hidden">Cantidad inválida</span>
           </div>
           <div class="mb-3">
             <label for="fecha" class="form-label"><i class="fa-solid fa-calendar-days"></i>&nbsp;Fecha</label>
@@ -81,6 +84,7 @@
               value="<?php echo is_null($this->id_evento) ? "" : $this->fecha ?>"
               placeholder="Ingresa aquí la fecha"
               required />
+            <span id="error-fecha" class="span-errors hidden">La fecha no puede estar vacía</span>
           </div>
           <div class="mb-3">
             <label for="turno" class="form-label"><i class="fa-solid fa-clock"></i>&nbsp;Turno</label>
@@ -100,6 +104,7 @@
           <div class="mb-3">
             <label for="detalles_evento" class="form-label"><i class="fa-solid fa-star"></i>&nbsp;Detalles del evento</label>
             <textarea name="detalles_evento" id="detalles_evento" class="form-control" placeholder="Ingresa aquí los detalles del evento"><?php echo is_null($this->id_evento) ? "" : $this->detalles_evento ?></textarea>
+            <span id="error-detalles-evento" class="span-errors hidden">Los detalles no pueden estar vacíos</span>
           </div>
           <div class="mb-3">
             <label for="tipo_evento" class="form-label"><i class="fa-solid fa-wand-magic-sparkles"></i>&nbsp;Tipo de evento</label>
@@ -111,6 +116,7 @@
               value="<?php echo is_null($this->id_evento) ? "" : $this->tipo_evento ?>"
               placeholder="Bautizo, Boda, Cumpleaños ..."
               required />
+            <span id="error-tipo-evento" class="span-errors hidden">El tipo de evento no puede estar vacío</span>
           </div>
           <div class="container" style="margin-bottom: 50px;">
             <button type="submit" class="btn btn-success" id="btn-send">
@@ -123,40 +129,3 @@
     </div>
   </div>
 </div>
-<script>
-  const $fotoEvento = document.getElementById("foto-evento");
-  const $formDatos = document.getElementById("form-datos");
-  const $fotoFile = document.getElementById("foto-file");
-
-  $fotoFile.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const urlTemporal = URL.createObjectURL(file);
-      $fotoEvento.src = urlTemporal;
-
-      //Limpieza de la URL temporal cuando ya no se necesite
-      $fotoFile.onload = () => URL.revokeObjectURL(urlTemporal);
-    }
-  });
-
-  $formDatos.addEventListener("submit", function(e) {
-    e.preventDefault();
-    if ($fotoEvento.src === "<?php echo SITE_URL ?>uploads/placeholderimage.jpg") {
-      Swal.fire({
-        icon: "error",
-        title: "¡Error!",
-        text: "Tienes que subir una foto para el evento"
-      });
-      return;
-    }
-    const formData = new FormData(this);
-
-    asyncConfirmProcess(
-      formData,
-      `<?php echo SITE_URL; ?>_controller/condomino/eventos/AsyncMtoReservarEventos.php`,
-      "Confirmación",
-      "¿Está seguro de agendar el evento?",
-      "¡Evento agendado correctamente!"
-    );
-  });
-</script>

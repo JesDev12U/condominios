@@ -17,6 +17,7 @@
         value="<?php echo $this->nombre ?>"
         placeholder="Ingresa aquí tu nombre"
         required />
+      <span id="error-nombre" class="span-errors hidden">El nombre no puede ser vacío</span>
     </div>
     <div class="mb-3">
       <label for="email" class="form-label"><i class="fa-solid fa-envelope"></i>&nbsp;Correo electrónico</label>
@@ -28,6 +29,7 @@
         value="<?php echo $this->email ?>"
         placeholder="Ingresa aquí tu correo electrónico"
         required />
+      <span id="error-email" class="span-errors hidden">Correo electrónico inválido</span>
     </div>
     <div class="mb-3">
       <label for="password" class="form-label"><i class="fa-solid fa-lock"></i>&nbsp;Contraseña</label>
@@ -39,25 +41,10 @@
       </div>
     </div>
     <div class="container" style="margin-bottom: 50px;">
-      <button type="submit" class="btn btn-success" id="btn-send">
+      <button type="submit" class="btn btn-success" id="btn-send" data-url="<?php echo SITE_URL ?>">
         <i class="fa-solid fa-check"></i>
         Enviar
       </button>
     </div>
   </form>
 </div>
-<script>
-  const $btnSend = document.getElementById("btn-send");
-  const $formDatos = document.getElementById("form-datos");
-  $btnSend.addEventListener("click", (e) => {
-    e.preventDefault();
-    const formDataDatos = new FormData($formDatos);
-    asyncConfirmProcess(
-      formDataDatos,
-      `<?php echo SITE_URL; ?>_controller/admin/AsyncMtoAdministrador.php`,
-      "Confirmación",
-      "¿Está seguro de modificar sus datos?",
-      "¡Datos modificados correctamente!"
-    );
-  })
-</script>

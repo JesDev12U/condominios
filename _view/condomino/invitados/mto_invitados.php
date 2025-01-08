@@ -26,6 +26,7 @@ use chillerlan\QRCode\{QRCode, QROptions};
           value="<?php echo is_null($this->id_invitado) ? "" : $this->nombre ?>"
           placeholder="Ingresa aquí el nombre del invitado"
           required />
+        <span id="error-nombre" class="span-errors hidden">El nombre no puede ser vacío</span>
       </div>
       <div class="mb-3">
         <label for="curp" class="form-label"><i class="fa-solid fa-id-card"></i>&nbsp;CURP</label>
@@ -37,6 +38,7 @@ use chillerlan\QRCode\{QRCode, QROptions};
           value="<?php echo is_null($this->id_invitado) ? "" : $this->curp ?>"
           placeholder="Ingresa aquí el CURP del invitado"
           required />
+        <span id="error-curp" class="span-errors hidden">CURP inválido</span>
       </div>
       <div class="mb-3">
         <label for="horario_inicio" class="form-label"><i class="fa-solid fa-clock"></i>&nbsp;Horario de inicio</label>
@@ -48,6 +50,7 @@ use chillerlan\QRCode\{QRCode, QROptions};
           value="<?php echo is_null($this->id_invitado) ? "" : $this->horario_inicio ?>"
           placeholder="Ingresa aquí el horario de inicio del invitado"
           required />
+        <span id="error-horario-inicio" class="span-errors hidden">Hora inválida</span>
       </div>
       <div class="mb-3">
         <label for="horario_final" class="form-label"><i class="fa-solid fa-clock"></i>&nbsp;Horario final</label>
@@ -59,6 +62,7 @@ use chillerlan\QRCode\{QRCode, QROptions};
           value="<?php echo is_null($this->id_invitado) ? "" : $this->horario_final ?>"
           placeholder="Ingresa aquí el horario final del invitado"
           required />
+        <span id="error-horario-final" class="span-errors hidden">Hora inválida</span>
       </div>
       <div class="mb-3">
         <label for="asunto" class="form-label"><i class="fa-solid fa-tag"></i>&nbsp;Asunto</label>
@@ -80,16 +84,19 @@ use chillerlan\QRCode\{QRCode, QROptions};
         <input
           type="number"
           class="form-control"
+          min="1"
+          max="50"
           id="integrantes"
           name="integrantes"
           value="<?php echo is_null($this->id_invitado) ? "" : $this->integrantes ?>"
           placeholder="Ingresa aquí el número de integrantes a invitar"
           required />
+        <span id="error-integrantes" class="span-errors hidden">Cantidad inválida</span>
       </div>
     </form>
 
     <div class="container" style="margin-bottom: 50px;">
-      <button type="submit" class="btn btn-success" id="btn-send">
+      <button type="submit" class="btn btn-success" id="btn-send" data-url="<?php echo SITE_URL ?>">
         <i class="fa-solid fa-check"></i>
         Enviar
       </button>
@@ -97,20 +104,3 @@ use chillerlan\QRCode\{QRCode, QROptions};
 
   </div>
 </div>
-<script>
-  const $btnSend = document.getElementById("btn-send");
-
-  $btnSend.addEventListener("click", (e) => {
-    e.preventDefault();
-    const formDataDatos = new FormData(document.getElementById("form-datos"));
-
-    asyncConfirmProcess(
-      formDataDatos,
-      `<?php echo SITE_URL; ?>_controller/condomino/invitados/AsyncMtoInvitados.php`,
-      "Confirmación",
-      "¿Está seguro de registrar los datos del invitado?",
-      "¡Datos modificados correctamente!",
-    )
-
-  });
-</script>

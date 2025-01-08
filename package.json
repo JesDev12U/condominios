@@ -21,6 +21,7 @@
     "jszip": "^3.10.1",
     "ldrs": "^1.0.2",
     "pdfmake": "^0.2.18",
-    "sweetalert2": "^11.15.3"
+    "sweetalert2": "^11.15.3",
+    "validator": "^13.12.0"
   }
 }

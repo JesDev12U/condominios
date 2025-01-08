@@ -11,8 +11,9 @@
       <div class="mb-3">
         <label for="email" class="form-label"><i class="fa-solid fa-envelope"></i>&nbsp;Correo electrónico</label>
         <input type="email" name="email" id="email" class="form-control" placeholder="Ingresa aquí tu correo electrónico" required>
+        <span id="error-email" class="span-errors hidden">Correo electrónico inválido</span>
       </div>
-      <button class="btn btn-primary">Enviar</button>
+      <button id="btn-enviar-email" class="btn btn-primary">Enviar</button>
     </form>
   </div>
   <div class="container hidden" id="input-codigo-container">

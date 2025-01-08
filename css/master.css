@@ -108,3 +108,14 @@ h3 {
   height: 50px;
   border-radius: 50px;
 }
+
+.span-errors::before {
+  content: "\f06a";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: 5px;
+}
+
+.span-errors {
+  color: red;
+}

@@ -20,6 +20,7 @@
               value="<?php echo is_null($this->id_condomino) ? "" : $this->nombre ?>"
               placeholder="Ingresa aquí el nombre del condomino"
               required />
+            <span id="error-nombre" class="span-errors hidden">El nombre no puede ser vacío</span>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label"><i class="fa-solid fa-envelope"></i>&nbsp;Correo electrónico</label>
@@ -31,15 +32,17 @@
               value="<?php echo is_null($this->id_condomino) ? "" : $this->email ?>"
               placeholder="Ingresa aquí el correo electrónico del condomino"
               required />
+            <span id="error-email" class="span-errors hidden">Correo electrónico inválido</span>
           </div>
           <div class="mb-3">
             <label for="password" class="form-label"><i class="fa-solid fa-lock"></i>&nbsp;Contraseña</label>
             <div class="input-group">
-              <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa aquí una contraseña para el condomino" <?php echo is_null($this->id_condomino) || $_SESSION["usuario"] === "condomino" ? "" : "disabled" ?> />
+              <input data-valor="<?php echo is_null($this->id_condomino) ?>" type="password" class="form-control" id="password" name="password" placeholder="Ingresa aquí una contraseña para el condomino" <?php echo is_null($this->id_condomino) || $_SESSION["usuario"] === "condomino" ? "" : "disabled" ?> />
               <button class="btn btn-outline-secondary" id="toggle-password" type="button">
                 <i class="fa-solid fa-eye"></i>
               </button>
             </div>
+            <span id="error-password" class="span-errors hidden">La contraseña no puede ser vacía</span>
           </div>
           <div class="mb-3">
             <label for="telefono" class="form-label"><i class="fa-solid fa-phone"></i>&nbsp;Teléfono</label>
@@ -51,6 +54,7 @@
               value="<?php echo is_null($this->id_condomino) ? "" : $this->telefono ?>"
               placeholder="Ingresa aquí el teléfono del condomid_condomino"
               required />
+            <span id="error-telefono" class="span-errors hidden">Teléfono inválido</span>
           </div>
           <div class="mb-3">
             <label for="telefono_emergencia" class="form-label"><i class="fa-solid fa-tower-broadcast"></i>&nbsp;Teléfono de emergencia</label>
@@ -62,6 +66,7 @@
               value="<?php echo is_null($this->id_condomino) ? "" : $this->telefono_emergencia ?>"
               placeholder="Ingresa aquí el teléfono de emergencia del condomino"
               required />
+            <span id="error-telefono-emergencia" class="span-errors hidden">Teléfono inválido</span>
           </div>
           <div class="mb-3">
             <label for="torre" class="form-label"><i class="fa-solid fa-tower-observation"></i>&nbsp;Torre</label>
@@ -73,6 +78,7 @@
               value="<?php echo is_null($this->id_condomino) ? "" : $this->torre ?>"
               placeholder="Ingresa aquí la torre del condomino"
               required />
+            <span id="error-torre" class="span-errors hidden">La torre no puede ser vacía</span>
           </div>
           <div class="mb-3">
             <label for="departamento" class="form-label"><i class="fa-solid fa-house"></i>&nbsp;Departamento</label>
@@ -84,6 +90,7 @@
               value="<?php echo is_null($this->id_condomino) ? "" : $this->departamento ?>"
               placeholder="Ingresa aquí la departamento del condomino"
               required />
+            <span id="error-departamento" class="span-errors hidden">El departamento no puede ser vacío</span>
           </div>
           <div class="mb-3">
             <label for="tipo" class="form-label"><i class="fa-solid fa-user-tag"></i>&nbsp;Tipo</label>
@@ -119,7 +126,7 @@
         <input type="file" id="foto-file" accept="image/*">
       </div>
       <div class="container" style="margin-bottom: 50px;">
-        <button type="submit" class="btn btn-success" id="btn-send">
+        <button type="submit" class="btn btn-success" id="btn-send" data-url="<?php echo SITE_URL ?>" data-peticion="<?php echo $this->peticion ?>" data-usuario="<?php echo $_SESSION["usuario"] ?>">
           <i class="fa-solid fa-check"></i>
           Enviar
         </button>
@@ -127,51 +134,3 @@
     </div>
   </div>
 </div>
-<script>
-  const $fotoUser = document.getElementById("foto-user");
-  const formDataFoto = new FormData();
-  const $btnSend = document.getElementById("btn-send");
-  const $fotoFile = document.getElementById("foto-file");
-
-  $fotoFile.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const urlTemporal = URL.createObjectURL(file);
-      $fotoUser.src = urlTemporal;
-
-      // Limpieza de la URL temporal cuando ya no se necesite
-      $fotoFile.onload = () => URL.revokeObjectURL(urlTemporal);
-      formDataFoto.append("foto_path", file, file.name);
-    }
-  });
-
-  $btnSend.addEventListener("click", (e) => {
-    e.preventDefault();
-    const formDataDatos = new FormData(document.getElementById("form-datos"));
-    for (let [key, value] of formDataFoto.entries()) {
-      formDataDatos.append(key, value);
-    }
-
-    if (formDataDatos.getAll("foto_path").length !== 0 || "<?php echo $this->peticion ?>" === "UPDATE") {
-      asyncConfirmProcess(
-        formDataDatos,
-        `<?php echo SITE_URL; ?>_controller/admin/gestor_condominos/AsyncMtoCondominos.php`,
-        "Confirmación",
-        "<?php echo $_SESSION["usuario"] === "condomino" ? "¿Está seguro de modificar sus datos?" : "¿Está seguro de que desea hacer el registro de este condomino?" ?>",
-        "<?php echo $_SESSION["usuario"] === "condomino" ? "¡Datos modificados correctamente!" : "¡Condomino registrado correctamente!" ?>",
-        (json) => {
-          if (json.usuario === "condomino") {
-            const $fotoUserHeader = document.getElementById("foto-user-header");
-            if ($fotoUserHeader && json.nuevos_datos.foto_path !== "") $fotoUserHeader.src = json.nuevos_datos.foto_path;
-          }
-        }
-      );
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "¡Error!",
-        text: "Tienes que subir una foto para seguir con el registro",
-      });
-    }
-  });
-</script>

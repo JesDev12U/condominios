@@ -1,3 +1,13 @@
+let objInputs = [
+  {
+    id: "email",
+    type: "email",
+    spanError: "error-email",
+  },
+];
+
+validaciones(objInputs, "btn-enviar-email");
+
 const $inputCorreoContainer = document.getElementById("input-correo-container");
 const $inputCodigoContainer = document.getElementById("input-codigo-container");
 const $inputNuevaPasswordContainer = document.getElementById(

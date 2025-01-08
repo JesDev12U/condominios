@@ -1,6 +1,21 @@
+let objInputs = [
+  {
+    id: "input-email",
+    type: "email",
+    spanError: "error-email",
+  },
+  {
+    id: "password",
+    type: "password",
+    spanError: "error-password",
+  },
+];
+
+validaciones(objInputs, "btn-iniciar-sesion");
+
 const $formLogin = document.getElementById("form-login");
 
-$formLogin.addEventListener("submit", async (e) => {
+$formLogin.addEventListener("submit", async function (e) {
   e.preventDefault();
   aparecerLoader();
   const formData = new FormData($formLogin);
@@ -32,8 +47,7 @@ $formLogin.addEventListener("submit", async (e) => {
         text: "Credenciales incorrectas",
       });
     } else {
-      //TODO: Redireccionar al usuario a su correspondiente menu
-      redireccionMenu(json.usuario);
+      location.href = `${this.dataset.url}${json.usuario}`;
     }
   } catch (err) {
     desaparecerLoader();

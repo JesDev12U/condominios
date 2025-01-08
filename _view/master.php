@@ -133,6 +133,8 @@
     <script src="node_modules/flatpickr/dist/flatpickr.min.js"></script>
     <!-- HTML5-QRCode -->
     <script src="node_modules/html5-qrcode/html5-qrcode.min.js"></script>
+    <!-- Validator JS -->
+    <script src="node_modules/validator/validator.min.js"></script>
     <!-- JS del master -->
     <script src="js/master.js"></script>
     <!-- Confirmación de procesos -->
