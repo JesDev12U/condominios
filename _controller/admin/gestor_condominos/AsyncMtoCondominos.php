@@ -47,16 +47,18 @@ switch ($peticion) {
     if (!$ctrl->validaAtributos(null, $nombre, $email, $password, $telefono, $telefono_emergencia, $torre, $departamento, $tipo)) {
       echo json_encode(["result" => 0, "msg" => "ERROR: Datos inválidos"]);
     } else {
-      $foto_path = guardarFoto(null, null, "condomino");
       $ctrlEmail = new CtrlEmail($email);
-      if ($foto_path === "") {
-        echo json_encode(["result" => 0, "msg" => "No se recibió ninguna foto, por favor sube una"]);
-      } else if ($ctrlEmail->existeEmail()) {
+      if ($ctrlEmail->existeEmail()) {
         echo json_encode(["result" => 0, "msg" => "El correo electrónico enviado ya existe, elige otro"]);
-      } else if ($ctrl->insertaRegistro($nombre, $email, password_hash($password, PASSWORD_DEFAULT), $telefono, $telefono_emergencia, $torre, $departamento, $tipo, $foto_path)) {
-        echo json_encode(["result" => 1, "msg" => "Registro insertado correctamente"]);
       } else {
-        echo json_encode(["result" => 0, "msg" => "ERROR: Problema de inserción en BD"]);
+        $foto_path = guardarFoto(null, null, "condomino");
+        if ($foto_path === "") {
+          echo json_encode(["result" => 0, "msg" => "No se recibió ninguna foto, por favor sube una"]);
+        } else if ($ctrl->insertaRegistro($nombre, $email, password_hash($password, PASSWORD_DEFAULT), $telefono, $telefono_emergencia, $torre, $departamento, $tipo, $foto_path)) {
+          echo json_encode(["result" => 1, "msg" => "Registro insertado correctamente"]);
+        } else {
+          echo json_encode(["result" => 0, "msg" => "ERROR: Problema de inserción en BD"]);
+        }
       }
     }
     break;
@@ -66,41 +68,43 @@ switch ($peticion) {
     if (!$ctrl->validaAtributos(null, $nombre, $email, $password, $telefono, $telefono_emergencia, $torre, $departamento, $tipo)) {
       echo json_encode(["result" => 0, "msg" => "ERROR: Datos inválidos"]);
     } else {
-      $foto_path = guardarFoto("UPDATE", $id_condomino, "condomino");
       $ctrlEmail = new CtrlEmail($email);
       $oldEmail = $ctrl->seleccionaRegistro($id_condomino)[0]["email"];
       if ($ctrlEmail->existeEmail() && $email !== $oldEmail) {
         echo json_encode(["result" => 0, "msg" => "El correo electrónico enviado ya existe, elige otro"]);
-      } else if ($ctrl->modificaRegistro($id_condomino, $nombre, $email, $password === null ? null : password_hash($password, PASSWORD_DEFAULT), $telefono, $telefono_emergencia, $torre, $departamento, $tipo, $foto_path)) {
-        if ($_SESSION["usuario"] === "condomino") {
-          $_SESSION["datos"]["nombre"] = $nombre;
-          $_SESSION["datos"]["email"] = $email;
-          $_SESSION["datos"]["telefono"] = $telefono;
-          $_SESSION["datos"]["telefono_emergencia"] = $telefono_emergencia;
-          $_SESSION["datos"]["torre"] = $torre;
-          $_SESSION["datos"]["departamento"] = $departamento;
-          $_SESSION["datos"]["tipo"] = $tipo;
-          if ($foto_path !== "") $_SESSION["datos"]["foto_path"] = $foto_path;
-        }
-        echo json_encode(
-          [
-            "result" => 1,
-            "msg" => "Registro modificado correctamente",
-            "nuevos_datos" => [
-              "nombre" => $nombre,
-              "email" => $email,
-              "telefono" => $telefono,
-              "telefono_emergencia" => $telefono_emergencia,
-              "torre" => $torre,
-              "departamento" => $departamento,
-              "tipo" => $tipo,
-              "foto_path" => $foto_path
-            ],
-            "usuario" => $_SESSION["usuario"]
-          ]
-        );
       } else {
-        echo json_encode(["result" => 0, "msg" => "ERROR: Problema de modificación en BD"]);
+        $foto_path = guardarFoto("UPDATE", $id_condomino, "condomino");
+        if ($ctrl->modificaRegistro($id_condomino, $nombre, $email, $password === null ? null : password_hash($password, PASSWORD_DEFAULT), $telefono, $telefono_emergencia, $torre, $departamento, $tipo, $foto_path)) {
+          if ($_SESSION["usuario"] === "condomino") {
+            $_SESSION["datos"]["nombre"] = $nombre;
+            $_SESSION["datos"]["email"] = $email;
+            $_SESSION["datos"]["telefono"] = $telefono;
+            $_SESSION["datos"]["telefono_emergencia"] = $telefono_emergencia;
+            $_SESSION["datos"]["torre"] = $torre;
+            $_SESSION["datos"]["departamento"] = $departamento;
+            $_SESSION["datos"]["tipo"] = $tipo;
+            if ($foto_path !== "") $_SESSION["datos"]["foto_path"] = $foto_path;
+          }
+          echo json_encode(
+            [
+              "result" => 1,
+              "msg" => "Registro modificado correctamente",
+              "nuevos_datos" => [
+                "nombre" => $nombre,
+                "email" => $email,
+                "telefono" => $telefono,
+                "telefono_emergencia" => $telefono_emergencia,
+                "torre" => $torre,
+                "departamento" => $departamento,
+                "tipo" => $tipo,
+                "foto_path" => $foto_path
+              ],
+              "usuario" => $_SESSION["usuario"]
+            ]
+          );
+        } else {
+          echo json_encode(["result" => 0, "msg" => "ERROR: Problema de modificación en BD"]);
+        }
       }
     }
     break;
