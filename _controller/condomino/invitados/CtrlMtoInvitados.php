@@ -270,17 +270,27 @@ class CtrlMtoInvitados
   public function horaValida($id_invitado)
   {
     $model = new Model();
-    $query = $model->seleccionaRegistros(
-      "detalle_invitados",
-      [
-        "horario_inicio",
-        "horario_final"
-      ],
-      "id_invitado=$id_invitado"
+    $queryES = $model->seleccionaRegistros(
+      "visitas",
+      ["horario_entrada"],
+      "id_invitado = $id_invitado AND horario_salida IS NULL"
     );
-    $horario_inicio = new DateTime($query[0]["horario_inicio"]);
-    $horario_final = new DateTime($query[0]["horario_final"]);
-    $horaActual = new DateTime();
-    return $horaActual >= $horario_inicio && $horaActual <= $horario_final;
+    if (count($queryES) === 0) {
+      //Se trata de una entrada
+      $query = $model->seleccionaRegistros(
+        "detalle_invitados",
+        [
+          "horario_inicio",
+          "horario_final"
+        ],
+        "id_invitado=$id_invitado"
+      );
+      $horario_inicio = new DateTime($query[0]["horario_inicio"]);
+      $horario_final = new DateTime($query[0]["horario_final"]);
+      $horaActual = new DateTime();
+      return $horaActual >= $horario_inicio && $horaActual <= $horario_final;
+    }
+    //Si se trata de una salida, no se tiene que verificar la hora
+    return true;
   }
 }
