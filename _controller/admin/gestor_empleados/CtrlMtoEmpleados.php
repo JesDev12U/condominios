@@ -77,19 +77,19 @@ class CtrlMtoEmpleados
       $res = $res && is_integer(($id_empleado)) && $id_empleado > 0;
     }
     if (!is_null($nombre)) {
-      $res = $res && $nombre !== "";
+      $res = $res && $nombre !== "" && strlen($nombre) <= 50;
     }
     if (!is_null($email)) {
-      $res = preg_match('/^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/', $email, $matches);
+      $res = $res && preg_match('/^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/', $email, $matches) && strlen($email) <= 80;
     }
     if (!is_null($password)) {
-      $res = $res && $password !== "";
+      $res = $res && $password !== "" && strlen($password) <= 16;
     }
     if (!is_null($telefono)) {
-      $res = preg_match('/[0-9]{10}/', $telefono, $matches);
+      $res = $res && preg_match('/[0-9]{10}/', $telefono, $matches);
     }
     if (!is_null($telefono_emergencia)) {
-      $res = preg_match('/[0-9]{10}/', $telefono_emergencia, $matches);
+      $res = $res && preg_match('/[0-9]{10}/', $telefono_emergencia, $matches);
     }
     return $res;
   }

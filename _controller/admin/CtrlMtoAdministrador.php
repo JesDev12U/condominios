@@ -54,13 +54,13 @@ class CtrlMtoAdministrador
       $res = $res && is_integer(($id_administrador)) && $id_administrador > 0;
     }
     if (!is_null($nombre)) {
-      $res = $res && $nombre !== "";
+      $res = $res && $nombre !== "" && strlen($nombre) <= 50;
     }
     if (!is_null($email)) {
-      $res = preg_match('/^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/', $email, $matches);
+      $res = $res && preg_match('/^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/', $email, $matches) && strlen($email) <= 80;
     }
     if (!is_null($password)) {
-      $res = $res && $password !== "";
+      $res = $res && $password !== "" && strlen($password) <= 16;
     }
     return $res;
   }

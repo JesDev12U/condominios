@@ -97,7 +97,7 @@ class CtrlMtoReservarEventos
     }
     if (!is_null($cantidad_personas)) {
       $cantidad_personas = (int)($cantidad_personas);
-      $res = $res && is_integer($cantidad_personas) && $cantidad_personas > 0;
+      $res = $res && is_integer($cantidad_personas) && $cantidad_personas > 0 && $cantidad_personas <= 50;
     }
     if (!is_null($fecha)) {
       $fecha = new DateTime($fecha);
@@ -107,10 +107,10 @@ class CtrlMtoReservarEventos
       $res = $res && ($turno === "Matutino" || $turno === "Vespertino");
     }
     if (!is_null($detalles_evento)) {
-      $res = $res && $detalles_evento !== "";
+      $res = $res && $detalles_evento !== "" && strlen($detalles_evento) <= 255;
     }
     if (!is_null($tipo_evento)) {
-      $res = $res && $tipo_evento !== "";
+      $res = $res && $tipo_evento !== "" && strlen($tipo_evento) <= 20;
     }
     return $res;
   }

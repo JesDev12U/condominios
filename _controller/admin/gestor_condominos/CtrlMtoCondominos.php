@@ -85,28 +85,28 @@ class CtrlMtoCondominos
       $res = $res && is_integer(($id_condomino)) && $id_condomino > 0;
     }
     if (!is_null($nombre)) {
-      $res = $res && $nombre !== "";
+      $res = $res && $nombre !== "" && strlen($nombre) <= 50;
     }
     if (!is_null($email)) {
-      $res = preg_match('/^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/', $email, $matches);
+      $res = $res && preg_match('/^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/', $email, $matches) && strlen($email) <= 80;
     }
     if (!is_null($password)) {
-      $res = $res && $password !== "";
+      $res = $res && $password !== "" && strlen($password) <= 16;
     }
     if (!is_null($telefono)) {
-      $res = preg_match('/[0-9]{10}/', $telefono, $matches);
+      $res = $res && preg_match('/[0-9]{10}/', $telefono, $matches);
     }
     if (!is_null($telefono_emergencia)) {
-      $res = preg_match('/[0-9]{10}/', $telefono_emergencia, $matches);
+      $res = $res && preg_match('/[0-9]{10}/', $telefono_emergencia, $matches);
     }
     if (!is_null($torre)) {
-      $res = $res && $torre !== "";
+      $res = $res && $torre !== "" && strlen($torre) <= 5;
     }
     if (!is_null($departamento)) {
-      $res = $res && $departamento !== "";
+      $res = $res && $departamento !== "" && strlen($departamento) <= 30;
     }
     if (!is_null($tipo)) {
-      $res = $res && $tipo !== "";
+      $res = $res && $tipo !== "" && strlen($tipo) <= 15;
     }
     return $res;
   }
