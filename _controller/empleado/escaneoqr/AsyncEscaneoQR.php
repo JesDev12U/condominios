@@ -12,6 +12,12 @@ $iv_length = openssl_cipher_iv_length(METODO_ENCRIPTACION);
 $iv = openssl_random_pseudo_bytes($iv_length);
 $datos = base64_decode($json_qr_cifrado);
 $iv_extraido = substr($datos, 0, $iv_length);
+
+// Aseguramos que el IV tenga la longitud correcta
+if (strlen($iv_extraido) < $iv_length) {
+  $iv_extraido = str_pad($iv_extraido, $iv_length, "\0");
+}
+
 $cifrado_extraido = substr($datos, $iv_length);
 $json_qr = openssl_decrypt($cifrado_extraido, METODO_ENCRIPTACION, KEY_ENCRIPTACION, 0, $iv_extraido);
 
