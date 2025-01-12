@@ -1,6 +1,11 @@
 # SOFTWARE DE ASISTENCIA PARA CONTROL DE CONDOMINIOS
 
-NOTA: Las credenciales de la base de datos están en el archivo `Global.php` dentro del directorio `config`
+## NOTAS
+
+1. Las credenciales de la base de datos están en el archivo `Global.php` dentro del directorio `config`.
+
+2. PHPMailer está configurado con mi correo electrónico, la contraseña no es la de mi cuenta, sino una generada por Google para aplicaciones que no requieren verificación de 2 pasos [Para más detalle, ve este video de YouTube](https://www.youtube.com/watch?v=cygY1sCjLxA)
+   Si deseas poner tu correo electrónico, configura tu cuenta de Google y coloca tu email y password en las variables globales `EMAIL` y `PASSWORD_EMAIL` en `config/Global.php`.
 
 ## Inicialización del proyecto
 
