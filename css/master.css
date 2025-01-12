@@ -9,6 +9,10 @@
   --color-principal: #96BD7D;
 }
 
+#container-principal {
+  margin-top: 120px;
+}
+
 .container-redes-sociales a {
   font-size: 2em;
   color: #000;

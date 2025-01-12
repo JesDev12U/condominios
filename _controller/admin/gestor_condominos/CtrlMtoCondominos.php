@@ -18,10 +18,30 @@ class CtrlMtoCondominos
   public $foto_path;
   public $habilitado;
   public $title;
+  public $opciones;
 
-  public function __construct($peticion = null, $id_condomino = null)
+  public function __construct($peticion = null, $id_condomino = null, $usuario = "administrador")
   {
-    $this->title = "Mantenimiento de condominos";
+    if ($usuario === "administrador") {
+      $this->title = "Mantenimiento de condóminos";
+      $this->opciones = [
+        ["nombre" => ICON_HOME, "href" => SITE_URL . RUTA_ADMINISTRADOR, "id" => "home"],
+        ["nombre" => ICON_CONDOMINOS, "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-condominos", "id" => "gestor-condominos"],
+        ["nombre" => ICON_EMPLEADOS, "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-empleados", "id" => "gestor-empleados"],
+        ["nombre" => ICON_RESERVACIONES, "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-reservaciones", "id" => "gestor-reservaciones"],
+        ["nombre" => ICON_VISITAS, "href" => SITE_URL . RUTA_ADMINISTRADOR . "reporte-visitas", "id" => "reporte-visitas"],
+        ["nombre" => ICON_CUENTA, "href" => SITE_URL . RUTA_ADMINISTRADOR . "configuracion", "id" => "configuracion"],
+        ["nombre" => ICON_CERRAR_SESION, "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
+      ];
+    } else {
+      $this->title = "Configuración de la cuenta";
+      $this->opciones = [
+        ["nombre" => ICON_HOME, "href" => SITE_URL . RUTA_CONDOMINO, "id" => "home"],
+        ["nombre" => ICON_EVENTOS, "href" => SITE_URL . RUTA_CONDOMINO . "reservar-eventos", "id" => "reservar-eventos"],
+        ["nombre" => ICON_INVITADOS, "href" => SITE_URL . RUTA_CONDOMINO . "invitados", "id" => "invitados"],
+        ["nombre" => ICON_CERRAR_SESION, "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
+      ];
+    }
     $this->peticion = $peticion;
     $this->id_condomino = $id_condomino;
     if ($id_condomino !== null) {
@@ -40,10 +60,6 @@ class CtrlMtoCondominos
     }
   }
 
-  public $opciones = [
-    ["nombre" => "Home", "href" => SITE_URL . RUTA_CONDOMINO, "id" => "home"],
-    ["nombre" => "Cerrar sesión", "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
-  ];
 
 
   public function renderContent()

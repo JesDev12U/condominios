@@ -11,12 +11,12 @@ let objInputs = [
   },
   {
     id: "detalles_evento",
-    type: "text",
+    type: "detalles_evento",
     spanError: "error-detalles-evento",
   },
   {
     id: "tipo_evento",
-    type: "text",
+    type: "tipo_evento",
     spanError: "error-tipo-evento",
   },
 ];
@@ -64,7 +64,21 @@ $formDatos.addEventListener("submit", function (e) {
     formData,
     `${this.dataset.url}_controller/condomino/eventos/AsyncMtoReservarEventos.php`,
     "Confirmación",
-    "¿Está seguro de agendar el evento?",
-    "¡Evento agendado correctamente!"
+    `${
+      this.dataset.modificacion
+        ? "¿Está seguro de modificar los datos de este evento?"
+        : "¿Está seguro de agendar el evento?"
+    }`,
+    `${
+      this.dataset.modificacion
+        ? "¡Evento modificado correctamente!"
+        : "¡Evento agendado correctamente!"
+    }`,
+    () =>
+      setTimeout(
+        () =>
+          (location.href = `${this.dataset.url}${this.dataset.url_user}reservar-eventos`),
+        2000
+      )
   );
 });

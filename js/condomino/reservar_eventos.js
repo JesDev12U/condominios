@@ -15,6 +15,13 @@ function cargarCancReag() {
         "¿Está seguro de cancelar este evento?",
         "¡Hecho! El evento ha sido cancelado",
         () => {
+          let $td = document.getElementById(`status${$btn.dataset.id_evento}`);
+          if ($td) {
+            tblReservaciones
+              .cell($btn.dataset.id_evento - 1, 9)
+              .data("Cancelado")
+              .draw();
+          }
           $btn.outerHTML = `<button class="btn btn-success" id="btn-reagendar" data-url="${$btn.dataset.url}" data-id_evento="${$btn.dataset.id_evento}" data-id_condomino="${$btn.dataset.id_condomino}">
                 <i class="fa-solid fa-calendar"></i>
                 Reagendar
@@ -38,6 +45,13 @@ function cargarCancReag() {
         "¿Está seguro de reagendar este evento?",
         "¡Hecho! El evento ha sido reagendado",
         () => {
+          let $td = document.getElementById(`status${$btn.dataset.id_evento}`);
+          if ($td) {
+            tblReservaciones
+              .cell($btn.dataset.id_evento - 1, 9)
+              .data("Activo")
+              .draw();
+          }
           $btn.outerHTML = `<button class="btn btn-danger" id="btn-cancelar" data-url="${$btn.dataset.url}" data-id_evento="${$btn.dataset.id_evento}" data-id_condomino="${$btn.dataset.id_condomino}">
                 <i class="fa-solid fa-ban"></i>
                 Cancelar

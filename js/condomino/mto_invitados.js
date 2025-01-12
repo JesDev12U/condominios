@@ -53,7 +53,21 @@ $btnSend.addEventListener("click", function (e) {
     formDataDatos,
     `${this.dataset.url}_controller/condomino/invitados/AsyncMtoInvitados.php`,
     "Confirmación",
-    "¿Está seguro de registrar los datos del invitado?",
-    "¡Datos modificados correctamente!"
+    `${
+      this.dataset.modificacion
+        ? "¿Está seguro de modificar los datos del invitado?"
+        : "¿Está seguro de registrar a este invitado?"
+    }`,
+    `${
+      this.dataset.modificacion
+        ? "¡Datos modificados correctamente!"
+        : "¡Invitado registrado correctamente!"
+    }`,
+    () =>
+      setTimeout(
+        () =>
+          (location.href = `${this.dataset.url}${this.dataset.url_user}invitados`),
+        2000
+      )
   );
 });

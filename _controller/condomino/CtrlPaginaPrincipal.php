@@ -5,8 +5,10 @@ class CtrlPaginaPrincipal
   const CSS = __DIR__ . "/../../css/condomino/principal.css";
   const JS = __DIR__ . "/../../js/condomino/principal.js";
   public $opciones = [
-    ["nombre" => "Home", "href" => SITE_URL . "condomino", "id" => "home"],
-    ["nombre" => "Cerrar sesión", "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
+    ["nombre" => ICON_EVENTOS, "href" => SITE_URL . RUTA_CONDOMINO . "reservar-eventos", "id" => "reservar-eventos"],
+    ["nombre" => ICON_INVITADOS, "href" => SITE_URL . RUTA_CONDOMINO . "invitados", "id" => "invitados"],
+    ["nombre" => ICON_CUENTA, "href" => SITE_URL . RUTA_CONDOMINO . "configuracion", "id" => "configuracion"],
+    ["nombre" => ICON_CERRAR_SESION, "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
   ];
   public $title = "Condómino";
 

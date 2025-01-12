@@ -6,6 +6,7 @@ use chillerlan\QRCode\{QRCode, QROptions};
   <a href="<?php echo SITE_URL . RUTA_CONDOMINO ?>invitados" class="btn btn-primary">
     <i class="fa-solid fa-arrow-left"></i>
   </a>
+  <h1>Mantenimiento de invitados</h1>
   <div id="formSection" class="mt-5">
     <!-- Formulario -->
     <form id="form-datos">
@@ -80,7 +81,7 @@ use chillerlan\QRCode\{QRCode, QROptions};
         </select>
       </div>
       <div class="mb-3">
-        <label for="integrantes" class="form-label"><i class="fa-solid fa-users"></i>&nbsp;Integrantes</label>
+        <label for="integrantes" class="form-label"><i class="fa-solid fa-users"></i>&nbsp;Acompañantes</label>
         <input
           type="number"
           class="form-control"
@@ -89,16 +90,16 @@ use chillerlan\QRCode\{QRCode, QROptions};
           id="integrantes"
           name="integrantes"
           value="<?php echo is_null($this->id_invitado) ? "" : $this->integrantes ?>"
-          placeholder="Ingresa aquí el número de integrantes a invitar"
+          placeholder="Ingresa aquí el número de acompañantes del invitado"
           required />
         <span id="error-integrantes" class="span-errors hidden">Cantidad inválida</span>
       </div>
     </form>
 
     <div class="container" style="margin-bottom: 50px;">
-      <button type="submit" class="btn btn-success" id="btn-send" data-url="<?php echo SITE_URL ?>">
+      <button type="submit" class="btn btn-success" id="btn-send" data-url="<?php echo SITE_URL ?>" data-modificacion="<?php echo !is_null($this->id_invitado) ?>" data-url_user="<?php echo RUTA_CONDOMINO ?>">
         <i class="fa-solid fa-check"></i>
-        Enviar
+        <?php echo is_null($this->id_invitado) ? "Registrar" : "Actualizar" ?>
       </button>
     </div>
 

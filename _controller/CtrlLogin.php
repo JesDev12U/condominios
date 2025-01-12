@@ -9,7 +9,7 @@ class CtrlLogin
   const JS = __DIR__ . "/../js/login.js";
   public $model;
   public $opciones = [
-    ["nombre" => "Home", "href" => SITE_URL, "id" => "home"]
+    ["nombre" => ICON_HOME, "href" => SITE_URL, "id" => "home"]
   ];
   public $title = "Inicio de sesión";
 

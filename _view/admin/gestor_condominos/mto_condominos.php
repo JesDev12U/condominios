@@ -2,6 +2,7 @@
   <a href="<?php echo SITE_URL . RUTA_ADMINISTRADOR ?>gestor-condominos" class="btn btn-primary">
     <i class="fa-solid fa-arrow-left"></i>
   </a>
+  <h1><?php echo $_SESSION["usuario"] === "condomino" ? "Configuración de la cuenta" : "Mantenimiento de condóminos" ?></h1>
   <div id="formSection" class="mt-5">
     <div class="row">
       <!-- Formulario -->
@@ -18,9 +19,9 @@
               id="nombre"
               name="nombre"
               value="<?php echo is_null($this->id_condomino) ? "" : $this->nombre ?>"
-              placeholder="Ingresa aquí el nombre del condomino"
+              placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí el nombre del condómino" : "Ingresa aquí tu nombre" ?>"
               required />
-            <span id="error-nombre" class="span-errors hidden">El nombre no puede ser vacío</span>
+            <span id="error-nombre" class="span-errors hidden">Nombre inválido</span>
           </div>
           <div class="mb-3">
             <label for="email" class="form-label"><i class="fa-solid fa-envelope"></i>&nbsp;Correo electrónico</label>
@@ -30,19 +31,26 @@
               id="email"
               name="email"
               value="<?php echo is_null($this->id_condomino) ? "" : $this->email ?>"
-              placeholder="Ingresa aquí el correo electrónico del condomino"
+              placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí el correo electrónico del condómino" : "Ingresa aquí tu correo electrónico" ?>"
               required />
             <span id="error-email" class="span-errors hidden">Correo electrónico inválido</span>
           </div>
           <div class="mb-3">
             <label for="password" class="form-label"><i class="fa-solid fa-lock"></i>&nbsp;Contraseña</label>
             <div class="input-group">
-              <input data-valor="<?php echo is_null($this->id_condomino) ?>" type="password" class="form-control" id="password" name="password" placeholder="Ingresa aquí una contraseña para el condomino" <?php echo is_null($this->id_condomino) || $_SESSION["usuario"] === "condomino" ? "" : "disabled" ?> />
+              <input
+                data-valor="<?php echo is_null($this->id_condomino) ?>"
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí una contraseña para el condómino" : "Ingresa aquí una nueva contraseña si la deseas cambiar" ?>"
+                <?php echo is_null($this->id_condomino) || $_SESSION["usuario"] === "condomino" ? "" : "disabled" ?> />
               <button class="btn btn-outline-secondary" id="toggle-password" type="button">
                 <i class="fa-solid fa-eye"></i>
               </button>
             </div>
-            <span id="error-password" class="span-errors hidden">La contraseña no puede ser vacía</span>
+            <span id="error-password" class="span-errors hidden">Contraseña inválida</span>
           </div>
           <div class="mb-3">
             <label for="telefono" class="form-label"><i class="fa-solid fa-phone"></i>&nbsp;Teléfono</label>
@@ -52,7 +60,7 @@
               id="telefono"
               name="telefono"
               value="<?php echo is_null($this->id_condomino) ? "" : $this->telefono ?>"
-              placeholder="Ingresa aquí el teléfono del condomid_condomino"
+              placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí el teléfono del condómino" : "Ingresa aquí tu teléfono" ?>"
               required />
             <span id="error-telefono" class="span-errors hidden">Teléfono inválido</span>
           </div>
@@ -64,7 +72,7 @@
               id="telefono_emergencia"
               name="telefono_emergencia"
               value="<?php echo is_null($this->id_condomino) ? "" : $this->telefono_emergencia ?>"
-              placeholder="Ingresa aquí el teléfono de emergencia del condomino"
+              placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí el teléfono de emergencia del condómino" : "Ingresa aquí tu teléfono de emergencia" ?>"
               required />
             <span id="error-telefono-emergencia" class="span-errors hidden">Teléfono inválido</span>
           </div>
@@ -76,7 +84,7 @@
               id="torre"
               name="torre"
               value="<?php echo is_null($this->id_condomino) ? "" : $this->torre ?>"
-              placeholder="Ingresa aquí la torre del condomino"
+              placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí la torre del condómino" : "Ingresa aquí tu torre" ?>"
               required />
             <span id="error-torre" class="span-errors hidden">La torre no puede ser vacía</span>
           </div>
@@ -88,7 +96,7 @@
               id="departamento"
               name="departamento"
               value="<?php echo is_null($this->id_condomino) ? "" : $this->departamento ?>"
-              placeholder="Ingresa aquí la departamento del condomino"
+              placeholder="<?php echo $_SESSION["usuario"] === "administrador" ? "Ingresa aquí la departamento del condómino" : "Ingresa aquí tu departamento" ?>"
               required />
             <span id="error-departamento" class="span-errors hidden">El departamento no puede ser vacío</span>
           </div>
@@ -126,9 +134,9 @@
         <input type="file" id="foto-file" accept="image/*">
       </div>
       <div class="container" style="margin-bottom: 50px;">
-        <button type="submit" class="btn btn-success" id="btn-send" data-url="<?php echo SITE_URL ?>" data-peticion="<?php echo $this->peticion ?>" data-usuario="<?php echo $_SESSION["usuario"] ?>">
+        <button type="submit" class="btn btn-success" id="btn-send" data-url="<?php echo SITE_URL ?>" data-peticion="<?php echo $this->peticion ?>" data-usuario="<?php echo $_SESSION["usuario"] ?>" data-url_admin="<?php echo RUTA_ADMINISTRADOR ?>">
           <i class="fa-solid fa-check"></i>
-          Enviar
+          <?php echo is_null($this->id_condomino) ? "Registrar" : "Actualizar" ?>
         </button>
       </div>
     </div>

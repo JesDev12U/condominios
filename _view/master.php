@@ -8,7 +8,7 @@
     <title><?php echo "Condominios | " . $ctrl->title ?></title>
     <link rel="icon" href="img/placeholder_logo.png">
     <!-- Bootstrap CSS -->
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- DataTables Core CSS -->
     <link href="node_modules/datatables.net-dt/css/dataTables.dataTables.min.css" rel="stylesheet" type="text/css">
     <!-- DataTables Bootstrap CSS -->
@@ -40,7 +40,7 @@
         <h3>Cargando, espere un momento...</h3>
     </div>
     <!-- Navbar superior -->
-    <nav class="navbar navbar-expand-lg border-bottom">
+    <nav class="navbar navbar-expand-lg border-bottom fixed-top">
         <a href="index.php" class="navbar-brand">
             <img src="img/placeholder_logo.png" alt="Logo" width="40" height="40">
             Condominios
@@ -62,7 +62,7 @@
         }
         ?>
     </nav>
-    <div class="container-fluid">
+    <div id="container-principal" class="container-fluid">
         <!-- Contenido de cada controlador -->
         <?php $ctrl->renderContent(); ?>
     </div>
@@ -107,7 +107,7 @@
     <!-- jQuery -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap JS -->
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables Core JS -->
     <script src="node_modules/datatables.net/js/dataTables.min.js"></script>
     <!-- DataTables Buttons JS -->
@@ -137,6 +137,8 @@
     <script src="node_modules/validator/validator.min.js"></script>
     <!-- JS del master -->
     <script src="js/master.js"></script>
+    <!-- Validaciones -->
+    <script src="js/validaciones.js"></script>
     <!-- Confirmación de procesos -->
     <script src="js/confirmacionProcesos.js"></script>
     <script>

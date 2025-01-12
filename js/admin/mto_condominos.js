@@ -13,7 +13,7 @@ let objInputs = [
   },
   {
     id: "password",
-    type: $inputPassword.dataset.valor === "1" ? "password" : "",
+    type: $inputPassword.dataset.valor === "1" ? "password" : "password-modify",
     spanError: "error-password",
   },
   {
@@ -33,7 +33,7 @@ let objInputs = [
   },
   {
     id: "departamento",
-    type: "text",
+    type: "departamento",
     spanError: "error-departamento",
   },
 ];
@@ -74,15 +74,24 @@ $btnSend.addEventListener("click", function (e) {
       "Confirmación",
       this.dataset.usuario === "condomino"
         ? "¿Está seguro de modificar sus datos?"
-        : "¿Está seguro de que desea hacer el registro de este condomino?",
-      this.dataset.usuario === "condomino"
+        : this.dataset.peticion === "UPDATE"
+        ? "¿Está seguro de modificar los datos de este condómino?"
+        : "¿Está seguro de que desea hacer el registro de este condómino?",
+      this.dataset.usuario === "condomino" || this.dataset.peticion === "UPDATE"
         ? "¡Datos modificados correctamente!"
-        : "¡Condomino registrado correctamente!",
+        : "¡Condómino registrado correctamente!",
       (json) => {
         if (json.usuario === "condomino") {
           const $fotoUserHeader = document.getElementById("foto-user-header");
           if ($fotoUserHeader && json.nuevos_datos.foto_path !== "")
             $fotoUserHeader.src = json.nuevos_datos.foto_path;
+          setTimeout(() => (location.href = this.dataset.url), 2000);
+        } else {
+          setTimeout(
+            () =>
+              (location.href = `${this.dataset.url}${this.dataset.url_admin}gestor-condominos`),
+            2000
+          );
         }
       }
     );

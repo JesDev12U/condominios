@@ -25,7 +25,7 @@ $id_condomino = $json->{'id_condomino'} ?? null;
 $curp = $json->{'curp'} ?? null;
 
 if (!$id_invitado || !$id_condomino || !$curp) {
-  echo json_encode(["result" => 0, "msg" => "Datos incompletos, no se puede procesar el QR, $json"]);
+  echo json_encode(["result" => 0, "msg" => "Datos incompletos, no se puede procesar el QR"]);
   die();
 }
 
@@ -39,7 +39,7 @@ if (!$mtoInvitados->existeCURP($curp, $id_condomino)) {
 
 //Verificamos la hora
 if (!$mtoInvitados->horaValida($id_invitado)) {
-  echo json_encode(["result" => 0, "msg" => "Horario inválido"]);
+  echo json_encode(["result" => 0, "msg" => "¡Aún no es la hora de entrada del invitado!"]);
   die();
 }
 
@@ -51,6 +51,6 @@ if ($visitas->registrarVisita($id_invitado, $id_condomino, $id_empleado)) {
   echo json_encode(["result" => 1, "msg" => "¡Visita registrada correctamente!"]);
   die();
 } else {
-  echo json_encode(["result" => 0, "msg" => "Problema de inserción en la BD, $id_invitado, $id_condomino, $id_empleado"]);
+  echo json_encode(["result" => 0, "msg" => "Problema de inserción en la BD"]);
   die();
 }

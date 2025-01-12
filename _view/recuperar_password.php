@@ -4,7 +4,6 @@
   </a>
   <h1>Recuperación de contraseña</h1>
   <div class="container" id="input-correo-container">
-    <h5>Ingresa tu correo electrónico</h5>
     <form id="emailForm">
       <input type="hidden" name="operacion" value="enviar_codigo">
       <input type="hidden" name="url" value="<?php echo SITE_URL ?>">
@@ -13,7 +12,7 @@
         <input type="email" name="email" id="email" class="form-control" placeholder="Ingresa aquí tu correo electrónico" required>
         <span id="error-email" class="span-errors hidden">Correo electrónico inválido</span>
       </div>
-      <button id="btn-enviar-email" class="btn btn-primary">Enviar</button>
+      <button id="btn-enviar-email" class="btn btn-primary">Registrar</button>
     </form>
   </div>
   <div class="container hidden" id="input-codigo-container">
@@ -52,6 +51,7 @@
               placeholder="Introduce tu nueva contraseña"
               required
               oninput="validatePasswords()">
+            <span id="error-password" class="span-errors hidden"></span>
           </div>
           <div class="mb-3">
             <label for="confirmPassword" class="form-label">Confirma tu Contraseña</label>
@@ -62,6 +62,7 @@
               placeholder="Vuelve a escribir tu contraseña"
               required
               oninput="validatePasswords()">
+            <span id="error-password-confirm" class="span-errors hidden"></span>
             <div id="passwordError" class="form-text text-danger d-none">Las contraseñas no coinciden.</div>
           </div>
           <button type="submit" id="submitButtonPasswordForm" class="btn btn-primary w-100" disabled>Cambiar Contraseña</button>

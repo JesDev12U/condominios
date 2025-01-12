@@ -1,3 +1,7 @@
+#container-principal {
+  margin-top: 70px;
+}
+
 .carousel-control-prev, .carousel-control-next {
   background-color: rgba(255, 255, 255, 0.9);
   width: 100px;
@@ -20,12 +24,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column; /* Alinea la imagen y el reflejo en columna */
-  width: 50%;
+  width: 100%;
 }
 
 /* Imagen principal */
 .mirror-container img {
   display: block;
+  width: auto;
   height: 500px;
 }
 

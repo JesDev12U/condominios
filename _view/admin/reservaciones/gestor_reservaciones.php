@@ -3,6 +3,7 @@
   <a href="<?php echo SITE_URL ?>" class="btn btn-primary">
     <i class="fa-solid fa-arrow-left"></i>
   </a>
+  <h1>Gestor de reservaciones</h1>
   <br><br>
   <p>Exporta la tabla</p>
   <table id="tblReservaciones" class="table table-striped">
@@ -10,13 +11,14 @@
       <tr>
         <th>Foto</th>
         <th>ID del evento</th>
-        <th>ID del condomino</th>
-        <th>Nombre del condomino</th>
+        <th>ID del condómino</th>
+        <th>Nombre del condómino</th>
         <th>Cantidad de personas</th>
         <th>Fecha</th>
         <th>Turno</th>
         <th>Detalles</th>
         <th>Tipo</th>
+        <th>Estado</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -32,6 +34,7 @@
           <td><?php echo $reg["turno"] ?></td>
           <td><?php echo $reg["detalles_evento"] ?></td>
           <td><?php echo $reg["tipo_evento"] ?></td>
+          <td id="status<?php echo $reg["id_evento"] ?>"><?php echo $reg["cancelado"] ? "Cancelado" : "Activo" ?></td>
           <td>
             <?php
             if ($reg["cancelado"]) {

@@ -9,6 +9,11 @@ let objInputs = [
     type: "email",
     spanError: "error-email",
   },
+  {
+    id: "password",
+    type: "password-modify",
+    spanError: "error-password",
+  },
 ];
 
 validaciones(objInputs, "btn-send");
@@ -23,6 +28,7 @@ $btnSend.addEventListener("click", function (e) {
     `${this.dataset.url}_controller/admin/AsyncMtoAdministrador.php`,
     "Confirmación",
     "¿Está seguro de modificar sus datos?",
-    "¡Datos modificados correctamente!"
+    "¡Datos modificados correctamente!",
+    () => setTimeout(() => (location.href = this.dataset.url), 2000)
   );
 });

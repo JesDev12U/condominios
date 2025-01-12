@@ -13,7 +13,7 @@ let objInputs = [
   },
   {
     id: "password",
-    type: $inputPassword.dataset.valor === "1" ? "password" : "",
+    type: $inputPassword.dataset.valor === "1" ? "password" : "password-modify",
     spanError: "error-password",
   },
   {
@@ -64,8 +64,10 @@ $btnSend.addEventListener("click", function (e) {
       "Confirmación",
       this.dataset.usuario === "empleado"
         ? "¿Está seguro de modificar sus datos?"
+        : this.dataset.peticion === "UPDATE"
+        ? "¿Está reguro de modificar los datos de este empleado?"
         : "¿Está seguro de que desea hacer el registro de este empleado?",
-      this.dataset.usuario === "empleado"
+      this.dataset.usuario === "empleado" || this.dataset.peticion === "UPDATE"
         ? "¡Datos modificados correctamente!"
         : "¡Empleado registrado correctamente!",
       (json) => {
@@ -73,6 +75,13 @@ $btnSend.addEventListener("click", function (e) {
           const $fotoUserHeader = document.getElementById("foto-user-header");
           if ($fotoUserHeader && json.nuevos_datos.foto_path !== "")
             $fotoUserHeader.src = json.nuevos_datos.foto_path;
+          setTimeout(() => (location.href = this.dataset.url), 2000);
+        } else {
+          setTimeout(
+            () =>
+              (location.href = `${this.dataset.url}${this.dataset.url_admin}gestor-empleados`),
+            2000
+          );
         }
       }
     );

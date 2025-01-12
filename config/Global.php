@@ -19,3 +19,14 @@ define("METODO_ENCRIPTACION", "AES-256-CBC");
 define("KEY_ENCRIPTACION", "u7<fijrf0AKI./");
 define("EMAIL", "lopezbandalajesusantonio@gmail.com");
 define("PASSWORD_EMAIL", "dvrurjvdfumraxuz"); //Password generado por Google
+define("ICON_CERRAR_SESION", '<i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión');
+define("ICON_CONDOMINOS", '<i class="fa-solid fa-user"></i> Condóminos');
+define("ICON_CUENTA", '<i class="fa-solid fa-gear"></i> Cuenta');
+define("ICON_EMPLEADOS", '<i class="fa-solid fa-user-tie"></i> Empleados');
+define("ICON_ESCANEO_QR", '<i class="fa-solid fa-qrcode"></i> Acceso');
+define("ICON_EVENTOS", '<i class="fa-solid fa-calendar-days"></i> Eventos');
+define("ICON_HOME", '<i class="fa-solid fa-house"></i> Home');
+define("ICON_INICIAR_SESION", '<i class="fa-solid fa-user"></i> Iniciar sesión');
+define("ICON_INVITADOS", '<i class="fa-solid fa-users"></i> Invitados');
+define("ICON_RESERVACIONES", '<i class="fa-solid fa-calendar-days"></i> Reservaciones');
+define("ICON_VISITAS", '<i class="fa-solid fa-users"></i> Visitas');

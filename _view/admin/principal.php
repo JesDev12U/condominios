@@ -16,8 +16,8 @@ if (!isset($_SESSION["loggeado"]) || $_SESSION["loggeado"] === false || $_SESSIO
     </div>
     <div class="col">
       <a href="<?php echo SITE_URL . RUTA_ADMINISTRADOR ?>gestor-condominos">
-        <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_condominos.png" alt="Gestor de condominos">
-        <p>Gestor de condominos</p>
+        <img src="<?php echo SITE_URL ?>img/menu_icons/gestor_condominos.jpeg" alt="Gestor de condominos">
+        <p>Gestor de condóminos</p>
       </a>
     </div>
     <div class="col">

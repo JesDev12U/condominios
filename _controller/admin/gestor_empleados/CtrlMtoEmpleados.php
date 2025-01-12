@@ -15,10 +15,30 @@ class CtrlMtoEmpleados
   public $foto_path;
   public $habilitado;
   public $title;
+  public $opciones;
 
-  public function __construct($peticion = null, $id_empleado = null)
+  public function __construct($peticion = null, $id_empleado = null, $usuario = "administrador")
   {
-    $this->title = "Mantenimiento de empleados";
+    if ($usuario === "administrador") {
+      $this->title = "Mantenimiento de empleados";
+      $this->opciones = [
+        ["nombre" => ICON_HOME, "href" => SITE_URL . RUTA_ADMINISTRADOR, "id" => "home"],
+        ["nombre" => ICON_CONDOMINOS, "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-condominos", "id" => "gestor-condominos"],
+        ["nombre" => ICON_EMPLEADOS, "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-empleados", "id" => "gestor-empleados"],
+        ["nombre" => ICON_RESERVACIONES, "href" => SITE_URL . RUTA_ADMINISTRADOR . "gestor-reservaciones", "id" => "gestor-reservaciones"],
+        ["nombre" => ICON_VISITAS, "href" => SITE_URL . RUTA_ADMINISTRADOR . "reporte-visitas", "id" => "reporte-visitas"],
+        ["nombre" => ICON_CUENTA, "href" => SITE_URL . RUTA_ADMINISTRADOR . "configuracion", "id" => "configuracion"],
+        ["nombre" => ICON_CERRAR_SESION, "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
+      ];
+    } else {
+      $this->title = "Configuración de la cuenta";
+      $this->opciones = [
+        ["nombre" => ICON_HOME, "href" => SITE_URL . RUTA_EMPLEADO, "id" => "home"],
+        ["nombre" => ICON_ESCANEO_QR, "href" => SITE_URL . RUTA_EMPLEADO . "escaneo-acceso", "id" => "escaneo-acceso"],
+        ["nombre" => ICON_VISITAS, "href" => SITE_URL . RUTA_EMPLEADO . "visitas", "id" => "visitas"],
+        ["nombre" => ICON_CERRAR_SESION, "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
+      ];
+    }
     $this->peticion = $peticion;
     $this->id_empleado = $id_empleado;
     if ($id_empleado !== null) {
@@ -33,13 +53,6 @@ class CtrlMtoEmpleados
       }
     }
   }
-
-  public $opciones = [
-    ["nombre" => "Home", "href" => SITE_URL . RUTA_ADMINISTRADOR, "id" => "home"],
-    ["nombre" => "Cerrar sesión", "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
-  ];
-
-
 
   public function renderContent()
   {

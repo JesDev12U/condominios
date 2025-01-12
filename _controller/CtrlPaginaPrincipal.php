@@ -6,9 +6,9 @@ class CtrlPaginaPrincipal
     private $js = __DIR__ . "/../js/principal.js";
     public $model;
     public $opciones = [
-        ["nombre" => "Home", "href" => "#home", "id" => "home"],
-        ["nombre" => "Eventos", "href" => "#eventos", "id" => "eventos"],
-        ["nombre" => '<i class="fa-solid fa-user"></i> Iniciar sesión', "href" => SITE_URL . "login", "id" => "login"]
+        ["nombre" => ICON_HOME, "href" => "#home", "id" => "home"],
+        ["nombre" => ICON_EVENTOS, "href" => "#eventos", "id" => "eventos"],
+        ["nombre" => ICON_INICIAR_SESION, "href" => SITE_URL . "login", "id" => "login"]
 
     ];
     public $title = "Principal";

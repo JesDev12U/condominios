@@ -3,16 +3,16 @@
   <a href="<?php echo SITE_URL ?>" class="btn btn-primary">
     <i class="fa-solid fa-arrow-left"></i>
   </a>
-  <br><br>
+  <h1>Visitas</h1>
   <table id="tblDatos" class="table table-striped">
     <thead>
-      <th>Nombre del condomino</th>
+      <th>Nombre del condómino</th>
       <th>Nombre del invitado</th>
       <th>Fecha</th>
       <th>Horario de entrada</th>
       <th>Horario de salida</th>
       <th>Asunto</th>
-      <th>Integrantes</th>
+      <th>Acompañantes</th>
     </thead>
     <tbody>
       <?php foreach ($this->datos as $reg): ?>

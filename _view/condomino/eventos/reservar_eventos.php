@@ -3,6 +3,7 @@
   <a href="<?php echo SITE_URL ?>" class="btn btn-primary">
     <i class="fa-solid fa-arrow-left"></i>
   </a>
+  <h1>Eventos</h1>
   <br><br>
   <a href="<?php echo SITE_URL . RUTA_CONDOMINO ?>mto-reservar-eventos" class="btn btn-success">
     <i class="fas fa-plus"></i>

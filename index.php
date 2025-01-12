@@ -104,7 +104,7 @@ switch ($page) {
         break;
       case "configuracion":
         require_once __DIR__ . "/_controller/admin/gestor_condominos/CtrlMtoCondominos.php";
-        $ctrl = new CtrlMtoCondominos("UPDATE", $_SESSION["datos"]["id_condomino"]);
+        $ctrl = new CtrlMtoCondominos("UPDATE", $_SESSION["datos"]["id_condomino"], "condomino");
         break;
       default:
         //Pagina no encontrada
@@ -208,7 +208,7 @@ switch ($page) {
         break;
       case "configuracion":
         require_once __DIR__ . "/_controller/admin/gestor_empleados/CtrlMtoEmpleados.php";
-        $ctrl = new CtrlMtoEmpleados("UPDATE", $_SESSION["datos"]["id_empleado"]);
+        $ctrl = new CtrlMtoEmpleados("UPDATE", $_SESSION["datos"]["id_empleado"], "empleado");
         break;
       default:
         //Pagina no encontrada

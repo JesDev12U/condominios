@@ -26,7 +26,7 @@ let tblReservaciones = new DataTable("#tblReservaciones", {
       extend: "copyHtml5",
       text: '<i class="fa-solid fa-copy"></i>',
       exportOptions: {
-        columns: [1, 2, 3, 4, 5, 6, 7, 8],
+        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       },
       titleAttr: "Copiar",
       className: "btn btn-primary",
@@ -35,7 +35,7 @@ let tblReservaciones = new DataTable("#tblReservaciones", {
       extend: "excelHtml5",
       text: '<i class="fa-solid fa-file-excel"></i>',
       exportOptions: {
-        columns: [1, 2, 3, 4, 5, 6, 7, 8],
+        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       },
       titleAttr: "Excel",
       className: "btn btn-success",
@@ -44,7 +44,7 @@ let tblReservaciones = new DataTable("#tblReservaciones", {
       extend: "csvHtml5",
       text: '<i class="fa-solid fa-file-csv"></i>',
       exportOptions: {
-        columns: [1, 2, 3, 4, 5, 6, 7, 8],
+        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       },
       titleAttr: "CSV",
       className: "btn btn-info",
@@ -53,7 +53,7 @@ let tblReservaciones = new DataTable("#tblReservaciones", {
       extend: "pdfHtml5",
       text: '<i class="fas fa-file-pdf"></i>',
       exportOptions: {
-        columns: [1, 2, 3, 4, 5, 6, 7, 8],
+        columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       },
       titleAttr: "PDF",
       className: "btn btn-danger",

@@ -13,7 +13,7 @@ class CtrlRecuperarPassword
   const JS = __DIR__ . "/../js/recuperar_password.js";
 
   public $opciones = [
-    ["nombre" => "Home", "href" => SITE_URL, "id" => "home"]
+    ["nombre" => ICON_HOME, "href" => SITE_URL, "id" => "home"]
   ];
 
   public $title = "Recuperar contraseña";

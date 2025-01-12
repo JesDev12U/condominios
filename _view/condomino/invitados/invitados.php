@@ -7,6 +7,7 @@ use chillerlan\QRCode\{QRCode, QROptions};
   <a href="<?php echo SITE_URL ?>" class="btn btn-primary">
     <i class="fa-solid fa-arrow-left"></i>
   </a>
+  <h1>Invitados</h1>
   <br><br>
   <a href="<?php echo SITE_URL . RUTA_CONDOMINO ?>mto-invitados" class="btn btn-success">
     <i class="fas fa-plus"></i>
@@ -19,7 +20,7 @@ use chillerlan\QRCode\{QRCode, QROptions};
         <th>Horario inicial</th>
         <th>Horario final</th>
         <th>QR</th>
-        <th>Número de integrantes</th>
+        <th>Número de acompañantes</th>
         <th>Asunto</th>
         <th>Acciones</th>
       </tr>

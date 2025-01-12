@@ -33,8 +33,10 @@ class CtrlVisitas
   }
 
   public $opciones = [
-    ["nombre" => "Home", "href" => SITE_URL . RUTA_EMPLEADO, "id" => "home"],
-    ["nombre" => "Cerrar sesión", "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
+    ["nombre" => ICON_HOME, "href" => SITE_URL . RUTA_EMPLEADO, "id" => "home"],
+    ["nombre" => ICON_ESCANEO_QR, "href" => SITE_URL . RUTA_EMPLEADO . "escaneo-acceso", "id" => "escaneo-acceso"],
+    ["nombre" => ICON_CUENTA, "href" => SITE_URL . RUTA_EMPLEADO . "configuracion", "id" => "configuracion"],
+    ["nombre" => ICON_CERRAR_SESION, "href" => SITE_URL . RUTA_CERRAR_SESION, "id" => "cerrar-sesion"]
   ];
 
   public $title = "Visitas";

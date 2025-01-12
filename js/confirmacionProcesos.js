@@ -12,7 +12,9 @@ function asyncConfirmProcess(
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
+    confirmButtonText: "Si",
     cancelButtonColor: "#d33",
+    cancelButtonText: "Cancelar",
     showLoaderOnConfirm: true,
     preConfirm: async () => {
       try {
@@ -47,6 +49,9 @@ function asyncConfirmProcess(
         icon: "success",
         title: titleResult,
         text: result.value.msg,
+        timer: 2000,
+        showConfirmButton: false,
+        allowOutsideClick: false,
       });
     }
   });

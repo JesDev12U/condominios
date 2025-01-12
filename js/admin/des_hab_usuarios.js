@@ -12,8 +12,12 @@ function cargarDesHab() {
         formData,
         `${this.dataset.url}_controller/admin/AsyncDesHabUsuarios.php`,
         "Advertencia",
-        "¿Está seguro de deshabilitar este empleado?",
-        "¡Hecho! El usuario ha sido deshabilitado",
+        this.dataset.usuario === "empleado"
+          ? "¿Está seguro de deshabilitar este empleado?"
+          : "¿Está seguro de deshabilitar este condómino?",
+        this.dataset.usuario === "empleado"
+          ? "¡Hecho! El empleado ha sido deshabilitado"
+          : "¡Hecho! El condómino ha sido deshabilitado",
         () => {
           $btn.outerHTML = `<button class="btn btn-success" id="btn-habilitar" data-url="${$btn.dataset.url}" data-usuario="${$btn.dataset.usuario}" data-id="${$btn.dataset.id}">
                 <i class="fa-solid fa-check"></i>
@@ -35,8 +39,12 @@ function cargarDesHab() {
         formData,
         `${this.dataset.url}_controller/admin/AsyncDesHabUsuarios.php`,
         "Advertencia",
-        "¿Está seguro de habilitar este empleado?",
-        "¡Hecho! El usuario ha sido habilitado",
+        this.dataset.usuario === "empleado"
+          ? "¿Está seguro de habilitar este empleado?"
+          : "¿Está seguro de habilitar este condómino?",
+        this.dataset.usuario === "empleado"
+          ? "¡Hecho! El empleado ha sido habilitado"
+          : "¡Hecho! El condómino ha sido habilitado",
         () => {
           $btn.outerHTML = `<button class="btn btn-danger" id="btn-deshabilitar" data-url="${$btn.dataset.url}" data-usuario="${$btn.dataset.usuario}" data-id="${$btn.dataset.id}">
                   <i class="fa-solid fa-ban"></i>

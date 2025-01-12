@@ -4,6 +4,16 @@ let objInputs = [
     type: "email",
     spanError: "error-email",
   },
+  {
+    id: "newPassword",
+    type: "password-modify",
+    spanError: "error-password",
+  },
+  {
+    id: "confirmPassword",
+    type: "password-modify",
+    spanError: "error-password-confirm",
+  },
 ];
 
 validaciones(objInputs, "btn-enviar-email");

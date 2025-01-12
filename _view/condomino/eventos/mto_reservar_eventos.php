@@ -2,6 +2,8 @@
   <a href="<?php echo SITE_URL . RUTA_CONDOMINO ?>reservar-eventos" class="btn btn-primary">
     <i class="fa-solid fa-arrow-left"></i>
   </a>
+  <h1>Mantenimiento de eventos</h1>
+  <br><br>
   <div class="formSection" class="mt-5">
     <div class="row">
       <!-- Lineamientos -->
@@ -36,7 +38,7 @@
       <!-- Formulario -->
       <div class="col">
         <h5 class="text-center mb-4">Registro</h5>
-        <form id="form-datos" data-url="<?php echo SITE_URL ?>">
+        <form id="form-datos" data-url="<?php echo SITE_URL ?>" data-modificacion="<?php echo !is_null($this->id_evento) ?>" data-url_user="<?php echo RUTA_CONDOMINO ?>">
           <div class="general-container-foto" style="margin-bottom: 50px;">
             <label for="foto_path" class="form-label"><i class="fa-solid fa-image"></i>&nbsp;Foto</label>
             <div class="wrapper-foto">
@@ -121,7 +123,7 @@
           <div class="container" style="margin-bottom: 50px;">
             <button type="submit" class="btn btn-success" id="btn-send">
               <i class="fa-solid fa-check"></i>
-              Enviar
+              <?php echo is_null($this->id_evento) ? "Registrar" : "Actualizar" ?>
             </button>
           </div>
         </form>
