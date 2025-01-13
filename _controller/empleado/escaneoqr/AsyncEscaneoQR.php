@@ -49,6 +49,12 @@ if (!$mtoInvitados->horaValida($id_invitado)) {
   die();
 }
 
+//Verificamos que el invitado no este oculto
+if ($mtoInvitados->estaOcultado($id_invitado)) {
+  echo json_encode(["result" => 0, "msg" => "El invitado no tiene permiso para entrar"]);
+  die();
+}
+
 //Con todo correcto, registramos la visita
 $visitas = new CtrlVisitas();
 $id_empleado = $_SESSION["datos"]["id_empleado"];

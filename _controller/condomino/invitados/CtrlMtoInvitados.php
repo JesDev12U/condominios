@@ -296,4 +296,24 @@ class CtrlMtoInvitados
     //Si se trata de una salida, no se tiene que verificar la hora
     return true;
   }
+
+  public function estaOcultado($id_invitado)
+  {
+    $model = new Model();
+    $queryES = $model->seleccionaRegistros(
+      "visitas",
+      ["horario_entrada"],
+      "id_invitado = $id_invitado AND horario_salida IS NULL"
+    );
+    if (count($queryES) === 0) {
+      //Se trata de una entrada, entonces se valida si el invitado esta oculto o no
+      return $model->seleccionaRegistros(
+        "detalle_invitados",
+        ["ocultar"],
+        "id_invitado=$id_invitado"
+      )[0]["ocultar"] == 1;
+    }
+    //Si se trata de una salida, entonces no hace falta hacer la verificacion
+    return false;
+  }
 }
