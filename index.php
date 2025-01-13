@@ -63,7 +63,6 @@ switch ($page) {
         if (is_null($id)) {
           require_once __DIR__ . "/_controller/condomino/invitados/CtrlMtoInvitados.php";
           $ctrl = new CtrlMtoInvitados("INSERT");
-          break;
         } else if ($id > 0) {
           require_once __DIR__ . "/_controller/condomino/invitados/CtrlMtoInvitados.php";
           $ctrl = new CtrlMtoInvitados("UPDATE", $id, $_SESSION["datos"]["id_condomino"]);
@@ -74,13 +73,13 @@ switch ($page) {
             http_response_code(404);
             $ctrl = new CtrlError404();
           }
-          break;
         } else {
           //Pagina no encontrada
           require_once __DIR__ . "/_controller/errors/CtrlError404.php";
           http_response_code(404);
           $ctrl = new CtrlError404();
         }
+        break;
       case "reservar-eventos":
         require_once __DIR__ . "/_controller/condomino/eventos/CtrlReservarEventos.php";
         $ctrl = new CtrlReservarEventos($_SESSION["datos"]["id_condomino"]);
@@ -89,7 +88,6 @@ switch ($page) {
         if (is_null($id)) {
           require_once __DIR__ . "/_controller/condomino/eventos/CtrlMtoReservarEventos.php";
           $ctrl = new CtrlMtoReservarEventos("INSERT", null, $_SESSION["datos"]["id_condomino"]);
-          break;
         } else if ($id > 0) {
           require_once __DIR__ . "/_controller/condomino/eventos/CtrlMtoReservarEventos.php";
           $ctrl = new CtrlMtoReservarEventos("UPDATE", $id, $_SESSION["datos"]["id_condomino"]);
@@ -100,6 +98,11 @@ switch ($page) {
             http_response_code(404);
             $ctrl = new CtrlError404();
           }
+        } else {
+          //Pagina no encontrada
+          require_once __DIR__ . "/_controller/errors/CtrlError404.php";
+          http_response_code(404);
+          $ctrl = new CtrlError404();
         }
         break;
       case "configuracion":
@@ -136,7 +139,6 @@ switch ($page) {
         if (is_null($id)) {
           require_once __DIR__ . "/_controller/admin/gestor_empleados/CtrlMtoEmpleados.php";
           $ctrl = new CtrlMtoEmpleados("INSERT");
-          break;
         } else if ($id > 0) {
           require_once __DIR__ . "/_controller/admin/gestor_empleados/CtrlMtoEmpleados.php";
           $ctrl = new CtrlMtoEmpleados("UPDATE", $id);
@@ -147,18 +149,17 @@ switch ($page) {
             http_response_code(404);
             $ctrl = new CtrlError404();
           }
-          break;
         } else {
           //Pagina no encontrada
           require_once __DIR__ . "/_controller/errors/CtrlError404.php";
           http_response_code(404);
           $ctrl = new CtrlError404();
         }
+        break;
       case "mto-condominos":
         if (is_null($id)) {
           require_once __DIR__ . "/_controller/admin/gestor_condominos/CtrlMtoCondominos.php";
           $ctrl = new CtrlMtoCondominos("INSERT");
-          break;
         } else if ($id > 0) {
           require_once __DIR__ . "/_controller/admin/gestor_condominos/CtrlMtoCondominos.php";
           $ctrl = new CtrlMtoCondominos("UPDATE", $id);
@@ -169,13 +170,13 @@ switch ($page) {
             http_response_code(404);
             $ctrl = new CtrlError404();
           }
-          break;
         } else {
           //Pagina no encontrada
           require_once __DIR__ . "/_controller/errors/CtrlError404.php";
           http_response_code(404);
           $ctrl = new CtrlError404();
         }
+        break;
       case "gestor-reservaciones":
         require_once __DIR__ . "/_controller/admin/reservaciones/CtrlGestorReservaciones.php";
         $ctrl = new CtrlGestorReservaciones();
