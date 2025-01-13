@@ -75,7 +75,7 @@ function validaciones(objInputs, idButton) {
       case "nombre":
         input.value = input.value
           .replace(/\s+/g, " ")
-          .replace(/[^a-zA-Z\s]/g, "");
+          .replace(/[^a-zA-ZñáéíóúÁÉÍÓÚ´\s]/g, "");
         return input.value.length !== 0;
       case "phone":
         input.value = input.value.trim().replace(/\D/g, "");
