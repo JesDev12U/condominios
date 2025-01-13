@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/../../../_model/Model.php";
-
+require_once __DIR__ . "/../../../config/Global.php";
+date_default_timezone_set(TIMEZONE);
 class CtrlMtoReservarEventos
 {
   const VISTA = __DIR__ . "/../../../_view/condomino/eventos/mto_reservar_eventos.php";

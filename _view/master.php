@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo "Condominios | " . $ctrl->title ?></title>
-    <link rel="icon" href="img/placeholder_logo.png">
+    <link rel="icon" href="img/logo2.png">
     <!-- Bootstrap CSS -->
     <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- DataTables Core CSS -->
@@ -41,8 +41,8 @@
     </div>
     <!-- Navbar superior -->
     <nav class="navbar navbar-expand-lg border-bottom fixed-top">
-        <a href="index.php" class="navbar-brand">
-            <img src="img/placeholder_logo.png" alt="Logo" width="40" height="40">
+        <a href="index.php" class="navbar-brand" id="container-logo-navbar">
+            <img src="img/logo.png" alt="Logo" width="70" height="70">
             Condominios
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
                 <?php foreach ($ctrl->opciones as $opcion): ?>
-                    <li class="nav-item"><a class="nav-link" <?php echo 'href="' . $opcion['href'] . '"' ?>><?php echo $opcion['nombre'] ?></a></li>
+                    <li class="nav-item"><a id='<?php echo $opcion['id'] ?>' class="nav-link" <?php echo 'href="' . $opcion['href'] . '"' ?>><?php echo $opcion['nombre'] ?></a></li>
                 <?php endforeach ?>
             </ul>
         </div>

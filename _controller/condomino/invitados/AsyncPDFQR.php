@@ -4,9 +4,9 @@ use chillerlan\QRCode\{QRCode, QROptions};
 
 ini_set('display_errors', E_ALL); // Solo para pruebas
 require_once __DIR__ . '/../../../vendor/autoload.php';
-
+require_once __DIR__ . "/../../../config/Global.php";
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-  echo "Peticion invalida";
+  header("Location: " . SITE_URL . RUTA_CONDOMINO . "invitados");
   die();
 }
 
@@ -40,42 +40,51 @@ class PDF extends \tFPDF
 {
   function Header()
   {
-    $this->SetFont('DejaVu', '', 12);
-    $this->Cell(0, 10, '¡QR Generado con Éxito!', 0, 1, 'C');
+    // Ruta del logo
+    $logoPath = '../../../img/logo.png';
+    // Posición del logo (X, Y) y tamaño (ancho, alto)
+    $this->Image($logoPath, 10, 6, 25);
+    // Establecer la fuente para el título
+    $this->SetFont('Quickless', '', 15);
+    // Mover a la derecha
+    $this->Cell(40);
+    // Título
+    $this->Cell(5, 15, 'Condominios', 0, 1, 'C');
   }
 
   function Footer()
   {
     $this->SetY(-15);
-    $this->SetFont('DejaVu', '', 8);
+    $this->SetFont('DejaVu', 'I', 8);
     $this->Cell(0, 10, 'Condominios', 0, 0, 'C');
   }
 
   function TitleSection($title)
   {
-    $this->SetFont('DejaVu', '', 16);
-    $this->Cell(0, 10, $title, 0, 1, 'C');
+    $this->SetFont('DejaVu', 'B', 18);
+    $this->Cell(0, 25, $title, 0, 1, 'C');
   }
 
   function SubtitleSection($subtitle)
   {
     $this->SetFont('DejaVu', '', 12);
-    $this->MultiCell(0, 10, $subtitle, 0, 'C');
+    $this->MultiCell(0, 5, $subtitle, 0, 'C');
   }
 
   function ImageSection($imgUrl)
   {
-    $this->Image($imgUrl, 70, 60, 70); // Ajustar posición y tamaño
+    $this->Image($imgUrl, 20, 65, 60); // (IMG, X, Y, tamaño)
   }
 }
 
 // Crear PDF e incluir la imagen PNG
-$pdf = new PDF();
+$pdf = new PDF('P', 'mm', array(100, 150)); // Ancho: 100mm, Alto: 150mm
+$pdf->AddFont('Quickless', '', '../../../../../fonts/quickless/Quickless.ttf', true);
 $pdf->AddFont('DejaVu', '', '../../../../../fonts/dejavu-sans/DejaVuSans.ttf', true);
 $pdf->AddFont('DejaVu', 'B', '../../../../../fonts/dejavu-sans/DejaVuSans-Bold.ttf', true);
 $pdf->AddFont('DejaVu', 'I', '../../../../../fonts/dejavu-sans/DejaVuSans-Oblique.ttf', true);
 $pdf->AddPage();
-$pdf->TitleSection('Escaneo de QR');
+$pdf->TitleSection('¡QR generado con éxito!');
 $pdf->SubtitleSection('Con este QR, tu invitado podrá ingresar al establecimiento');
 $pdf->ImageSection($pngFile);
 $pdf->Output();

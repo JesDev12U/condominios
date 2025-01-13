@@ -31,3 +31,79 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+<div class="container-fluid" id="contenido">
+  <h1 class="text-center">¡Bienvenid@ a condominios!</h1>
+  <hr>
+  <h2 id="detalles-establecimiento">Detalles del establecimiento</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <img src="<?php echo SITE_URL ?>img/logo.png" alt="Logo" id="img-logo">
+      </div>
+      <div class="col">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro totam aliquam accusantium eius perspiciatis magni nam facilis nesciunt, quis quibusdam harum fugiat sapiente similique illo, deserunt consectetur rerum quod vero?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro totam aliquam accusantium eius perspiciatis magni nam facilis nesciunt, quis quibusdam harum fugiat sapiente similique illo, deserunt consectetur rerum quod vero?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro totam aliquam accusantium eius perspiciatis magni nam facilis nesciunt, quis quibusdam harum fugiat sapiente similique illo, deserunt consectetur rerum quod vero?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro totam aliquam accusantium eius perspiciatis magni nam facilis nesciunt, quis quibusdam harum fugiat sapiente similique illo, deserunt consectetur rerum quod vero?</p>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <h2 id="eventos">Eventos</h2>
+  <h3><i>Próximos</i></h3>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <?php
+    if ($this->proximosEventos) {
+      foreach ($this->proximosEventos as $evento) {
+        echo "<div class='col'>
+        <div class='card'>
+          <img src='" . $evento["foto_path"] . "' class='card-img-top'>
+          <div class='card-body'>
+            <h5 class='card-title'><strong>" . $evento["tipo_evento"] . "</strong></h5>
+            <p class='card-text'>
+              <strong>Fecha: </strong>" . $evento["fecha"] . "
+            </p>
+            <p class='card-text'>
+              <strong>Turno: </strong>" . $evento["turno"] . "
+            </p>
+            <p class='card-text'>
+              " . $evento["detalles_evento"] . "
+            </p>
+          </div>
+        </div>
+      </div>";
+      }
+    } else {
+      echo "<div class='col'>No hay eventos por mostrar</div>";
+    }
+    ?>
+  </div>
+  <h3><i>Anteriores</i></h3>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <?php
+    if ($this->anterioresEventos) {
+      foreach ($this->anterioresEventos as $evento) {
+        echo "<div class='col'>
+        <div class='card'>
+          <img src='" . $evento["foto_path"] . "' class='card-img-top'>
+          <div class='card-body'>
+            <h5 class='card-title'><strong>" . $evento["tipo_evento"] . "</strong></h5>
+            <p class='card-text'>
+              <strong>Fecha: </strong>" . $evento["fecha"] . "
+            </p>
+            <p class='card-text'>
+              <strong>Turno: </strong>" . $evento["turno"] . "
+            </p>
+            <p class='card-text'>
+              " . $evento["detalles_evento"] . "
+            </p>
+          </div>
+        </div>
+      </div>";
+      }
+    } else {
+      echo "<div class='col'>No hay eventos por mostrar</div>";
+    }
+    ?>
+  </div>
+</div>

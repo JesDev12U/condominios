@@ -9,6 +9,16 @@
   --color-principal: #96BD7D;
 }
 
+@font-face {
+  font-family: 'Quickless';
+  src: url('../fonts/quickless/Quickless.ttf');
+}
+
+#container-logo-navbar {
+  font-family: 'Quickless';
+  font-size: 2em;
+}
+
 #container-principal {
   margin-top: 120px;
 }
@@ -27,7 +37,7 @@ footer {
 }
 
 .navbar {
-  padding: 20px;
+  padding: 10px;
   background: var(--color-principal);
 }
 

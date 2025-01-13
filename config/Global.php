@@ -15,6 +15,7 @@ define("DB_HOST", "127.0.0.1");
 define("DB_BASE", "condominios");
 define("DB_USR", "root");
 define("DB_PASS", "Str0ngPassword!");
+define("TIMEZONE", "America/Mexico_City");
 define("METODO_ENCRIPTACION", "AES-256-CBC");
 define("KEY_ENCRIPTACION", "u7<fijrf0AKI./");
 define("EMAIL", "lopezbandalajesusantonio@gmail.com");
@@ -30,3 +31,4 @@ define("ICON_INICIAR_SESION", '<i class="fa-solid fa-user"></i> Iniciar sesión'
 define("ICON_INVITADOS", '<i class="fa-solid fa-users"></i> Invitados');
 define("ICON_RESERVACIONES", '<i class="fa-solid fa-calendar-days"></i> Reservaciones');
 define("ICON_VISITAS", '<i class="fa-solid fa-users"></i> Visitas');
+define("ICON_DETALLES_ESTABLECIMIENTO", '<i class="fa-solid fa-building"></i> Detalles del establecimiento');

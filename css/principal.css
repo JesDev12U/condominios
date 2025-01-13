@@ -2,6 +2,19 @@
   margin-top: 70px;
 }
 
+#contenido {
+  border: thin solid #d5d5d5;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px;
+  box-shadow: 0px 0px 3px #000;
+}
+
+#img-logo {
+  width: 70%;
+  min-width: 200px;
+}
+
 .carousel-control-prev, .carousel-control-next {
   background-color: rgba(255, 255, 255, 0.9);
   width: 100px;
@@ -35,12 +48,12 @@
 }
 
 .carousel-inner {
-  background: linear-gradient(to bottom, var(--color-principal), #333); /* Fondo degradado oscuro */
+  background: linear-gradient(to bottom, #e6e6e6, #818181); /* Fondo degradado oscuro */
 }
 
 /* Reflejo de la imagen */
 .mirror-container::after {
-  background: linear-gradient(to bottom, var(--color-principal), #333); /* Fondo degradado oscuro */
+  background: linear-gradient(to bottom, #e6e6e6, #818181); /* Fondo degradado oscuro */
   content: '';
   display: block;
   width: 100%; /* Igual ancho que la imagen */
@@ -60,7 +73,7 @@
 
 /* Fondo del carrusel */
 .carousel-item {
-  background: linear-gradient(to bottom, var(--color-principal), #333); /* Fondo degradado oscuro */
+  background: linear-gradient(to bottom, #e6e6e6, #818181); /* Fondo degradado oscuro */
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -71,4 +84,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.card img {
+  width: 100%;
+  height: 300px;
 }

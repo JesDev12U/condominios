@@ -1,8 +1,9 @@
 <?php
 ini_set('display_errors', E_ALL); // Solo para pruebas
 
-date_default_timezone_set("America/Mexico_City");
 require_once __DIR__ . "/../../../_model/Model.php";
+require_once __DIR__ . "/../../../config/Global.php";
+date_default_timezone_set(TIMEZONE);
 
 class CtrlVisitas
 {
