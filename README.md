@@ -1,4 +1,16 @@
-# SOFTWARE DE ASISTENCIA PARA CONTROL DE CONDOMINIOS
+# Condominios
+*Software de asistencia para control de condóminos en un Condominio* <br />
+<p>
+   <img src="https://github.com/user-attachments/assets/b6d595f8-f694-4980-b444-508a3ba062ce" width="200" height="200" />
+   <!-- HTML -->
+   <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="90" height="90" title="HTML" /></a> 
+  <!-- CSS -->
+  <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="90" height="90" title="CSS"/></a> 
+  <!--JavaScript-->
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="90" height="90" title="JavaScript" /></a>
+   <!--PHP-->
+  <a href="https://www.php.net" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="php" width="90" height="90" title="PHP"/></a>
+</p>
 
 ## NOTAS
 
@@ -12,7 +24,7 @@
 1. Descargar Composer
 
 ```bash
-sudo pacman -S composer
+sudo pacman -Syu composer
 ```
 
 [Para otros sistemas operativos, click aquí](https://getcomposer.org/download/)
@@ -42,14 +54,14 @@ chmod 777 -R uploads
 
 6. Tener instalado MySQL o MariaDB y activar la extensión en el `php.ini` y también habilitar PDO. Además, se debe cargar el SQL del proyecto en MySQL, el SQL está ubicado en `config/db.sql`.
 
-7. Instalar la extensión `Imagick` e `ImagickPixel`
+7. Instalar la extensión `Imagick` e `ImagickPixel`, estas dos extensiones son necesarias para poder exportar el QR a PDF.
 
 ```bash
-sudo pacman -S imagemagick php-imagick
+sudo pacman -Syu imagemagick php-imagick
 ```
 
 - Habilitar la extensión en php.ini `extension=imagick`
-- Si `Inteliphense` no detecta `Imagick`, se necesita activar en la configuración de este. Para `VSCode`: Archivo > Preferencias > Configuración > Busca `stubs` y aparecerá una lista en la que se muestran todas las extensiones de PHP, habilita `imagick`
+- (Para editores de código) Si `Inteliphense` no detecta `Imagick`, se necesita activar en la configuración de este. Para `VSCode`: Archivo > Preferencias > Configuración > Busca `stubs` y aparecerá una lista en la que se muestran todas las extensiones de PHP, habilita `imagick`
 
 ## Configuración para IIS
 
