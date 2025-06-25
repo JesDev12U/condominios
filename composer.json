@@ -4,8 +4,8 @@
     "type": "project",
     "require": {
         "chillerlan/php-qrcode": "^5.0",
-        "setasign/tfpdf": "1.33",
-        "phpmailer/phpmailer": "^6.9"
+        "phpmailer/phpmailer": "^6.9",
+        "tecnickcom/tcpdf": "^6.10"
     },
     "autoload": {
         "psr-4": {

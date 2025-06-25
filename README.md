@@ -12,6 +12,12 @@
   <a href="https://www.php.net" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="php" width="90" height="90" title="PHP"/></a>
 </p>
 
+## 🔧 Fixes
+- [2025-06-25] Se sustituyó la librería tFPDF por TCPDF para evitar el uso de Imagick ya que este a veces genera errores al momento de convertir las imágenes.
+
+## 🌟 Upgrades
+- [2025-06-25] Se implementó una API (Ajax) para el acceso por NFC (en un futuro pienso implementar una gestión correcta del NFC para los usuarios).
+
 ## NOTAS
 
 1. Las credenciales de la base de datos están en el archivo `Global.php` dentro del directorio `config`.
@@ -53,15 +59,6 @@ chmod 777 -R uploads
 ```
 
 6. Tener instalado MySQL o MariaDB y activar la extensión en el `php.ini` y también habilitar PDO. Además, se debe cargar el SQL del proyecto en MySQL, el SQL está ubicado en `config/db.sql`.
-
-7. Instalar la extensión `Imagick` e `ImagickPixel`, estas dos extensiones son necesarias para poder exportar el QR a PDF.
-
-```bash
-sudo pacman -Syu imagemagick php-imagick
-```
-
-- Habilitar la extensión en php.ini `extension=imagick`
-- (Para editores de código) Si `Inteliphense` no detecta `Imagick`, se necesita activar en la configuración de este. Para `VSCode`: Archivo > Preferencias > Configuración > Busca `stubs` y aparecerá una lista en la que se muestran todas las extensiones de PHP, habilita `imagick`
 
 ## Configuración para IIS
 

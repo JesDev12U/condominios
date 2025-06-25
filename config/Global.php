@@ -6,7 +6,7 @@ set_include_path(
     PATH_SEPARATOR . realpath(__DIR__ . '/..') . '/classes'
 );
 
-define("SITE_URL", "http://localhost/condominios/");
+define("SITE_URL", "https://jesdev12u.duckdns.org/condominios/");
 define("RUTA_ADMINISTRADOR", "administrador/");
 define("RUTA_EMPLEADO", "empleado/");
 define("RUTA_CONDOMINO", "condomino/");

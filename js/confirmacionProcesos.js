@@ -31,8 +31,7 @@ function asyncConfirmProcess(
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
         }
-        const res = await response.json();
-
+	const res = await response.json();
         if (res.result !== 1) {
           Swal.showValidationMessage(res.msg);
         }
