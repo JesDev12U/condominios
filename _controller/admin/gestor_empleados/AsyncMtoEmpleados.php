@@ -45,7 +45,7 @@ switch ($peticion) {
       if ($ctrlEmail->existeEmail()) {
         echo json_encode(["result" => 0, "msg" => "El correo electrónico enviado ya existe, elige otro"]);
       } else {
-        $foto_path = guardarFoto(null, null, "empleado");
+        $foto_path = guardarFoto("empleado", null, null);
         if ($foto_path === "") {
           echo json_encode(["result" => 0, "msg" => "No se recibió ninguna foto, por favor sube una"]);
         } else if ($ctrl->insertaRegistro($nombre, $email, password_hash($password, PASSWORD_DEFAULT), $telefono, $telefono_emergencia, $foto_path)) {
@@ -67,7 +67,7 @@ switch ($peticion) {
       if ($ctrlEmail->existeEmail() && $email !== $oldEmail) {
         echo json_encode(["result" => 0, "msg" => "El correo electrónico enviado ya existe, elige otro"]);
       } else {
-        $foto_path = guardarFoto("UPDATE", $id_empleado, "empleado");
+        $foto_path = guardarFoto("empleado", "UPDATE", $id_empleado);
         if ($ctrl->modificaRegistro($id_empleado, $nombre, $email, $password === null ? null : password_hash($password, PASSWORD_DEFAULT), $telefono, $telefono_emergencia, $foto_path)) {
           if ($_SESSION["usuario"] === "empleado") {
             $_SESSION["datos"]["nombre"] = $nombre;

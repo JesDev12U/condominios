@@ -9,7 +9,11 @@
     },
     "autoload": {
         "psr-4": {
-            "Jesdev12u\\Condominios\\": "/"
+            "Jesdev12u\\Condominios\\": [
+                "_controller/",
+                "_model/",
+                "classes/"
+            ]
         }
     },
     "authors": [

@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../config/Global.php";
 
-function guardarFoto($peticion = null, $id = null, $user, $pathUploads = "fotos_users")
+function guardarFoto($user, $peticion = null, $id = null, $pathUploads = "fotos_users")
 {
   $foto_path = "";
   if (isset($_FILES['foto_path']) && $_FILES['foto_path']['error'] === UPLOAD_ERR_OK) {

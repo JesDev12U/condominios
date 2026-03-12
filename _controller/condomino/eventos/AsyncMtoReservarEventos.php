@@ -43,7 +43,7 @@ switch ($peticion) {
     } else if ($ctrl->hayTraslape($fecha, $turno, 0)) {
       echo json_encode(["result" => 0, "msg" => "Ya hay un evento asignado con esa fecha y turno"]);
     } else {
-      $foto_path = guardarFoto(null, null, "eventos", "fotos_eventos");
+      $foto_path = guardarFoto("eventos", null, null, "fotos_eventos");
       if ($foto_path === SITE_URL . "uploads/placeholderimage.jpg") {
         echo json_encode(["result" => 0, "msg" => "No se recibió ninguna foto, por favor sube una"]);
       } else if ($ctrl->insertaRegistro($id_condomino, $cantidad_personas, $fecha, $turno, $detalles_evento, $tipo_evento, $foto_path)) {
@@ -60,7 +60,7 @@ switch ($peticion) {
     } else if ($ctrl->hayTraslape($fecha, $turno, $id_evento)) {
       echo json_encode(["result" => 0, "msg" => "Ya hay un evento asignado con esa fecha y turno"]);
     } else {
-      $foto_path = guardarFoto("UPDATE", $id_evento, "eventos", "fotos_eventos");
+      $foto_path = guardarFoto("eventos", "UPDATE", $id_evento, "fotos_eventos");
       if ($ctrl->modificaRegistro($id_evento, $id_condomino, $cantidad_personas, $fecha, $turno, $detalles_evento, $tipo_evento, $foto_path)) {
         echo json_encode(["result" => 1, "msg" => "Evento modificado correctamente"]);
       } else {

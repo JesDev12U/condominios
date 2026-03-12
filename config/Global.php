@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', '0');
 set_include_path(
   get_include_path() .
     PATH_SEPARATOR . realpath(__DIR__ . '/..') . '/_model' .
@@ -6,20 +7,22 @@ set_include_path(
     PATH_SEPARATOR . realpath(__DIR__ . '/..') . '/classes'
 );
 
-define("SITE_URL", "https://jesdev12u.duckdns.org/condominios/");
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$domainName = $_SERVER['HTTP_HOST'];
+define("SITE_URL", getenv("SITE_URL") ?: $protocol . $domainName . "/");
 define("RUTA_ADMINISTRADOR", "administrador/");
 define("RUTA_EMPLEADO", "empleado/");
 define("RUTA_CONDOMINO", "condomino/");
 define("RUTA_CERRAR_SESION", "_controller/cerrarSesion.php");
-define("DB_HOST", "127.0.0.1");
-define("DB_BASE", "condominios");
-define("DB_USR", "root");
-define("DB_PASS", "Str0ngPassword!");
+define("DB_HOST", getenv("DB_HOST") ?: "localhost");
+define("DB_BASE", getenv("DB_BASE") ?: "condominios");
+define("DB_USR", getenv("DB_USR") ?: "root");
+define("DB_PASS", getenv("DB_PASS") ?: "");
 define("TIMEZONE", "America/Mexico_City");
 define("METODO_ENCRIPTACION", "AES-256-CBC");
-define("KEY_ENCRIPTACION", "u7<fijrf0AKI./");
-define("EMAIL", "lopezbandalajesusantonio@gmail.com");
-define("PASSWORD_EMAIL", "dvrurjvdfumraxuz"); //Password generado por Google
+define("KEY_ENCRIPTACION", getenv("ENCRYPTION_KEY") ?: "");
+define("EMAIL", getenv("EMAIL_USR") ?: "");
+define("PASSWORD_EMAIL", getenv("EMAIL_PASS") ?: "");
 define("ICON_CERRAR_SESION", '<i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión');
 define("ICON_CONDOMINOS", '<i class="fa-solid fa-user"></i> Condóminos');
 define("ICON_CUENTA", '<i class="fa-solid fa-gear"></i> Cuenta');
