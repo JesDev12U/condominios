@@ -1,35 +1,25 @@
-FROM php:8.2-apache
+FROM php:8.2-fpm-alpine
 
 # Instalación de las dependencias del contenedor
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add --no-cache \
     libpng-dev \
-    libonig-dev \
+    oniguruma-dev \
     libxml2-dev \
     zip \
     unzip \
     curl \
     git \
-    gnupg
-
-# Limpiamos la caché
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+    gnupg \
+    nodejs \
+    npm \
+    linux-headers \
+    build-base
 
 # Instalamos las extensiones de PHP
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-# Activamos Apache mod_rewrite
-RUN a2enmod rewrite
-
-# Deshabilitar EnableSendfile y EnableMMAP para la estabilidad de los volúmenes de Docker
-RUN echo "EnableSendfile Off" >> /etc/apache2/apache2.conf
-RUN echo "EnableMMAP Off" >> /etc/apache2/apache2.conf
-
 # Instalamos Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Instalamos Node.js y NPM
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs
 
 # Configuramos el directorio de alojamiento
 WORKDIR /var/www/html
@@ -49,7 +39,8 @@ COPY . .
 # Último proceso de composer (generamos un autoloader)
 RUN composer dump-autoload
 
-# Arreglamos los permisos
+# Arreglamos los permisos (en alpine el usuario de php-fpm es www-data o root, pero por defecto suele ser www-data si se crea)
+# En la imagen oficial fpm-alpine, el usuario es www-data (uid 82)
 RUN chown -R www-data:www-data /var/www/html
 
 # Copiar y dar permisos al script de entrada
@@ -59,8 +50,8 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 # Punto de entrada
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-# El comando por defecto sigue siendo apache2-foreground
-CMD ["apache2-foreground"]
+# El comando por defecto para fpm es php-fpm
+CMD ["php-fpm"]
 
-# Exponemos el puerto 80 HTTP
-EXPOSE 80
+# Exponemos el puerto 9000 para FastCGI
+EXPOSE 9000
