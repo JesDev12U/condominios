@@ -6,6 +6,8 @@ services:
     image: condominios-app
     container_name: condominios-app
     restart: always
+    volumes:
+      - uploads_data:/var/www/html/uploads
     environment:
       - DB_HOST=db # Cambiado a 'db' para comunicación interna
       - DB_BASE=${DB_BASE}
@@ -38,9 +40,12 @@ services:
     container_name: condominios-proxy
     restart: always
     ports:
-      - "9000:80" # Mantenemos el 9000 para tus pruebas locales por ahora
+      - "9000:80"
+    volumes:
+      - uploads_data:/var/www/html/uploads:ro
     depends_on:
       - app
 
 volumes:
   db_data:
+  uploads_data:
